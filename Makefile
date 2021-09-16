@@ -3,6 +3,8 @@ SRCS_DIR	:=	srcs
 SRCS_FILES	:=	minishell.c \
 				env.c \
 				env_2.c\
+				get_path.c\
+				free.c\
 				clear.c \
 				output.c \
 				parsing/parsing.c \
