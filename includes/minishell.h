@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/16 16:43:18 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/16 19:30:37 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,24 @@
 # define SUCESS 1
 # define FAILURE 0
 
-typef enum e_redir
+typedef enum e_redir
 {
 	_REDIR_SINGLE,
 	_REDIR_DOUBLE
 }	t_redir;
 
-typedef struct s_exec_info
+typedef struct s_cmd
 {
-	char	**commands;
+	char	*cmd;
 	char	*infile;
 	char	*outfile;
-	int		in_redir;
-	int		out_redir;
+	t_redir	in_redir;
+	t_redir	out_redir;
+}	t_cmd;
+
+typedef struct s_exec_info
+{
+	t_lst	*cmds;
 	pid_t	*pids;
 	t_list	*env;
 }	t_exec_info;
