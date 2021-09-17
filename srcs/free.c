@@ -6,14 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 17:25:54 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/16 17:26:22 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:21:20 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <minishell.h>
 
-void 	free_token_list(char **list)
+void	free_token_list(char **list)
 {
 	int	i;
 
