@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/16 17:06:45 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/17 16:03:00 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**ft_getenv(t_list *env)
 {
 	t_list	*head;
 	int		i;
-	char	**env;
+	char	**res;
 
 	head = env;
 	i = 0;
@@ -25,17 +25,17 @@ char	**ft_getenv(t_list *env)
 		i++;
 		head = head->next;
 	}
-	env = malloc(sizeof(char *) * (i + 1));
+	res = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	head = env;
 	while (head)
 	{
-		env[i] = ft_strdup((char *)head->content);
+		res[i] = ft_strdup((char *)head->content);
 		i++;
 		head = head->next;
 	}
-	env[i] = NULL;
-	return (env);
+	res[i] = NULL;
+	return (res);
 }
 
 t_list	*ft_new_env(char *env[])

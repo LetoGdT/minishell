@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/16 19:30:37 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/17 16:04:04 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@ typedef struct s_cmd
 
 typedef struct s_exec_info
 {
-	t_lst	*cmds;
+	t_list	*cmds;
 	pid_t	*pids;
 	t_list	*env;
 }	t_exec_info;
 
-#Fonctions liées à l’environnement
-char	**ft_getenv(t_env *env);
+//Fonctions liées à l’environnement
+char	**ft_getenv(t_list *env);
 t_list	*ft_new_env(char *env[]);
 int		ft_add_to_env(char *val, t_list **env);
 int		ft_remove_from_env(char *key, t_list **env);
 char	*ft_getenv_value(char *key, t_list *env);
 
-#Fonctions liées à l’éxecution
+//Fonctions liées à l’éxecution
 int		exec(int *stat_loc, t_exec_info *info);
-char	*get_path(char *cmd, t_env *env);
+char	*get_path(char *cmd, t_list *env);
 
-#Fonctions sur les signaux
+//Fonctions sur les signaux
 void	sig_handler(int signo);
-void	sig_int(t_info);
-void	sig_quit(t_info);
+void	sig_int(t_exec_info info);
+void	sig_quit(t_exec_info info);
 
 #endif
