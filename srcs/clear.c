@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clear.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
+/*   Updated: 2021/09/21 14:18:05 by mballet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+void	del(void *content)
+{
+	free(content);
+}
+
+static void	clear_cmds(t_list **cmds)
+{
+	if (((t_cmd *)((*cmds)->content))->cmd)
+	{
+		ft_lstclear(&(((t_cmd *)((*cmds)->content))->cmd), del);
+	}
+	if (((t_cmd *)((*cmds)->content))->infile)
+	{
+		ft_lstclear(&(((t_cmd *)((*cmds)->content))->infile), del);
+	}
+	if (((t_cmd *)((*cmds)->content))->outfile)
+	{
+		ft_lstclear(&(((t_cmd *)((*cmds)->content))->outfile), del);
+	}
+	ft_lstclear(cmds, del);
+}
+
+short int	clear(t_exec_info *global, int ret)
+{
+	if (global)
+	{
+		if (global->cmds)
+		{
+			clear_cmds(&(global->cmds));
+		}
+		// if (global->pids)
+		// {
+		// 	clear_pids(global);
+		// }
+		// if (global->env)
+		// {
+		// 	clear_env(global);
+		// }
+		free(global);
+	}
+	return (ret);
+}
