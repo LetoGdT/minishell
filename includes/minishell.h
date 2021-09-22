@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/17 16:04:04 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:11:02 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include "libft.h"
-# define SUCESS 1
+# define SUCCESS 1
 # define FAILURE 0
 
 typedef enum e_redir
@@ -44,10 +44,17 @@ typedef struct s_exec_info
 	t_list	*env;
 }	t_exec_info;
 
+typedef struct s_builtin
+{
+	char	*name;
+	int		default_fork;
+	int		(*fun)(int argc, char **argv, t_list **env);
+}	t_builtin;
+
 //Fonctions liées à l’environnement
 char	**ft_getenv(t_list *env);
 t_list	*ft_new_env(char *env[]);
-int		ft_add_to_env(char *val, t_list **env);
+int 	try_add(char *str, t_list **env);
 int		ft_remove_from_env(char *key, t_list **env);
 char	*ft_getenv_value(char *key, t_list *env);
 

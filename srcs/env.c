@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/17 16:03:00 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:11:21 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,6 @@ t_list	*ft_new_env(char *env[])
 	return (head);
 }
 
-int	ft_add_to_env(char *val, t_list **env)
-{
-	t_list	*new_elem;
-
-	if (!val)
-		return (SUCESS);
-	new_elem = ft_lstnew(ft_strdup(val));
-	if (!new_elem)
-		return (FAILURE);
-	ft_lstadd_back(env, new_elem);
-	return (SUCESS);
-}
-
 int	ft_remove_from_env(char *key, t_list **env)
 {
 	t_list	*head;
@@ -93,7 +80,7 @@ int	ft_remove_from_env(char *key, t_list **env)
 	{
 		ft_lstdelone(*env, free);
 		*env = head;
-		return (SUCESS);
+		return (SUCCESS);
 	}
 	while (head)
 	{
@@ -101,7 +88,7 @@ int	ft_remove_from_env(char *key, t_list **env)
 		{
 			prev->next = head->next;
 			ft_lstdelone(head, free);
-			return (SUCESS);
+			return (SUCCESS);
 		}
 		prev = head;
 		head = head->next;
@@ -109,16 +96,16 @@ int	ft_remove_from_env(char *key, t_list **env)
 	return (FAILURE);
 }
 
-char	*ft_getenv_value(char *key, t_list *env)
+char	**ft_getenv_value(char *key, t_list *env)
 {
 	t_list	*head;
-	char	*str;
+	char	**str;
 
 	head = env;
 	while (head)
 	{
-		str = (char *)head->content;
-		if (!ft_strncmp(key, str, ft_strlen(key)))
+		str = &(char *)head->content;
+		if (!ft_strncmp(key, *str, ft_strlen(key)))
 			return (str);
 		head = head->next;
 	}
