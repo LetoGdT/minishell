@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 19:30:28 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:07:58 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	unset(int argc, char **argv, t_list **env)
 			continue ;
 		}
 		ft_remove_from_env(argv[i + 1], env);
-		free(argv[i + 1]);
 		i++;
 	}
 	return (SUCCESS);

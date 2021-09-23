@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 18:15:28 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:11:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ static int	ft_add_to_env(char *val, t_list **env)
 	return (SUCCESS);
 }
 
-int try_add(char *str, t_list **env)
+int	try_add(const char *str, t_list **env)
 {
 	char	*key;
 	char	*val;
 	char	**env_val;
 	int		res;
 
-	key = str;
-	val = ft_strchr(str, '=');
+	key = ft_strdup(str);
+	val = ft_strchr(key, '=');
 	if (!val)
 		return (FAILURE);
 	*val = '\0';
@@ -47,6 +47,6 @@ int try_add(char *str, t_list **env)
 	}
 	else
 		res = ft_add_to_env(str, env);
-	free(str);
+	free(key);
 	return (res);
 }
