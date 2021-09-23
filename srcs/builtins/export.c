@@ -6,13 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:07:58 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:50:51 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	export(int argc, char **argv, t_list **env)
+int	ft_export(int argc, char **argv, t_list **env)
 {
 	int 	i;
 	char	*is_valid;
@@ -28,10 +28,9 @@ int	export(int argc, char **argv, t_list **env)
 	return (SUCCESS);
 }
 
-int	unset(int argc, char **argv, t_list **env)
+int	ft_unset(int argc, char **argv, t_list **env)
 {
 	int		i;
-	char	*key;
 
 	i = 0;
 	while (i < argc - 1)
@@ -47,7 +46,7 @@ int	unset(int argc, char **argv, t_list **env)
 	return (SUCCESS);
 }
 
-int	env(int argc, char **argv, t_list **env)
+int	ft_builtin_env(int argc, char **argv, t_list **env)
 {
 	t_list	*head;
 
@@ -56,7 +55,8 @@ int	env(int argc, char **argv, t_list **env)
 	head = *env;
 	while (head)
 	{
-		printf("%s\n", (char *)head->content);
+		if (!printf("%s\n", (char *)head->content))
+			return (FAILURE);
 		head = head->next;
 	}
 	return (SUCCESS);

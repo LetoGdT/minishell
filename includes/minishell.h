@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:15:38 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:48:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ typedef struct s_builtin
 //Fonctions liées à l’environnement
 char	**ft_getenv(t_list *env);
 t_list	*ft_new_env(char *env[]);
-int 	try_add(char *str, t_list **env);
+int 	try_add(const char *str, t_list **env);
 int		ft_remove_from_env(char *key, t_list **env);
-char	**ft_getenv_value(char *key, t_list *env);
-int		try_add(const char *str, t_list **env);
+char	**ft_getenv_entry(char *key, t_list *env);
+char	*ft_getenv_value(char *key, t_list *env);
 
 //Fonctions liées à l’éxecution
 int		exec(int *stat_loc, t_exec_info *info);
@@ -69,8 +69,8 @@ void	sig_int(t_exec_info info);
 void	sig_quit(t_exec_info info);
 
 //Builtins
-int		export(int argc, char **argv, t_list **env);
-int		unset(int argc, char **argv, t_list **env);
-int		env(int argc, char **argv, t_list **env);
+int		ft_export(int argc, char **argv, t_list **env);
+int		ft_unset(int argc, char **argv, t_list **env);
+int		ft_env(int argc, char **argv, t_list **env);
 
 #endif

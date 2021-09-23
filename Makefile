@@ -1,5 +1,7 @@
 NAME		:=	minishell
-SRCS		:=	srcs/env.c
+SRCS		:=	srcs/env.c\
+				srcs/env_2.c\
+				srcs/builtins/export.c
 
 HDRS		:=	includes/minishell.h
 

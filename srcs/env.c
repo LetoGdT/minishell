@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 21:15:16 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:33:15 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	ft_remove_from_env(char *key, t_list **env)
 	return (FAILURE);
 }
 
-char	**ft_getenv_value(char *key, t_list *env)
+char	**ft_getenv_entry(char *key, t_list *env)
 {
 	t_list	*head;
 	char	**str;
