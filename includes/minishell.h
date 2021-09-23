@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 21:12:40 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:14:13 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**ft_getenv(t_list *env);
 t_list	*ft_new_env(char *env[]);
 int 	try_add(char *str, t_list **env);
 int		ft_remove_from_env(char *key, t_list **env);
-char	*ft_getenv_value(char *key, t_list *env);
+char	**ft_getenv_value(char *key, t_list *env);
 
 //Fonctions liées à l’éxecution
 int		exec(int *stat_loc, t_exec_info *info);

@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 21:11:21 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:15:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	**ft_getenv_value(char *key, t_list *env)
 	head = env;
 	while (head)
 	{
-		str = &(char *)head->content;
+		str = (char **)(&head->content);
 		if (!ft_strncmp(key, *str, ft_strlen(key)))
 			return (str);
 		head = head->next;
