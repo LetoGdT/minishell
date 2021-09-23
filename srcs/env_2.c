@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 00:27:55 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 18:15:28 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,24 @@ int try_add(char *str, t_list **env)
 {
 	char	*key;
 	char	*val;
-	char	**token_list;
+	char	**env_val;
 	int		res;
 
-	token_list = ft_split(str, '=');
-	if (token_list == NULL)
-		return (FAILURE);
-	key = token_list[0];
-	val = token_list[1];
-	if (!val)
-		val = ft_strdup("");
+	key = str;
+	val = ft_strchr(str, '=');
 	if (!val)
 		return (FAILURE);
-	free(token_list);
-	token_list = ft_getenv_value(key, *env);
-	if (token_list != NULL)
+	*val = '\0';
+	val++;
+	env_val = ft_getenv_value(key, *env);
+	if (env_val != NULL)
 	{
-		free(*token_list);
-		*token_list = ft_strdup(val);
-		res = *token_list == NULL;
+		free(*env_val);
+		*env_val = ft_strdup(val);
+		res = *env_val == NULL;
 	}
 	else
 		res = ft_add_to_env(str, env);
 	free(str);
-	free(key);
-	free(val);
 	return (res);
 }

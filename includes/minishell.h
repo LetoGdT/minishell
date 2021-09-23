@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 21:11:02 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:12:40 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,10 @@ char	*get_path(char *cmd, t_list *env);
 void	sig_handler(int signo);
 void	sig_int(t_exec_info info);
 void	sig_quit(t_exec_info info);
+
+//Builtins
+int		export(int argc, char **argv, t_list **env);
+int		unset(int argc, char **argv, t_list **env);
+int		env(int argc, char **argv, t_list **env);
 
 #endif
