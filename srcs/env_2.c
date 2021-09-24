@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:44:01 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/24 22:40:54 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ int	try_add(const char *str, t_list **env)
 	if (!val)
 		return (FAILURE);
 	*val = '\0';
-	val++;
 	env_entry = ft_getenv_entry(key, *env);
 	if (env_entry != NULL)
 	{
 		free(*env_entry);
-		*env_entry = ft_strdup(val);
+		*env_entry = ft_strdup(str);
 		res = *env_entry == NULL;
 	}
 	else

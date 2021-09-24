@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:50:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/24 22:27:02 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_unset(int argc, char **argv, t_list **env)
 	return (SUCCESS);
 }
 
-int	ft_builtin_env(int argc, char **argv, t_list **env)
+int	ft_env(int argc, char **argv, t_list **env)
 {
 	t_list	*head;
 

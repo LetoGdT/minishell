@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:48:30 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/24 22:25:43 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include "libft.h"
+# include "const.h"
+# include "error.h"
 # define SUCCESS 1
 # define FAILURE 0
 
@@ -72,5 +74,7 @@ void	sig_quit(t_exec_info info);
 int		ft_export(int argc, char **argv, t_list **env);
 int		ft_unset(int argc, char **argv, t_list **env);
 int		ft_env(int argc, char **argv, t_list **env);
+int		ft_cd(int argc, char **argv, t_list **env);
+int		ft_pwd(int argc, char **argv, t_list **env);
 
 #endif
