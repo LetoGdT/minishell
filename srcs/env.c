@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/17 16:03:00 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:11:02 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**ft_getenv(t_list *env)
 {
 	t_list	*head;
 	int		i;
-	char	**res;
+	char	**env_str;
 
 	head = env;
 	i = 0;
@@ -25,17 +25,17 @@ char	**ft_getenv(t_list *env)
 		i++;
 		head = head->next;
 	}
-	res = malloc(sizeof(char *) * (i + 1));
+	env_str = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	head = env;
 	while (head)
 	{
-		res[i] = ft_strdup((char *)head->content);
+		env_str[i] = ft_strdup((char *)head->content);
 		i++;
 		head = head->next;
 	}
-	res[i] = NULL;
-	return (res);
+	env_str[i] = NULL;
+	return (env_str);
 }
 
 t_list	*ft_new_env(char *env[])
@@ -72,12 +72,12 @@ int	ft_add_to_env(char *val, t_list **env)
 	t_list	*new_elem;
 
 	if (!val)
-		return (SUCESS);
+		return (SUCCESS);
 	new_elem = ft_lstnew(ft_strdup(val));
 	if (!new_elem)
 		return (FAILURE);
 	ft_lstadd_back(env, new_elem);
-	return (SUCESS);
+	return (SUCCESS);
 }
 
 int	ft_remove_from_env(char *key, t_list **env)
@@ -93,7 +93,7 @@ int	ft_remove_from_env(char *key, t_list **env)
 	{
 		ft_lstdelone(*env, free);
 		*env = head;
-		return (SUCESS);
+		return (SUCCESS);
 	}
 	while (head)
 	{
@@ -101,7 +101,7 @@ int	ft_remove_from_env(char *key, t_list **env)
 		{
 			prev->next = head->next;
 			ft_lstdelone(head, free);
-			return (SUCESS);
+			return (SUCCESS);
 		}
 		prev = head;
 		head = head->next;
@@ -118,7 +118,7 @@ char	*ft_getenv_value(char *key, t_list *env)
 	while (head)
 	{
 		str = (char *)head->content;
-		if (!ft_strncmp(key, str, ft_strlen(key)))
+		if (key && !ft_strncmp(key, str, ft_strlen(key)))
 			return (str);
 		head = head->next;
 	}
