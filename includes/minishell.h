@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:11:12 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 15:20:51 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "../libft/include/libft.h"
 # include <readline/history.h>
 # include <readline/readline.h>
-# define FAILURE 0
 # define SUCCESS 1
+# define FAILURE 0
 
 typedef enum e_redir
 {
@@ -46,12 +46,20 @@ typedef struct s_exec_info
 	t_list	*env;
 }	t_exec_info;
 
-// #Fonctions liées à l’environnement
-char		**ft_getenv(t_list *env);
-t_list		*ft_new_env(char *env[]);
-int			ft_add_to_env(char *val, t_list **env);
-int			ft_remove_from_env(char *key, t_list **env);
-char		*ft_getenv_value(char *key, t_list *env);
+typedef struct s_builtin
+{
+	char	*name;
+	int		default_fork;
+	int		(*fun)(int argc, char **argv, t_list **env);
+}	t_builtin;
+
+//Fonctions liées à l’environnement
+char	**ft_getenv(t_list *env);
+t_list	*ft_new_env(char *env[]);
+int 	try_add(const char *str, t_list **env);
+int		ft_remove_from_env(char *key, t_list **env);
+char	**ft_getenv_entry(char *key, t_list *env);
+char	*ft_getenv_value(char *key, t_list *env);
 
 // #Fonctions liées à l’éxecution
 int			exec(int *stat_loc, t_exec_info *info);
@@ -74,5 +82,10 @@ t_cmd		*init_struct_cmd(void);
 
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info *global, char **line, int ret);
+
+//Builtins
+int		ft_export(int argc, char **argv, t_list **env);
+int		ft_unset(int argc, char **argv, t_list **env);
+int		ft_env(int argc, char **argv, t_list **env);
 
 #endif

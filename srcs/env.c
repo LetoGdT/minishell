@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:11:02 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 15:22:59 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,6 @@ t_list	*ft_new_env(char *env[])
 	return (head);
 }
 
-int	ft_add_to_env(char *val, t_list **env)
-{
-	t_list	*new_elem;
-
-	if (!val)
-		return (SUCCESS);
-	new_elem = ft_lstnew(ft_strdup(val));
-	if (!new_elem)
-		return (FAILURE);
-	ft_lstadd_back(env, new_elem);
-	return (SUCCESS);
-}
-
 int	ft_remove_from_env(char *key, t_list **env)
 {
 	t_list	*head;
@@ -109,16 +96,16 @@ int	ft_remove_from_env(char *key, t_list **env)
 	return (FAILURE);
 }
 
-char	*ft_getenv_value(char *key, t_list *env)
+char	**ft_getenv_entry(char *key, t_list *env)
 {
 	t_list	*head;
-	char	*str;
+	char	**str;
 
 	head = env;
 	while (head)
 	{
-		str = (char *)head->content;
-		if (key && !ft_strncmp(key, str, ft_strlen(key)))
+		str = (char **)(&head->content);
+		if (!ft_strncmp(key, *str, ft_strlen(key)))
 			return (str);
 		head = head->next;
 	}

@@ -2,13 +2,15 @@ NAME		:=	minishell
 SRCS_DIR	:=	srcs
 SRCS_FILES	:=	minishell.c \
 				env.c \
+				env_2.c\
 				clear.c \
 				parsing/parsing.c \
 				parsing/line_without_dollar.c \
 				parsing/states/is_special_state.c \
 				parsing/errors/basic_errors.c \
 				init/init.c \
-				init/init_struct_cmd.c
+				init/init_struct_cmd.c\
+				builtins/export.c
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
 HDRS_DIR	:=	includes
