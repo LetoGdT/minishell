@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/27 13:57:46 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 16:06:28 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ static short int	init_cmds(t_exec_info **global)
 	return (SUCCESS);
 }
 
-static short int	init_env(t_exec_info **global, char **env)
-{
-	(*global)->env = ft_new_env(env);
-	if (!(*global)->env)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
 short int	init(t_exec_info **global, char **env)
 {
 	*global = malloc(sizeof(t_exec_info));
@@ -43,7 +35,8 @@ short int	init(t_exec_info **global, char **env)
 		return (FAILURE);
 	if (!init_cmds(global))
 		return (FAILURE);
-	if (!init_env(global, env))
+	(*global)->env = ft_new_env(env);
+	if (!(*global)->env)
 		return (FAILURE);
 	return (SUCCESS);
 }

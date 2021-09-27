@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/27 14:46:00 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 16:25:14 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv, char *env[])
 {
 	char		*line;
-	t_exec_info	*global;		// Faut qu'on la mette en global
+	t_exec_info	*global;
 
 	global = NULL;
 	if (argc > 1 || argv[1])

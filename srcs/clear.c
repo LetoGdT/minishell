@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/27 14:30:55 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 16:26:18 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	del(void *content)
 {
-	free(content);
+	if (content)
+		free(content);
 }
 
 static void	clear_cmds(t_list **cmds)
@@ -59,7 +60,6 @@ short int	clear(t_exec_info *global, char **line, int ret)
 		// }
 		free(global);
 	}
-	(void)*line;
 	if (*line)
 		free(*line);
 	return (ret);
