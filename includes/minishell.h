@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:59:26 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:05:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include <termios.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include "../libft/include/libft.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include "const.h"
 # include "error.h"
 # define SUCCESS 1
@@ -63,6 +62,9 @@ int 	try_add(const char *str, t_list **env);
 int		ft_remove_from_env(char *key, t_list **env);
 char	**ft_getenv_entry(char *key, t_list *env);
 char	*ft_getenv_value(char *key, t_list *env);
+
+//Affichage
+int		fprintln_str(int fd, char *str);
 
 // #Fonctions liées à l’éxecution
 int			exec(int *stat_loc, t_exec_info *info);

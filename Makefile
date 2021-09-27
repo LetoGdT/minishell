@@ -4,6 +4,7 @@ SRCS_FILES	:=	minishell.c \
 				env.c \
 				env_2.c\
 				clear.c \
+				output.c \
 				parsing/parsing.c \
 				parsing/line_without_dollar.c \
 				parsing/states/is_special_state.c \
