@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:20:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:59:26 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <termios.h>
-# include "../libft/include/libft.h"
 # include <readline/history.h>
 # include <readline/readline.h>
+# include "../libft/include/libft.h"
+# include "libft.h"
+# include "const.h"
+# include "error.h"
 # define SUCCESS 1
 # define FAILURE 0
 
@@ -87,5 +90,7 @@ short int	clear(t_exec_info *global, char **line, int ret);
 int		ft_export(int argc, char **argv, t_list **env);
 int		ft_unset(int argc, char **argv, t_list **env);
 int		ft_env(int argc, char **argv, t_list **env);
+int		ft_cd(int argc, char **argv, t_list **env);
+int		ft_pwd(int argc, char **argv, t_list **env);
 
 #endif
