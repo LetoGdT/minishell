@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/23 11:46:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 13:57:46 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static short int	init_cmds(t_exec_info **global)
 {
-	t_cmd	*cmds;
+	t_cmd	*cmd;
 
-	cmds = init_struct_cmd();
-	if (!cmds)
+	(*global)->cmds = malloc(sizeof(t_list));
+	if (!(*global)->cmds)
 		return (FAILURE);
-	(*global)->cmds = ft_lstnew(cmds);
+	cmd = init_struct_cmd();
+	if (!cmd)
+		return (FAILURE);
+	(*global)->cmds = ft_lstnew(cmd);
 	if (!(*global)->cmds)
 		return (FAILURE);
 	return (SUCCESS);

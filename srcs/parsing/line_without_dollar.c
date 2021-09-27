@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/27 11:58:10 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 14:51:06 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,56 @@ static int	trim_dollar(char *str, t_exec_info *global, int i, char **line)
 	char	*value;
 	int		size_key;
 
+	printf("HERE 1\n");
 	size_key = 0;
 	key = get_key(str + i + 1, &size_key);
 	if (!key)
 		return (FAILURE);
+	printf("HERE 2\n");
 	value = ft_getenv_value(key, global->env);
 	if (!value)
 	{
 		ft_putstr_fd(key, 1);
 		write(1, ": command not found me\n", 23);
-		free(key);
+		if (key)
+			free(key);
 		return (2);
 	}
-	free(key);
+	printf("value :%s\n", value);
+	printf("HERE 3\n");
+	if (key)
+		free(key);
 	if (!get_line(line, value + size_key + 1, size_key, i))
 	{
-		free(value);
+		// if (value)
+		// 	free(value);
 		return (FAILURE);
 	}
-	free(value);
+	// if (value)
+	// 	free(value);
+	printf("HERE 4\n");
 	return (SUCCESS);
 }
+
+// static short int	no_s_quote(char *str, int loc)
+// {
+// 	int			i;
+// 	short int	s_quote;
+
+// 	s_quote = 0;
+// 	i = 0;
+// 	while (i < loc)
+// 	{
+// 		if (str[i] == '\'')
+// 			s_quote++;
+// 		i++;
+// 	}
+// 	if (s_quote % 2)
+// 	{
+// 		return (FAILURE);
+// 	}
+// 	return (SUCCESS);
+// }
 
 short int	line_without_dollar(char **line, t_exec_info *global)
 {
@@ -108,14 +137,21 @@ short int	line_without_dollar(char **line, t_exec_info *global)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ')
+		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' '/* && no_s_quote(str, i)*/)
 		{
 			ret = trim_dollar(str, global, i, line);
 			if (!ret)
+			{
+				free(str);
 				return (FAILURE);
+			}
+			printf("line :%s\n", *line);
+			if (ret == 2)
+				break;
 		}
 		i++;
 	}
 	free(str);
+	printf("HERE 5\n");
 	return (SUCCESS);
 }

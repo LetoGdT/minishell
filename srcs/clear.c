@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/23 09:53:59 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 14:30:55 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@ static void	clear_cmds(t_list **cmds)
 	{
 		ft_lstclear(&(((t_cmd *)((*cmds)->content))->outfile), del);
 	}
-	ft_lstclear(cmds, del);
+	if (*cmds)
+		ft_lstclear(cmds, del);
+}
+
+static void	clear_env(t_list **env)
+{
+	if (*env)
+		ft_lstclear(env, del);
 }
 
 short int	clear(t_exec_info *global, char **line, int ret)
@@ -42,16 +49,17 @@ short int	clear(t_exec_info *global, char **line, int ret)
 		{
 			clear_cmds(&(global->cmds));
 		}
+		if (global->env)
+		{
+			clear_env(&(global->env));
+		}
 		// if (global->pids)
 		// {
 		// 	clear_pids(global);
 		// }
-		// if (global->env)
-		// {
-		// 	clear_env(global);
-		// }
 		free(global);
 	}
+	(void)*line;
 	if (*line)
 		free(*line);
 	return (ret);
