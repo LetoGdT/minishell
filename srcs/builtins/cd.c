@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/24 22:41:30 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:56:01 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int	ft_cd(int argc, char **argv, t_list **env)
 		target_dir = ft_getenv_value(HOME, *env);
 		if (!target_dir)
 		{
-			//must print in stderr
-			printf("%s\n", ERR_MSG_CD_HOME);
+			fprint_str(STDERR_FILENO, ERR_MSG_CD_HOME);
 			return (FAILURE);
 		}
 	}

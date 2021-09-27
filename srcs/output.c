@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/24 21:20:27 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:55:10 by lgaudet-         ###   ########.fr       */
+/*   Created: 2021/09/27 14:15:34 by lgaudet-          #+#    #+#             */
+/*   Updated: 2021/09/27 15:55:53 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
-# define ERR_MSG_CD_HOME "minishell: cd: HOME not set"
-# define ERR_MSG_CD "minishell: cd"
-# define ERR_ERR "Failed to print error message"
+#include <minishell.h>
 
-#endif
+int	fprintln_str(int fd, char *str)
+{
+	int	i;
+
+	if (!str)
+		return (FAILURE);
+	i = write (fd, str, ft_strlen(str));
+	if (i == -1)
+	{
+		perror(ERR_ERR);
+		return (FAILURE);
+	}
+ 	if (i != ft_strlen(str))
+		return (FAILURE);
+	i = write (fd, "\n", 1);
+	if (i == -1)
+	{
+		perror(ERR_ERR);
+		return (FAILURE);
+	}
+ 	if (i != 1)
+		return (FAILURE);
+	return (SUCCESS);
+}
