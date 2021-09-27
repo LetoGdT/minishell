@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/27 11:48:57 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/27 11:58:10 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,9 @@ static int	get_line(char **line, char *value, int size_key, int i)
 	}
 	k = 0;
 	while (value[k])
-	{
-		str[j] = value[k];
-		j++;
-		k++;
-	}
+		str[j++] = value[k++];
 	while ((*line)[i + 3 + size_key])
-	{
-		str[j] = (*line)[i + 3 + size_key];
-		i++;
-		j++;
-	}
+		str[j++] = (*line)[++i + 3 + size_key];
 	str[j] = 0;
 	free(*line);
 	*line = ft_strdup(str);
@@ -85,7 +77,6 @@ static int	trim_dollar(char *str, t_exec_info *global, int i, char **line)
 	key = get_key(str + i + 1, &size_key);
 	if (!key)
 		return (FAILURE);
-	// printf("key\033[35m :%s\033[0m\n", key);
 	value = ft_getenv_value(key, global->env);
 	if (!value)
 	{
@@ -95,14 +86,12 @@ static int	trim_dollar(char *str, t_exec_info *global, int i, char **line)
 		return (2);
 	}
 	free(key);
-	// printf("value\033[35m :%s\033[0m\n", value);
 	if (!get_line(line, value + size_key + 1, size_key, i))
 	{
 		free(value);
 		return (FAILURE);
 	}
 	free(value);
-	// printf("tmp\033[35m   :%s\033[0m\n", tmp);
 	return (SUCCESS);
 }
 
@@ -124,7 +113,6 @@ short int	line_without_dollar(char **line, t_exec_info *global)
 			ret = trim_dollar(str, global, i, line);
 			if (!ret)
 				return (FAILURE);
-			// printf("line :%s - char %c - i:%i\n", str, str[i], i);
 		}
 		i++;
 	}
