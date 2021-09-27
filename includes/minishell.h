@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/21 14:19:34 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/23 16:35:43 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "../libft/include/libft.h"
 # include <readline/history.h>
 # include <readline/readline.h>
-# define SUCCESS 1
 # define FAILURE 0
+# define SUCCESS 1
 
 typedef enum e_redir
 {
@@ -63,13 +63,16 @@ void		sig_handler(int signo);
 // void	sig_quit(t_info);
 
 // #Fonctions pour le parsing
-short int	parsing(char *line);
+short int	parsing(char *line, t_exec_info **global);
+short int	is_special_state(char c);
+short int	line_without_dollar(char **line, t_exec_info *global);
+int short	basic_errors(char *line);
 
 // #Fonctions pour init
-short int	init(t_exec_info **global);
+short int	init(t_exec_info **global, char **env);
 t_cmd		*init_struct_cmd(void);
 
 // #Fonctions pour free avant d'exit
-short int	clear(t_exec_info *global, int ret);
+short int	clear(t_exec_info *global, char **line, int ret);
 
 #endif

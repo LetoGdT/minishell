@@ -1,8 +1,12 @@
 NAME		:=	minishell
 SRCS_DIR	:=	srcs
 SRCS_FILES	:=	minishell.c \
+				env.c \
 				clear.c \
 				parsing/parsing.c \
+				parsing/line_without_dollar.c \
+				parsing/states/is_special_state.c \
+				parsing/errors/basic_errors.c \
 				init/init.c \
 				init/init_struct_cmd.c
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
@@ -22,20 +26,18 @@ SANFLAGS	:=	-fsanitize=address -g3
 LDFLAGS		:= -lreadline
 RM			:=	rm -f
 
-all:			libs $(NAME)
+all:			$(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME):		libs $(OBJS)
 				@echo "Linking $(NAME)"
 #				@$(CC) $(SANFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 				@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
-objs/%.o:		$(SRCS_DIR)/%.c $(HDRS) | echo
+objs/%.o:		$(SRCS_DIR)/%.c $(HDRS)
 				@mkdir -p $(dir $@)
-#				@echo "Compiling $<"
+				@echo "Compiling $<"
 				@$(CC) -include $(HDRS) $(CFLAGS) -c $< -o $@
-
-echo:
-				@echo "Compiling"
+#				@$(CC) $(SANFLAGS) -include $(HDRS) $(CFLAGS) -c $< -o $@
 
 libs:
 				@echo "Making libft"
