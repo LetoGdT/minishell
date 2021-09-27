@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:05:45 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:29:56 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		fprintln_str(int fd, char *str);
 // #Fonctions liées à l’éxecution
 int			exec(int *stat_loc, t_exec_info *info);
 char		*get_path(char *cmd, t_list *env);
+void		free_token_list(char **list);
 
 // #Fonctions sur les signaux
 void		sig_handler(int signo);

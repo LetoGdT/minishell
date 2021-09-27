@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 01:10:38 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/16 17:37:37 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:51:36 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ static char	**prepare_path(char *cmd, t_list *env)
 		path = malloc(sizeof(char *) * 2);
 		if (!path)
 			return (NULL);
-		path[0] = getcwd(NULL);
+		path[0] = getcwd(NULL, 0);
 		path[1] = NULL;
+		cmd += 2 * sizeof(char);
 	}
 	else
 	{
-		path = ft_split(ft_getenv_value("PATH", env), ':');
+		path = ft_split(ft_getenv_value("PATH", env), ":");
 		if (!path)
 			return (NULL);
 	}
@@ -63,7 +64,6 @@ static char	**prepare_path(char *cmd, t_list *env)
 
 char	*get_path(char *cmd, t_list *env)
 {
-	int		file;
 	int		i;
 	char	*res;
 	char	**path;
@@ -75,10 +75,8 @@ char	*get_path(char *cmd, t_list *env)
 	i = 0;
 	while (path[i])
 	{
-		file = open(path[i], O_RDONLY);
-		if (file != -1)
+		if (access(path[i], X_OK) == 0)
 		{
-			close(file);
 			res = ft_strdup(path[i]);
 			break ;
 		}
