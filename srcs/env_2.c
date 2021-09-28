@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/28 09:01:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 11:32:35 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	try_add(const char *str, t_list **env)
 }
 
 
-// >>	Il faut que tu me fasses une distinction entre NULL parceque probleme de malloc
-//		et NULL parce que y avait pas de key correspondante
+// >>	QUand tu trouves pas la cles faut que tu me renvoie une chaine malloce mais vide
 char	*ft_getenv_value(char *key, t_list *env)
 {
 	char	**env_entry;
@@ -61,7 +60,13 @@ char	*ft_getenv_value(char *key, t_list *env)
 
 	env_entry = ft_getenv_entry(key, env);
 	if (!env_entry)
-		return (NULL);
+	{
+		res = malloc(sizeof(char) * 1);
+		if (!res)
+			return (NULL);
+		res[0] = 0;
+		return (res);
+	}
 	res = ft_strchr(*env_entry, '=') + sizeof(char);
 	if (!res)
 		return (NULL);

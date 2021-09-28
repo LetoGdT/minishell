@@ -6,12 +6,11 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 11:04:48 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 11:33:08 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#define NO_KEY 2
 
 static short int	get_new_line(char **line, char *key, char *value, int loc)
 {
@@ -55,7 +54,7 @@ static char	*get_key(char *line, int loc)
 
 	// printf("\033[33mget_key\033[0m\n");
 	i = 0;
-	while (line[loc] && line[loc] != ' ')
+	while (line[loc] && (line[loc] != ' ') && !is_separator(line[loc]))
 	{
 		loc++;
 		i++;
@@ -65,7 +64,7 @@ static char	*get_key(char *line, int loc)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (line[loc] && line[loc] != ' ')
+	while (line[loc] && (line[loc] != ' ') && !is_separator(line[loc]))
 	{
 		str[i] = line[loc];
 		loc++;
@@ -88,10 +87,7 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc)
 	value = ft_getenv_value(key, global->env);
 	// printf("value :%s\n", value);
 	if (!value)
-	{
-		free(key);
-		return (NO_KEY);
-	}
+		return (FAILURE);
 	if (!get_new_line(line, key, value, loc))
 		return (FAILURE);
 	// printf("line at the end :%s\n", *line);
@@ -129,14 +125,10 @@ short int	var_env(char **line, t_exec_info *global)
 		if ((*line)[i] == '$' && (*line)[i + 1] && (*line)[i + 1] != ' ' \
 			&& in_s_quote(*line, i))
 		{
-			// printf("line to send to trim_dollar :%s\n", *line);
+			printf("key :%c\n", (*line)[i + 1]);
 			ret = trim_dollar(global, line, i);
 			if (!ret)
 				return (FAILURE);
-			if (ret == NO_KEY)
-			{
-				break;
-			}
 			i = 0;
 		}
 		i++;

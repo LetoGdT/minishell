@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 11:05:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 11:06:49 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ short int	parsing(char **line, t_exec_info **global)
 	(void)global;
 	// i = 0;
 //	>>Je remplace tous les $ par leur valeur sauf quand ''
-	// printf("(*line) before :\033[35m%s\033[0m\n", *line);
+	printf("(*line) before :\033[35m%s\033[0m\n", *line);
 	if (!var_env(line, *global))
 		return (FAILURE);
-	// printf("(*line) after :\033[35m%s\033[0m\n", *line);
+	printf("(*line) after :\033[35m%s\033[0m\n", *line);
 
 	// while(line[i])
 	// {
