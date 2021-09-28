@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:20:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/28 08:37:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ short int	init(t_exec_info **global, char **env);
 t_cmd		*init_struct_cmd(void);
 
 // #Fonctions pour free avant d'exit
-short int	clear(t_exec_info *global, char **line, int ret);
+short int	clear(t_exec_info **global, char **line, int ret);
 
 //Builtins
 int		ft_export(int argc, char **argv, t_list **env);
