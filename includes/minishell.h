@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/28 11:20:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 13:55:30 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,9 @@ void		sig_quit(t_exec_info info);
 short int	parsing(char **line, t_exec_info **global);
 short int	is_special_state(char c);
 short int	var_env(char **line, t_exec_info *global);
-int short	basic_errors(char *line);
+int short	erorr_multi_line(char *line);
 short int	is_separator(char c);
+short int	is_brackets_quote(char c);
 
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);

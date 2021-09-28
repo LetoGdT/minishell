@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 11:33:08 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 11:39:16 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ short int	var_env(char **line, t_exec_info *global)
 		if ((*line)[i] == '$' && (*line)[i + 1] && (*line)[i + 1] != ' ' \
 			&& in_s_quote(*line, i))
 		{
-			printf("key :%c\n", (*line)[i + 1]);
+			// printf("key :%c\n", (*line)[i + 1]);
 			ret = trim_dollar(global, line, i);
 			if (!ret)
 				return (FAILURE);
