@@ -5,7 +5,7 @@ SRCS_FILES	:=	minishell.c \
 				env_2.c\
 				clear.c \
 				parsing/parsing.c \
-				parsing/line_without_dollar.c \
+				parsing/var_env.c \
 				parsing/states/is_special_state.c \
 				parsing/errors/basic_errors.c \
 				init/init.c \
@@ -32,14 +32,14 @@ all:			$(NAME)
 
 $(NAME):		libs $(OBJS)
 				@echo "Linking $(NAME)"
-#				@$(CC) $(SANFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
-				@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
+				@$(CC) $(SANFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
+#				@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
 objs/%.o:		$(SRCS_DIR)/%.c $(HDRS)
 				@mkdir -p $(dir $@)
 				@echo "Compiling $<"
-				@$(CC) -include $(HDRS) $(CFLAGS) -c $< -o $@
-#				@$(CC) $(SANFLAGS) -include $(HDRS) $(CFLAGS) -c $< -o $@
+#				@$(CC) -include $(HDRS) $(CFLAGS) -c $< -o $@
+				@$(CC) $(SANFLAGS) -include $(HDRS) $(CFLAGS) -c $< -o $@
 
 libs:
 				@echo "Making libft"

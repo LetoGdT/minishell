@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_without_dollar.c                              :+:      :+:    :+:   */
+/*   var_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 10:48:29 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 11:04:48 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static short int	get_new_line(char **line, char *key, char *value, int loc)
 		+ ft_strlen(value) + 1));
 	if (!(*line))
 		return (FAILURE);
-	j = loc;
+	j = loc + 1;
 	i = 0;
 	while (value[i])
 	{
@@ -36,7 +36,7 @@ static short int	get_new_line(char **line, char *key, char *value, int loc)
 		i++;
 	}
 	j += ft_strlen(key);
-	while (str[j + 1])
+	while (str[j])
 	{
 		(*line)[loc] = str[j];
 		j++;
@@ -118,22 +118,18 @@ static short int	in_s_quote(char *str, int loc)
 	return (SUCCESS);
 }
 
-short int	line_without_dollar(char **line, t_exec_info *global)
+short int	var_env(char **line, t_exec_info *global)
 {
 	int			i;
-	char		*str;
 	short int	ret;
 
-	// printf("\033[33mline_without_dollar\033[0m\n");
-	str = ft_strdup(*line);
-	if (!str)
-		return (FAILURE);
 	i = 0;
-	while (str[i])
+	while ((*line)[i])
 	{
-		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ' \
-			&& in_s_quote(str, i))
+		if ((*line)[i] == '$' && (*line)[i + 1] && (*line)[i + 1] != ' ' \
+			&& in_s_quote(*line, i))
 		{
+			// printf("line to send to trim_dollar :%s\n", *line);
 			ret = trim_dollar(global, line, i);
 			if (!ret)
 				return (FAILURE);
@@ -141,10 +137,9 @@ short int	line_without_dollar(char **line, t_exec_info *global)
 			{
 				break;
 			}
-			i = 0;//		une fois que j'aurais finis indispensable car sinon si j'ai plusieurs $$, le deuxieme je vais modifier par rapport a l'emplacement du premier
+			i = 0;
 		}
 		i++;
 	}
-	free(str);
 	return (SUCCESS);
 }
