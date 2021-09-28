@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 08:40:07 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 10:42:18 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char *env[])
 			if (line)
 			{
 				// parsing
-				if (!parsing(line, &global))
+				if (!parsing(&line, &global))
 					return (clear(&global, &line, EXIT_FAILURE));
 				// printf("line :%s\n", line);
 				// exec

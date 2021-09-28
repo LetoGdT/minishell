@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:44:01 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/28 09:01:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int	try_add(const char *str, t_list **env)
 	return (res);
 }
 
+
+// >>	Il faut que tu me fasses une distinction entre NULL parceque probleme de malloc
+//		et NULL parce que y avait pas de key correspondante
 char	*ft_getenv_value(char *key, t_list *env)
 {
 	char	**env_entry;
