@@ -9,7 +9,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/states/is_special_state.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \
-				parsing/errors/error_mutli_line.c \
+				parsing/errors/error_multi_line.c \
 				init/init.c \
 				init/init_struct_cmd.c\
 				builtins/export.c

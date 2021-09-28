@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:57:00 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 14:09:21 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 16:01:24 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 typedef struct s_special {
 	short int	s_quote;
 	short int	d_quote;
-	short int	r_brackets;			//round
+	short int	r_brackets;
 	short int	r_brackets_match;
-	short int	c_brackets;			//circle
+	short int	c_brackets;
 	short int	c_brackets_match;
-	short int	s_brackets;			//square
+	short int	s_brackets;
 	short int	s_brackets_match;
 }	t_special;
+// r->round ()
+// c->circle {}
+// s->square []
 
 static void	fill_spe(t_special *spe, char c)
 {
@@ -41,6 +44,14 @@ static void	fill_spe(t_special *spe, char c)
 		spe->s_brackets++;
 	if (c == ']')
 		spe->s_brackets_match++;
+}
+
+static void	find_match(t_special *spe, char *line, int *i, char c)
+{
+	while (line[(*i)] && line[(*i)] != c)
+		(*i)++;
+	if (line[(*i)] == c)
+		fill_spe(spe, c);
 }
 
 static void	init_spe(t_special *spe)
@@ -79,17 +90,11 @@ short int	error_multi_line(char *line)
 			fill_spe(&spe, line[i]);
 		if (line[i] == '\'')
 		{
-			while (line[i] && line[i] != '\'')
-				i++;
-			if (line[i] == '\'')
-				fill_spe(&spe, line[i]);
+			find_match(&spe, line, &i, line[i]);
 		}
 		else if (line[i] == '\"')
 		{
-			while (line[i] && line[i] != '\"')
-				i++;
-			if (line[i] == '\"')
-				fill_spe(&spe, line[i]);
+			find_match(&spe, line, &i, line[i]);
 		}
 		if (spe.s_quote % 2 || spe.d_quote % 2)
 			return (FAILURE);

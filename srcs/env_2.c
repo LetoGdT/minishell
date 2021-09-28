@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/28 11:32:35 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 14:50:54 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	try_add(const char *str, t_list **env)
 	return (res);
 }
 
-
-// >>	QUand tu trouves pas la cles faut que tu me renvoie une chaine malloce mais vide
+// >>	QUand tu trouves pas la cles faut que tu me
+//		renvoie une chaine malloce mais vide
 char	*ft_getenv_value(char *key, t_list *env)
 {
 	char	**env_entry;

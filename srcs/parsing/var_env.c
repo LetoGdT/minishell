@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 11:39:16 by mballet          ###   ########.fr       */
+/*   Updated: 2021/09/28 17:08:54 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static short int	get_new_line(char **line, char *key, char *value, int loc)
 	int		i;
 	int		j;
 
-	// printf("\033[33mget_new_line\033[0m\n");
 	str = ft_strdup(*line);
 	if (!str)
 		return (FAILURE);
@@ -27,23 +26,18 @@ static short int	get_new_line(char **line, char *key, char *value, int loc)
 	if (!(*line))
 		return (FAILURE);
 	j = loc + 1;
-	i = 0;
-	while (value[i])
+	i = -1;
+	while (value[i + 1])
 	{
-		(*line)[loc] = value[i];
-		loc++;
-		i++;
+		(*line)[++loc] = value[++i];
 	}
 	j += ft_strlen(key);
 	while (str[j])
 	{
-		(*line)[loc] = str[j];
-		j++;
-		loc++;
+		(*line)[++loc] = str[++j];
 	}
-	(*line)[loc] = 0;
+	(*line)[++loc] = 0;
 	free(str);
-	// printf("\033mLINE :%s\n", *line);
 	return (SUCCESS);
 }
 
@@ -52,7 +46,6 @@ static char	*get_key(char *line, int loc)
 	int		i;
 	char	*str;
 
-	// printf("\033[33mget_key\033[0m\n");
 	i = 0;
 	while (line[loc] && (line[loc] != ' ') && !is_separator(line[loc]))
 	{
@@ -79,18 +72,14 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc)
 	char	*key;
 	char	*value;
 
-	// printf("\033[33mtrim_dollar\033[0m\n");
 	key = get_key(*line, loc + 1);
 	if (!key)
 		return (FAILURE);
-	// printf("key :%s\n", key);
 	value = ft_getenv_value(key, global->env);
-	// printf("value :%s\n", value);
 	if (!value)
 		return (FAILURE);
-	if (!get_new_line(line, key, value, loc))
+	if (!get_new_line(line, key, value, loc - 1))
 		return (FAILURE);
-	// printf("line at the end :%s\n", *line);
 	free(value);
 	free(key);
 	return (SUCCESS);
@@ -98,20 +87,29 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc)
 
 static short int	in_s_quote(char *str, int loc)
 {
-	int			i;
-	short int	s_quote;
+	int	i;
+	int	stock_loc_i;
 
-	s_quote = 0;
+	stock_loc_i = 0;
 	i = 0;
-	while (i < loc)
+	while (str[i])
 	{
-		if (str[i] == '\'')
-			s_quote++;
+		if (str[i] == '\"')
+		{
+			while (str[i] && str[i] != '\"')
+				i++;
+		}
+		else if (str[i] == '\'')
+		{
+			stock_loc_i = i;
+			while (str[i] && str[i] != '\'')
+				i++;
+		}
+		if (stock_loc_i && loc < i && loc > stock_loc_i)
+			return (SUCCESS);
 		i++;
 	}
-	if (s_quote % 2)
-		return (FAILURE);
-	return (SUCCESS);
+	return (FAILURE);
 }
 
 short int	var_env(char **line, t_exec_info *global)
@@ -123,9 +121,8 @@ short int	var_env(char **line, t_exec_info *global)
 	while ((*line)[i])
 	{
 		if ((*line)[i] == '$' && (*line)[i + 1] && (*line)[i + 1] != ' ' \
-			&& in_s_quote(*line, i))
+			&& !in_s_quote(*line, i))
 		{
-			// printf("key :%c\n", (*line)[i + 1]);
 			ret = trim_dollar(global, line, i);
 			if (!ret)
 				return (FAILURE);
