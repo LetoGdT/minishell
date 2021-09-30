@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/24 21:20:27 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/30 17:14:10 by lgaudet-         ###   ########.fr       */
+/*   Created: 2021/09/28 18:13:25 by lgaudet-          #+#    #+#             */
+/*   Updated: 2021/09/28 18:13:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
-# define ERR_MSG_CD_HOME "minishell: cd: HOME not set"
-# define ERR_MSG_CD "minishell: cd"
-# define ERR_ERR "minishell: failed to print error message"
-# define ERR_EXEC "minishell: error in exec"
-# define ERR_COMM_NOT_FOUND "minishell: command not found"
-# define ERR_MEM "minishell: a memory error occurred"
+#include <minishell.h>
 
-#endif
+
+
+	static const t_builtin fun_list[5] = [
+		{"cd", 0, ft_cd},
+		{"pwd", 1, ft_pwd},
+		{"export", 0, ft_export},
+		{"unset", 0, ft_unset},
+		{"env", 1, ft_env}];
+
+
+
+

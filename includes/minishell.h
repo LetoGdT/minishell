@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:29:56 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:53:39 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ typedef enum e_redir
 	_REDIR_DOUBLE
 }	t_redir;
 
+typedef struct s_file_redir
+{
+	char	*name;
+	t_redir	count;
+}	t_file_redir;
+
 typedef struct s_cmd
 {
-	t_list			*cmd;
-	t_list			*infile;
-	t_list			*outfile;
-	t_redir			in_redir;
-	t_redir			out_redir;
+	t_list	*cmd;
+	t_list	*infile;
+	t_list	*outfile;
 }	t_cmd;
 
 typedef struct s_exec_info
@@ -55,6 +59,14 @@ typedef struct s_builtin
 	int		(*fun)(int argc, char **argv, t_list **env);
 }	t_builtin;
 
+typedef struct s_run_info
+{
+	int		fd_real_in;
+	int		fd_real_out;
+	int		left_pipe[2];
+	int		right_pipe[2];
+}	t_run_info;
+
 //Fonctions liées à l’environnement
 char	**ft_getenv(t_list *env);
 t_list	*ft_new_env(char *env[]);
@@ -67,7 +79,9 @@ char	*ft_getenv_value(char *key, t_list *env);
 int		fprintln_str(int fd, char *str);
 
 // #Fonctions liées à l’éxecution
-int			exec(int *stat_loc, t_exec_info *info);
+int			exec(t_exec_info *info);
+int 		prepare_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
+int			restore_io(t_run_info *run);
 char		*get_path(char *cmd, t_list *env);
 void		free_token_list(char **list);
 
