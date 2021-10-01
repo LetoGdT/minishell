@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/30 16:53:39 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/01 18:21:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_exec_info
 	t_list	*env;
 }	t_exec_info;
 
+typedef int (*builtin_fun)(int, char **, t_list **);
 typedef struct s_builtin
 {
 	char	*name;
@@ -80,8 +81,10 @@ int		fprintln_str(int fd, char *str);
 
 // #Fonctions liées à l’éxecution
 int			exec(t_exec_info *info);
-int 		prepare_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
+int 		prepare_redir(t_cmd *cmd, t_run_info *run, t_exec_info *info);
 int			restore_io(t_run_info *run);
+int 		builtin_get_default_fork(char *cmd_name);
+builtin_fun	builtin_get_fun_ptr(char *cmd_name);
 char		*get_path(char *cmd, t_list *env);
 void		free_token_list(char **list);
 

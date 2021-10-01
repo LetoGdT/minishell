@@ -6,13 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/30 18:10:07 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/01 15:20:33 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int left_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
+static int left_redir(t_cmd *cmd, t_run_info *run, t_exec_info *info)
 {
 	t_list	*redir_head;
 	int		fd;
@@ -44,7 +44,7 @@ static int left_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
 	return (SUCCESS);
 }
 
-static int right_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
+static int right_redir(t_cmd *cmd, t_run_info *run, t_exec_info *info)
 {
 	t_list	*redir_head;
 	int		fd;
@@ -71,7 +71,7 @@ static int right_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
 	return (SUCCESS);
 }
 
-int prepare_redir(t_list *cmd, t_run_info *run, t_exec_info *info)
+int prepare_redir(t_cmd *cmd, t_run_info *run, t_exec_info *info)
 {
 	if (!left_redir(cmd, run, info))
 		return (FAILURE);
