@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/04 11:38:33 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/04 15:58:35 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 typedef enum e_states
 {
+	_START,
 	_DEFAULT,
 	_REDIR_SINGLE,
 	_REDIR_DOUBLE,
@@ -74,20 +75,24 @@ void		sig_quit(t_exec_info info);
 
 // #Fonctions pour le parsing
 short int	parsing(char **line, t_exec_info **global);
-short int	is_special_state(char c);
 short int	var_env(char **line, t_exec_info *global);
 short int	error_multi_line(char *line);
-short int	tokenizing(char *line, t_exec_info *global);
+short int	tokenizing(t_exec_info *global, char *line);
+int short	state_default(t_cmd *cmds, char *line, int *i);
+
 	// #Fontions utils du parsing
 short int	is_brackets_quote(char c);
 short int	is_separator(char c);
+short int	is_quotes_pipe(char c);
 short int	is_pipe(char c);
 void		print_cmd(t_cmd *cmds);
-void		print_cmds_cmd(t_exec_info *global);
+void		print_cmds_cmd(t_list *cmds, t_cmd *content);
+short int	is_state_symbol(char c);
+
 
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);
-t_cmd		*init_struct_cmd(void);
+t_list		*init_cmds(void);
 short int	init_lst(t_list **lst, int size);
 
 // #Fonctions pour free avant d'exit

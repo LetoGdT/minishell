@@ -7,14 +7,17 @@ SRCS_FILES	:=	minishell.c \
 				parsing/parsing.c \
 				parsing/var_env.c \
 				parsing/tokenizing.c \
+				parsing/utils/is_quotes_pipe.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \
 				parsing/utils/is_pipe.c \
 				parsing/utils/print_cmd.c \
 				parsing/utils/print_cmds_cmd.c \
+				parsing/utils/is_state_symbol.c \
 				parsing/errors/error_multi_line.c \
+				parsing/states/state_default.c \
 				init/init.c \
-				init/init_struct_cmd.c\
+				init/init_cmds.c\
 				init/init_lst.c\
 				builtins/export.c
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))

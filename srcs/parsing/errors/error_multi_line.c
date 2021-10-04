@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:57:00 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 16:01:24 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/04 15:09:22 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ typedef struct s_special {
 	short int	s_brackets;
 	short int	s_brackets_match;
 }	t_special;
-// r->round ()
-// c->circle {}
-// s->square []
 
 static void	fill_spe(t_special *spe, char c)
 {
@@ -80,6 +77,7 @@ static short int	check_match(t_special spe)
 short int	error_multi_line(char *line)
 {
 	int			i;
+	int			j;
 	t_special	spe;
 
 	init_spe(&spe);
@@ -88,13 +86,15 @@ short int	error_multi_line(char *line)
 	{
 		if (is_brackets_quote(line[i]))
 			fill_spe(&spe, line[i]);
-		if (line[i] == '\'')
-		{
+		if (line[i] == '\'' || line[i] == '\"')
 			find_match(&spe, line, &i, line[i]);
-		}
-		else if (line[i] == '\"')
+		else if (line[i] == '|')
 		{
-			find_match(&spe, line, &i, line[i]);
+			j = i;
+			while (line[j] && line[j] == ' ')
+				j++;
+			if (!line[j])
+				return (FAILURE);
 		}
 		if (spe.s_quote % 2 || spe.d_quote % 2)
 			return (FAILURE);

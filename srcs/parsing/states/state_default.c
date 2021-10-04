@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmds_cmd.c                                   :+:      :+:    :+:   */
+/*   state_default.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 16:36:37 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/04 16:01:32 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/04 15:38:16 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/04 16:06:02 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_cmds_cmd(t_list *cmds, t_cmd *content)
+int short	state_default(t_cmd *cmds, char *line, int *i)
 {
-	t_list	*temp;
+	t_list	*new;
+	char	*str;
+	int		size;
 
-	temp = cmds;
-	if (!cmds)
+	size = *i;
+	while (line[size] && !is_separator(line[size]))
+		size++;
+	str = malloc(sizeof(char) * size + 1);
+	if (!str)
+		return (FAILURE);
+	size = 0;
+	while (line[*i] && !is_separator(line[*i]))
 	{
-		printf("list cmds n'existe pas\n");
-		return ;
+		str[size] = line[*i];
+		size++;
+		(*i)++;
 	}
-	printf("list cmds :\033[33m\n");
-	while (cmds)
-	{
-		printlst_str(content->cmd);
-		cmds = cmds->next;
-	}
-	printf("\033[0m");
-	cmds = temp;
+	str[size] = 0;
+	new = ft_lstnew(str);
+	ft_lstadd_back(&(cmds->cmd), new);
+	return (SUCCESS);
 }

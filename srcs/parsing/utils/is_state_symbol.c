@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmds_cmd.c                                   :+:      :+:    :+:   */
+/*   is_state_symbol.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 16:36:37 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/04 16:01:32 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/04 12:35:18 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/04 12:49:57 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_cmds_cmd(t_list *cmds, t_cmd *content)
+short int	is_state_symbol(char c)
 {
-	t_list	*temp;
-
-	temp = cmds;
-	if (!cmds)
-	{
-		printf("list cmds n'existe pas\n");
-		return ;
-	}
-	printf("list cmds :\033[33m\n");
-	while (cmds)
-	{
-		printlst_str(content->cmd);
-		cmds = cmds->next;
-	}
-	printf("\033[0m");
-	cmds = temp;
+	if (c == '>' || c == '<' || c == '\'' || c == '\"')
+		return (SUCCESS);
+	return (FAILURE);
 }
