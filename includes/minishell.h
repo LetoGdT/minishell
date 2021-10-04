@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/28 16:01:18 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/04 11:38:33 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@
 # define SUCCESS 1
 # define FAILURE 0
 
-typedef enum e_redir
+typedef enum e_states
 {
+	_DEFAULT,
 	_REDIR_SINGLE,
-	_REDIR_DOUBLE
-}	t_redir;
+	_REDIR_DOUBLE,
+	_QUOTES
+}	t_states;
 
 typedef struct s_cmd
 {
-	t_list			*cmd;
-	t_list			*infile;
-	t_list			*outfile;
-	t_redir			in_redir;
-	t_redir			out_redir;
+	t_list	*cmd;
+	t_list	*s_red_in;
+	t_list	*s_red_out;
+	t_list	*d_red_in;
+	t_list	*d_red_out;
 }	t_cmd;
 
 typedef struct s_exec_info
@@ -75,12 +77,18 @@ short int	parsing(char **line, t_exec_info **global);
 short int	is_special_state(char c);
 short int	var_env(char **line, t_exec_info *global);
 short int	error_multi_line(char *line);
-short int	is_separator(char c);
+short int	tokenizing(char *line, t_exec_info *global);
+	// #Fontions utils du parsing
 short int	is_brackets_quote(char c);
+short int	is_separator(char c);
+short int	is_pipe(char c);
+void		print_cmd(t_cmd *cmds);
+void		print_cmds_cmd(t_exec_info *global);
 
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);
 t_cmd		*init_struct_cmd(void);
+short int	init_lst(t_list **lst, int size);
 
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info **global, char **line, int ret);

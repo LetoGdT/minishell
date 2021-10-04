@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/28 14:50:23 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/04 12:15:14 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,21 @@ static void	clear_cmds(t_list **cmds)
 	t_list	*tmp;
 
 	tmp = *cmds;
-	while (tmp)
+	while (*cmds)
 	{
 		if (((t_cmd *)((*cmds)->content))->cmd)
-		{
 			ft_lstclear(&(((t_cmd *)((*cmds)->content))->cmd), del);
-		}
-		if (((t_cmd *)((*cmds)->content))->infile)
-		{
-			ft_lstclear(&(((t_cmd *)((*cmds)->content))->infile), del);
-		}
-		if (((t_cmd *)((*cmds)->content))->outfile)
-		{
-			ft_lstclear(&(((t_cmd *)((*cmds)->content))->outfile), del);
-		}
-		tmp = tmp->next;
+		if (((t_cmd *)((*cmds)->content))->s_red_in)
+			ft_lstclear(&(((t_cmd *)((*cmds)->content))->s_red_in), del);
+		if (((t_cmd *)((*cmds)->content))->s_red_out)
+			ft_lstclear(&(((t_cmd *)((*cmds)->content))->s_red_out), del);
+		if (((t_cmd *)((*cmds)->content))->d_red_in)
+			ft_lstclear(&(((t_cmd *)((*cmds)->content))->d_red_in), del);
+		if (((t_cmd *)((*cmds)->content))->d_red_out)
+			ft_lstclear(&(((t_cmd *)((*cmds)->content))->d_red_out), del);
+		*cmds = (*cmds)->next;
 	}
+	*cmds = tmp;
 	if (*cmds)
 		ft_lstclear(cmds, del);
 }
