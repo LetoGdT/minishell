@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 19:49:31 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:21:54 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	exec(t_exec_info *info)
 		head = head->next;
 		i++;
 	}
-	waitpid(pid, &i, 0);
-	waitpid(-1, NULL, 0);
+	wait_children(pid, &i, i);
 	if (WIFEXITED(i))
 		return (change_env_dollar_question(WEXITSTATUS(i), &info->env));
 	return (SUCCESS);

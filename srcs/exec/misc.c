@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 19:40:27 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:19:31 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ char **t_list_to_char(t_list *lst)
 	}
 	res[i] = NULL;
 	return (res);
+}
+
+void wait_children(pid_t last_child, int *stat_loc, int nb_of_children)
+{
+	int	i;
+
+	waitpid(last_child, stat_loc, 0);
+	i = 0;
+	while (i < nb_of_children - 1)
+		waitpid(-1, NULL, 0);
 }
