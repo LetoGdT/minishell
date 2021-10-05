@@ -6,13 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:24:49 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/23 22:06:06 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:54:01 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	echo(int argc, char **argv, t_list **env)
+int	ft_echo(int argc, char **argv, t_list **env)
 {
 	int	i;
 	int	is_newline;
@@ -32,5 +32,5 @@ int	echo(int argc, char **argv, t_list **env)
 		printf("%s", argv[argc - 1]);
 	if (is_newline)
 		printf("\n");
-	return (SUCESS);
+	return (SUCCESS);
 }
