@@ -6,13 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 19:54:10 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:34:08 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int right_redir(t_cmd *cmd, t_run_info *run)
+static int	right_redir(t_cmd *cmd, t_run_info *run)
 {
 	t_list	*redir_head;
 	int		fd;
@@ -44,7 +44,7 @@ static int right_redir(t_cmd *cmd, t_run_info *run)
 	return (SUCCESS);
 }
 
-static int left_redir(t_cmd *cmd, t_run_info *run)
+static int	left_redir(t_cmd *cmd, t_run_info *run)
 {
 	t_list	*redir_head;
 	int		fd;
@@ -71,7 +71,7 @@ static int left_redir(t_cmd *cmd, t_run_info *run)
 	return (SUCCESS);
 }
 
-int prepare_redir(t_cmd *cmd, t_run_info *run)
+int	prepare_redir(t_cmd *cmd, t_run_info *run)
 {
 	if (!left_redir(cmd, run))
 		return (FAILURE);
@@ -80,7 +80,7 @@ int prepare_redir(t_cmd *cmd, t_run_info *run)
 	return (SUCCESS);
 }
 
-int restore_io(t_run_info *run)
+int	restore_io(t_run_info *run)
 {
 	if (dup2(0, run->fd_real_in))
 		return (FAILURE);
@@ -99,7 +99,8 @@ pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)
 	else
 		run->right_pipe[1] = -1;
 	if (head->next == NULL && rank == 0 && \
-		!builtin_get_default_fork((char *)((t_cmd *)head->content)->cmd->content))
+		!builtin_get_default_fork((char *) \
+		((t_cmd *)head->content)->cmd->content))
 		return (-2);
 	return (fork());
 }

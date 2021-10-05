@@ -6,13 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 21:19:31 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:43:10 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-char **t_list_to_char(t_list *lst)
+char	**t_list_to_char(t_list *lst)
 {
 	t_list	*head;
 	char	**res;
@@ -36,12 +36,9 @@ char **t_list_to_char(t_list *lst)
 	return (res);
 }
 
-void wait_children(pid_t last_child, int *stat_loc, int nb_of_children)
+void	wait_children(pid_t last_child, int *stat_loc)
 {
-	int	i;
-
 	waitpid(last_child, stat_loc, 0);
-	i = 0;
-	while (i < nb_of_children - 1)
-		waitpid(-1, NULL, 0);
+	while (wait(NULL) != -1)
+		;
 }

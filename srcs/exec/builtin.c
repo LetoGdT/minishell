@@ -6,14 +6,14 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:13:25 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 19:55:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:28:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 #define NB_BUILTIN 5
 
-static t_builtin *get_fun_list(void)
+static t_builtin	*get_fun_list(void)
 {
 	static const t_builtin	fun_list[NB_BUILTIN] = {
 	{"cd", 0, ft_cd},
@@ -25,7 +25,7 @@ static t_builtin *get_fun_list(void)
 	return ((t_builtin *)fun_list);
 }
 
-int builtin_get_default_fork(char *cmd_name)
+int	builtin_get_default_fork(char *cmd_name)
 {
 	t_builtin	*fun_list;
 	int			i;
@@ -34,7 +34,8 @@ int builtin_get_default_fork(char *cmd_name)
 	i = 0;
 	while (i < NB_BUILTIN)
 	{
-		if (!ft_strncmp(cmd_name, fun_list[i].name, ft_strlen(fun_list[i].name)))
+		if (!ft_strncmp(cmd_name, fun_list[i].name, \
+			ft_strlen(fun_list[i].name)))
 			return (fun_list[i].default_fork);
 		i++;
 	}
@@ -50,7 +51,8 @@ t_built_fun	builtin_get_fun_ptr(char *cmd_name)
 	i = 0;
 	while (i < NB_BUILTIN)
 	{
-		if (!ft_strncmp(cmd_name, fun_list[i].name, ft_strlen(fun_list[i].name)))
+		if (!ft_strncmp(cmd_name, fun_list[i].name, \
+			ft_strlen(fun_list[i].name)))
 			return (fun_list[i].fun);
 		i++;
 	}
