@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:02:27 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 16:49:30 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ static t_cmd	*init_struct_cmd(void)
 	if (!cmd)
 		return (NULL);
 	cmd->cmd = NULL;
-	cmd->s_red_in = NULL;
-	cmd->s_red_out = NULL;
-	cmd->d_red_in = NULL;
-	cmd->d_red_out = NULL;
+	cmd->infile = NULL;
+	cmd->outfile = NULL;
 	return (cmd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:17:51 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 16:49:09 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static t_states	which_state(char *str, int i, char c)
 {
 	if ((c == '>' && str[i + 1] && str[i + 1] == '>') \
 		|| (c == '<' && str[i + 1] && str[i + 1] == '<'))
-		return (_REDIR_DOUBLE);
+		return (_RED_DOUBLE);
 	else if (c == '>' || c == '<')
-		return (_REDIR_SINGLE);
+		return (_RED_SINGLE);
 	else if (c == '\'' || c == '\"')
 		return (_QUOTES);
 	return (_DEFAULT);
@@ -32,12 +32,12 @@ static short int	fill_in_cmds(t_cmd *cmds, char *line, int *i, \
 		if (!state_default(cmds, line, i))
 			return (FAILURE);
 	}
-	// else if (*st == _REDIR_SINGLE)
+	// else if (*st == _RED_SINGLE)
 	// {
 	// 	if (!state_s_redir(cmds, line, i))
 	// 		return (FAILURE);
 	// }
-	// else if (*st == _REDIR_DOUBLE)
+	// else if (*st == _RED_DOUBLE)
 	// {
 	// 	if (!state_d_redir(cmds, line, i))
 	// 		return (FAILURE);

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 16:29:21 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 16:48:15 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,27 @@ typedef enum e_states
 {
 	_START,
 	_DEFAULT,
-	_REDIR_SINGLE,
-	_REDIR_DOUBLE,
+	_RED_SINGLE,
+	_RED_DOUBLE,
 	_QUOTES
 }	t_states;
+
+typedef enum e_redir
+{
+	_REDIR_SINGLE,
+	_REDIR_DOUBLE
+}	t_redir;
+typedef struct s_file_redir
+{
+	char	*name;
+	t_redir	count;
+}	t_file_redir;
 
 typedef struct s_cmd
 {
 	t_list	*cmd;
-	t_list	*s_red_in;
-	t_list	*s_red_out;
-	t_list	*d_red_in;
-	t_list	*d_red_out;
+	t_list	*infile;
+	t_list	*outfile;
 }	t_cmd;
 
 typedef struct s_exec_info
