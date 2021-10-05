@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:51:37 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/05 16:49:30 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	init(t_exec_info **global, char **env)
+static t_cmd	*init_struct_cmd(void)
 {
-	*global = malloc(sizeof(t_exec_info));
-	if (!(*global))
+	t_cmd	*cmd;
+
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
+	cmd->cmd = NULL;
+	cmd->infile = NULL;
+	cmd->outfile = NULL;
+	return (cmd);
+}
+
+short int	init_cmds(t_list **cmds)
+{
+	t_list	*tmp;
+	t_cmd	*cmd;
+
+	cmd = init_struct_cmd();
+	if (!cmd)
 		return (FAILURE);
-	(*global)->cmds = NULL;
-	(*global)->pids = NULL;
-	(*global)->env = NULL;
-	(*global)->env = ft_new_env(env);
-	if (!(*global)->env)
+	tmp = ft_lstnew(cmd);
+	if (!tmp)
 		return (FAILURE);
+	// (*cmds) = ft_lstnew(cmd);
+	// if (!(*cmds))
+	// 	return (FAILURE);
+	// cmds = tmp;
+	ft_lstadd_back(cmds, tmp);
 	return (SUCCESS);
 }

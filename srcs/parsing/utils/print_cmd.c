@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_special_state.c                                 :+:      :+:    :+:   */
+/*   print_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 15:32:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/22 16:44:13 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
+/*   Updated: 2021/09/30 16:41:58 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	is_special_state(char c)
+void	print_cmd(t_cmd *cmds)
 {
-	return ((c == '\'' || c == '\"'));
+	printf("list cmd :\033[34m\n");
+	printlst_str(cmds->cmd);
+	printf("\033[0m");
 }

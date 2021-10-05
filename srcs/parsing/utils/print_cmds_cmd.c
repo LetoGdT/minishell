@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   print_cmds_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:51:37 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/30 16:36:37 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/05 16:11:27 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	init(t_exec_info **global, char **env)
+void	print_cmds_cmd(t_cmd *content)
 {
-	*global = malloc(sizeof(t_exec_info));
-	if (!(*global))
-		return (FAILURE);
-	(*global)->cmds = NULL;
-	(*global)->pids = NULL;
-	(*global)->env = NULL;
-	(*global)->env = ft_new_env(env);
-	if (!(*global)->env)
-		return (FAILURE);
-	return (SUCCESS);
+	while (content->cmd)
+	{
+		// printlst_str(content->cmd);
+		printf("%s, ", content->cmd->content);
+		content->cmd = content->cmd->next;
+	}
+	printf("\n\033[0m");
 }

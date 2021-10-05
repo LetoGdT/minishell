@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:29:56 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:59:45 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,34 @@
 # include "../libft/libft.h"
 # include "const.h"
 # include "error.h"
-# define SUCCESS 1
 # define FAILURE 0
+# define SUCCESS 1
+
+typedef enum e_states
+{
+	_START,
+	_DEFAULT,
+	_RED_SINGLE,
+	_RED_DOUBLE,
+	_QUOTES
+}	t_states;
 
 typedef enum e_redir
 {
 	_REDIR_SINGLE,
 	_REDIR_DOUBLE
 }	t_redir;
+typedef struct s_file_redir
+{
+	char	*name;
+	t_redir	count;
+}	t_file_redir;
 
 typedef struct s_cmd
 {
-	t_list			*cmd;
-	t_list			*infile;
-	t_list			*outfile;
-	t_redir			in_redir;
-	t_redir			out_redir;
+	t_list	*cmd;
+	t_list	*infile;
+	t_list	*outfile;
 }	t_cmd;
 
 typedef struct s_exec_info
@@ -77,17 +89,30 @@ void		sig_int(t_exec_info info);
 void		sig_quit(t_exec_info info);
 
 // #Fonctions pour le parsing
-short int	parsing(char *line, t_exec_info **global);
-short int	is_special_state(char c);
-short int	line_without_dollar(char **line, t_exec_info *global);
-int short	basic_errors(char *line);
+short int	parsing(char **line, t_exec_info **global);
+short int	var_env(char **line, t_exec_info *global);
+short int	error_multi_line(char *line);
+short int	tokenizing(t_exec_info **global, char *line);
+int short	state_default(t_cmd *cmds, char *line, int *i);
+short int	trim_space(char **line);
+
+	// #Fontions utils du parsing
+short int	is_brackets_quote(char c);
+short int	is_separator(char c);
+short int	is_quotes_pipe(char c);
+short int	is_pipe(char c);
+// void		print_cmd(t_cmd *cmds);
+void		print_cmds_cmd(t_cmd *content);
+short int	is_state_symbol(char c);
 
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);
-t_cmd		*init_struct_cmd(void);
+// short int	init_cmds(t_exec_info *global);
+short int	init_cmds(t_list **cmds);
 
 // #Fonctions pour free avant d'exit
-short int	clear(t_exec_info *global, char **line, int ret);
+short int	clear(t_exec_info **global, char **line, int ret);
+void		clear_cmds(t_list *cmds);
 
 //Builtins
 int		ft_export(int argc, char **argv, t_list **env);

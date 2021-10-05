@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct_cmd.c                                  :+:      :+:    :+:   */
+/*   state_default.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
-/*   Updated: 2021/09/27 14:12:30 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/04 15:38:16 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/05 10:28:56 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static short int	init_lst(t_list **lst)
+int short	state_default(t_cmd *cmds, char *line, int *i)
 {
+	t_list	*new;
 	char	*str;
+	int		size;
 
-	str = malloc(sizeof(char) * 2);
+	size = *i;
+	while (line[size] && !is_separator(line[size]))
+		size++;
+	str = malloc(sizeof(char) * (size - *i + 1));
 	if (!str)
 		return (FAILURE);
-	str[0] = '0';
-	str[1] = 0;
-	*lst = ft_lstnew(str);
-	if (!(*lst))
-		return (FAILURE);
+	size = 0;
+	while (line[*i] && !is_separator(line[*i]))
+	{
+		str[size] = line[*i];
+		size++;
+		(*i)++;
+	}
+	str[size] = 0;
+	new = ft_lstnew(str);
+	ft_lstadd_back(&(cmds->cmd), new);
 	return (SUCCESS);
-}
-
-t_cmd	*init_struct_cmd(void)
-{
-	t_cmd	*cmd;
-
-	cmd = malloc(sizeof(t_cmd));
-	if (!cmd)
-		return (NULL);
-	if (!init_lst(&(cmd->cmd)))
-		return (NULL);
-	if (!init_lst(&(cmd->infile)))
-		return (NULL);
-	if (!init_lst(&(cmd->outfile)))
-		return (NULL);
-	cmd->in_redir = _REDIR_SINGLE;
-	cmd->out_redir = _REDIR_SINGLE;
-	return (cmd);
 }

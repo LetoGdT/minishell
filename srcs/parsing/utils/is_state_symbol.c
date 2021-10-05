@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   is_state_symbol.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:51:37 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/04 12:35:18 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/04 12:49:57 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	init(t_exec_info **global, char **env)
+short int	is_state_symbol(char c)
 {
-	*global = malloc(sizeof(t_exec_info));
-	if (!(*global))
-		return (FAILURE);
-	(*global)->cmds = NULL;
-	(*global)->pids = NULL;
-	(*global)->env = NULL;
-	(*global)->env = ft_new_env(env);
-	if (!(*global)->env)
-		return (FAILURE);
-	return (SUCCESS);
+	if (c == '>' || c == '<' || c == '\'' || c == '\"')
+		return (SUCCESS);
+	return (FAILURE);
 }
