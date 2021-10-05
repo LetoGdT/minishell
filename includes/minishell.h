@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 21:43:26 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:48:28 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,9 @@ int			ft_unset(int argc, char **argv, t_list **env);
 int			ft_env(int argc, char **argv, t_list **env);
 int			ft_cd(int argc, char **argv, t_list **env);
 int			ft_pwd(int argc, char **argv, t_list **env);
+
+//Builtins
+int		echo(int argc, char **argv, t_list **env);
+
 
 #endif

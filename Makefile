@@ -13,6 +13,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/errors/basic_errors.c \
 				init/init.c \
 				init/init_struct_cmd.c\
+				builtins/echo.c\
 				builtins/cd.c\
 				builtins/export.c\
 				exec/exec.c\
