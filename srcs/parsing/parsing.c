@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 13:59:50 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 16:17:38 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 
 short int	parsing(char **line, t_exec_info **global)
 {
+	// t_list	*tmp;
+
 	if (*line && (*line)[0] == 0)
 		return (SUCCESS);
 	if (!error_multi_line(*line))
@@ -49,8 +51,20 @@ short int	parsing(char **line, t_exec_info **global)
 	if (!var_env(line, *global))
 		return (FAILURE);
 	printf("line after :\033[35m%s\033[0m\n", *line);
-	if (!tokenizing(*global, *line))
+	if (!tokenizing(global, *line))
 		return (FAILURE);
+
+	
+	// tmp = (*global)->cmds;
+	// while ((*global)->cmds)
+	// {
+	// 	printf("list cmds :\033[33m\n");
+	// 	print_cmds_cmd((*global)->cmds->content);
+	// 	(*global)->cmds = (*global)->cmds->next;
+	// }
+	// (*global)->cmds = tmp;
+	
+
 	// printf("line end :\033[35m%s\033[0m\n", *line);
 	return (SUCCESS);
 }

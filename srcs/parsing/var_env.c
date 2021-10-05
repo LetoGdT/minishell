@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 14:03:04 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 14:51:45 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc)
 	key = get_key(*line, loc + 1);
 	if (!key)
 		return (FAILURE);
-	printf("value :%p -- global->env :%p\n", &value, &global->env);
 	value = ft_getenv_value(key, global->env);
 	if (!value)
 		return (FAILURE);
