@@ -7,6 +7,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/parsing.c \
 				parsing/var_env.c \
 				parsing/tokenizing.c \
+				parsing/trim_space.c \
 				parsing/utils/is_quotes_pipe.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \

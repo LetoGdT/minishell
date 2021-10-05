@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/04 15:58:35 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 14:05:47 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "../libft/include/libft.h"
 # include <readline/history.h>
 # include <readline/readline.h>
-# define SUCCESS 1
 # define FAILURE 0
+# define SUCCESS 1
 
 typedef enum e_states
 {
@@ -79,6 +79,7 @@ short int	var_env(char **line, t_exec_info *global);
 short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info *global, char *line);
 int short	state_default(t_cmd *cmds, char *line, int *i);
+short int	trim_space(char **line);
 
 	// #Fontions utils du parsing
 short int	is_brackets_quote(char c);
@@ -89,7 +90,6 @@ void		print_cmd(t_cmd *cmds);
 void		print_cmds_cmd(t_list *cmds, t_cmd *content);
 short int	is_state_symbol(char c);
 
-
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);
 t_list		*init_cmds(void);
@@ -97,6 +97,7 @@ short int	init_lst(t_list **lst, int size);
 
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info **global, char **line, int ret);
+void		clear_cmds(t_list **cmds);
 
 //Builtins
 int		ft_export(int argc, char **argv, t_list **env);

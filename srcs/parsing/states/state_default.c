@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:38:16 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/04 16:06:02 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/05 10:28:56 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int short	state_default(t_cmd *cmds, char *line, int *i)
 	size = *i;
 	while (line[size] && !is_separator(line[size]))
 		size++;
-	str = malloc(sizeof(char) * size + 1);
+	str = malloc(sizeof(char) * (size - *i + 1));
 	if (!str)
 		return (FAILURE);
 	size = 0;
