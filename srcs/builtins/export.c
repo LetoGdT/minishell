@@ -6,12 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/24 22:27:02 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:02:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+//faut faire le filtrage sur les noms de variable d’env
 int	ft_export(int argc, char **argv, t_list **env)
 {
 	int 	i;
@@ -55,8 +56,9 @@ int	ft_env(int argc, char **argv, t_list **env)
 	head = *env;
 	while (head)
 	{
-		if (!printf("%s\n", (char *)head->content))
-			return (FAILURE);
+		if (ft_strncmp("?", (char *)head->content, 1))
+			if (!printf("%s\n", (char *)head->content))
+				return (FAILURE);
 		head = head->next;
 	}
 	return (SUCCESS);

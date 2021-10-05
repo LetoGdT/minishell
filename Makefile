@@ -14,7 +14,12 @@ SRCS_FILES	:=	minishell.c \
 				init/init.c \
 				init/init_struct_cmd.c\
 				builtins/cd.c\
-				builtins/export.c
+				builtins/export.c\
+				exec/exec.c\
+				exec/redir_pipe.c\
+				exec/builtin.c\
+				exec/misc.c\
+
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
 HDRS_DIR	:=	includes

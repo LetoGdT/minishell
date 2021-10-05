@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/01 18:21:49 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 19:49:29 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <signal.h>
 # include <sys/wait.h>
 # include <termios.h>
@@ -52,7 +53,7 @@ typedef struct s_exec_info
 	t_list	*env;
 }	t_exec_info;
 
-typedef int (*builtin_fun)(int, char **, t_list **);
+typedef int	(*t_built_fun)(int, char **, t_list **);
 typedef struct s_builtin
 {
 	char	*name;
@@ -69,22 +70,29 @@ typedef struct s_run_info
 }	t_run_info;
 
 //Fonctions liées à l’environnement
-char	**ft_getenv(t_list *env);
-t_list	*ft_new_env(char *env[]);
-int 	try_add(const char *str, t_list **env);
-int		ft_remove_from_env(char *key, t_list **env);
-char	**ft_getenv_entry(char *key, t_list *env);
-char	*ft_getenv_value(char *key, t_list *env);
+char		**ft_getenv(t_list *env);
+t_list		*ft_new_env(char *env[]);
+int			try_add(const char *str, t_list **env);
+int			ft_remove_from_env(char *key, t_list **env);
+char		**ft_getenv_entry(char *key, t_list *env);
+char		*ft_getenv_value(char *key, t_list *env);
+int			change_env_dollar_question(int n, t_list **env);
+char 		**t_list_to_char(t_list *lst);
 
 //Affichage
-int		fprintln_str(int fd, char *str);
+int			fprintln_str(int fd, char *str);
 
 // #Fonctions liées à l’éxecution
 int			exec(t_exec_info *info);
-int 		prepare_redir(t_cmd *cmd, t_run_info *run, t_exec_info *info);
+pid_t		prepare_fork_pipe(int rank, t_list *head, t_run_info *run);
+int 		launch_prog(pid_t pid, t_cmd *cmd, t_exec_info *info);
+int 		call_execve(char **argv, t_cmd *cmd, t_exec_info *info);
+int			child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info *info);
+int			parent(int rank, t_run_info *run);
+int			prepare_redir(t_cmd *cmd, t_run_info *run);
 int			restore_io(t_run_info *run);
-int 		builtin_get_default_fork(char *cmd_name);
-builtin_fun	builtin_get_fun_ptr(char *cmd_name);
+int			builtin_get_default_fork(char *cmd_name);
+t_built_fun	builtin_get_fun_ptr(char *cmd_name);
 char		*get_path(char *cmd, t_list *env);
 void		free_token_list(char **list);
 
@@ -107,10 +115,10 @@ t_cmd		*init_struct_cmd(void);
 short int	clear(t_exec_info *global, char **line, int ret);
 
 //Builtins
-int		ft_export(int argc, char **argv, t_list **env);
-int		ft_unset(int argc, char **argv, t_list **env);
-int		ft_env(int argc, char **argv, t_list **env);
-int		ft_cd(int argc, char **argv, t_list **env);
-int		ft_pwd(int argc, char **argv, t_list **env);
+int			ft_export(int argc, char **argv, t_list **env);
+int			ft_unset(int argc, char **argv, t_list **env);
+int			ft_env(int argc, char **argv, t_list **env);
+int			ft_cd(int argc, char **argv, t_list **env);
+int			ft_pwd(int argc, char **argv, t_list **env);
 
 #endif

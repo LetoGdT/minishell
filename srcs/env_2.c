@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/24 22:40:54 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/05 19:18:41 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,23 @@ char	*ft_getenv_value(char *key, t_list *env)
 	if (!res)
 		return (NULL);
 	res = ft_strdup(res);
+	return (res);
+}
+
+int	change_env_dollar_question(int n, t_list **env)
+{
+	char	*tmp;
+	char	*str;
+	int		res;
+
+	tmp = ft_itoa(n);
+	if (!tmp)
+		return (FAILURE);
+	str = ft_strjoin("?", tmp);
+	free(tmp);
+	if (!str)
+		return (FAILURE);
+	res = try_add(str, env);
+	free(str);
 	return (res);
 }
