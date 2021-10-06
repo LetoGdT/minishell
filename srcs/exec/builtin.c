@@ -6,12 +6,12 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:13:25 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 21:53:18 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/06 20:16:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-#define NB_BUILTIN 6
+#define NB_BUILTIN 7
 
 static t_builtin	*get_fun_list(void)
 {
@@ -21,6 +21,7 @@ static t_builtin	*get_fun_list(void)
 	{"export", 0, ft_export},
 	{"unset", 0, ft_unset},
 	{"env", 1, ft_env},
+	{"exit", 0, ft_exit},
 	{"echo", 1, ft_echo}};
 
 	return ((t_builtin *)fun_list);
