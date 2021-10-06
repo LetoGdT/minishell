@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 11:01:24 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 13:15:30 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	print_cmd(t_exec_info *global)
 {
 	t_list		*tmp;
 
+	if (!(global->cmds))
+	{
+		printf("list empty\n");
+		return ;
+	}
 	tmp = global->cmds;
 	while (global->cmds)
 	{

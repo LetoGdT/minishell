@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 11:09:23 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 14:22:08 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv, char *env[])
 				print_cmd(global);
 				// exec
 				clear_cmds(global->cmds);
+				global->cmds = NULL;
 				if (line)
 					free(line);
 			}
@@ -48,3 +49,7 @@ int	main(int argc, char **argv, char *env[])
 	}
 	return (clear(&global, &line, EXIT_SUCCESS));
 }
+
+
+
+// >> retirer les fichiers print_cmds (printf)
