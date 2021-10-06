@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:57:00 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 12:02:17 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 12:54:00 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,24 @@ static void	init_spe(t_special *spe)
 static short int	ret(t_special spe, int ret)
 {
 	if (ret == _PIPE)
+	{
+		write(1, "error : unexpected token at end of line\n", 40);
 		return (FAILURE);
+	}
 	else
 	{
 		if (spe.s_quote % 2 || spe.d_quote % 2)
+		{
+			write(1, "error : multiline\n", 18);
 			return (FAILURE);
+		}
 		if ((spe.r_brackets != spe.r_brackets_match) \
 			|| (spe.c_brackets != spe.c_brackets_match) \
 			|| (spe.s_brackets != spe.s_brackets_match))
+		{
+			write(1, "error : multiline \n", 18);
 			return (FAILURE);
+		}
 	}
 	return (SUCCESS);
 }
