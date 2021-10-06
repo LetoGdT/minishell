@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:38:16 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 10:28:56 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 17:30:34 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int short	state_default(t_cmd *cmds, char *line, int *i)
+int short	state_default(t_cmd *content, char *line, int *i)
 {
 	t_list	*new;
 	char	*str;
@@ -33,6 +33,6 @@ int short	state_default(t_cmd *cmds, char *line, int *i)
 	}
 	str[size] = 0;
 	new = ft_lstnew(str);
-	ft_lstadd_back(&(cmds->cmd), new);
+	ft_lstadd_back(&(content->cmd), new);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 11:02:04 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 17:03:38 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ typedef struct s_builtin
 }	t_builtin;
 
 //Fonctions liées à l’environnement
-char	**ft_getenv(t_list *env);
-t_list	*ft_new_env(char *env[]);
-int 	try_add(const char *str, t_list **env);
-int		ft_remove_from_env(char *key, t_list **env);
-char	**ft_getenv_entry(char *key, t_list *env);
-char	*ft_getenv_value(char *key, t_list *env);
+char		**ft_getenv(t_list *env);
+t_list		*ft_new_env(char *env[]);
+int 		try_add(const char *str, t_list **env);
+int			ft_remove_from_env(char *key, t_list **env);
+char		**ft_getenv_entry(char *key, t_list *env);
+char		*ft_getenv_value(char *key, t_list *env);
 
 //Affichage
-int		fprintln_str(int fd, char *str);
+int			fprintln_str(int fd, char *str);
 
 // #Fonctions liées à l’éxecution
 int			exec(int *stat_loc, t_exec_info *info);
@@ -108,18 +108,17 @@ short int	is_state_symbol(char c);
 
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);
-// short int	init_cmds(t_exec_info *global);
-short int	init_cmds(t_list **cmds);
+t_list		*init_cmds(t_list **cmds);;
 
 // #Fonctions pour free avant d'exit
-short int	clear(t_exec_info **global, char **line, int ret);
-void		clear_cmds(t_list *cmds);
+short int	clear(t_exec_info *global, char **line, int ret);
+void		clear_cmds(t_exec_info *global);
 
 //Builtins
-int		ft_export(int argc, char **argv, t_list **env);
-int		ft_unset(int argc, char **argv, t_list **env);
-int		ft_env(int argc, char **argv, t_list **env);
-int		ft_cd(int argc, char **argv, t_list **env);
-int		ft_pwd(int argc, char **argv, t_list **env);
+int			ft_export(int argc, char **argv, t_list **env);
+int			ft_unset(int argc, char **argv, t_list **env);
+int			ft_env(int argc, char **argv, t_list **env);
+int			ft_cd(int argc, char **argv, t_list **env);
+int			ft_pwd(int argc, char **argv, t_list **env);
 
 #endif

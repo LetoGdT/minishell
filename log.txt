@@ -1,0 +1,677 @@
+MALLOCED 0x7fa454400640
+srcs/init/init.c:17
+0   minishell                           0x0000000102ea654d init + 109
+1   minishell                           0x0000000102ea3d67 main + 103
+2   libdyld.dylib                       0x00007fff600093d5 start + 1
+3   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544006a0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4018 ft_new_env + 24
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402aa0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ae0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402be0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402af0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402b00
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402b10
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402c20
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402c40
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402c50
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ca0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402cb0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402d00
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402d10
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402d20
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402d30
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402d80
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402d90
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402e20
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402e30
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402e50
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402e60
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402e80
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402e90
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ea0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402eb0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ed0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ee0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ef0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402f00
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402f30
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402f40
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402f70
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402f80
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402f90
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402fa0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402fd0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402fe0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403010
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403020
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403040
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403050
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403060
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403070
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403080
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403090
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544030b0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544030c0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544030f0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403100
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403130
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403140
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403160
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403170
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454403190
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544031a0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544031c0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544031d0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544031f0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500000
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500130
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500140
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4545001b0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4545001c0
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500260
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500270
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4545002f0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500300
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500320
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500330
+ft_strdup.c:24
+0   minishell                           0x0000000102ea6cdb ft_strdup + 155
+1   minishell                           0x0000000102ea407f ft_new_env + 127
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454500350
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea4087 ft_new_env + 135
+2   minishell                           0x0000000102ea662f init + 335
+3   minishell                           0x0000000102ea3d67 main + 103
+4   libdyld.dylib                       0x00007fff600093d5 start + 1
+5   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402b60
+srcs/init/init_cmds.c:19
+0   minishell                           0x0000000102ea6742 init_struct_cmd + 98
+1   minishell                           0x0000000102ea6681 init_cmds + 17
+2   minishell                           0x0000000102ea5559 starting + 25
+3   minishell                           0x0000000102ea545f tokenizing + 79
+4   minishell                           0x0000000102ea4cc0 parsing + 176
+5   minishell                           0x0000000102ea3dbb main + 187
+6   libdyld.dylib                       0x00007fff600093d5 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544006a0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea66a9 init_cmds + 57
+2   minishell                           0x0000000102ea5559 starting + 25
+3   minishell                           0x0000000102ea545f tokenizing + 79
+4   minishell                           0x0000000102ea4cc0 parsing + 176
+5   minishell                           0x0000000102ea3dbb main + 187
+6   libdyld.dylib                       0x00007fff600093d5 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402b80
+srcs/parsing/states/state_default.c:24
+0   minishell                           0x0000000102ea6370 state_default + 224
+1   minishell                           0x0000000102ea5736 fill_in_cmds + 54
+2   minishell                           0x0000000102ea54f3 tokenizing + 227
+3   minishell                           0x0000000102ea4cc0 parsing + 176
+4   minishell                           0x0000000102ea3dbb main + 187
+5   libdyld.dylib                       0x00007fff600093d5 start + 1
+6   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402b90
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea64b8 state_default + 552
+2   minishell                           0x0000000102ea5736 fill_in_cmds + 54
+3   minishell                           0x0000000102ea54f3 tokenizing + 227
+4   minishell                           0x0000000102ea4cc0 parsing + 176
+5   minishell                           0x0000000102ea3dbb main + 187
+6   libdyld.dylib                       0x00007fff600093d5 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402ba0
+srcs/parsing/states/state_default.c:24
+0   minishell                           0x0000000102ea6370 state_default + 224
+1   minishell                           0x0000000102ea5736 fill_in_cmds + 54
+2   minishell                           0x0000000102ea54f3 tokenizing + 227
+3   minishell                           0x0000000102ea4cc0 parsing + 176
+4   minishell                           0x0000000102ea3dbb main + 187
+5   libdyld.dylib                       0x00007fff600093d5 start + 1
+6   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402bc0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea64b8 state_default + 552
+2   minishell                           0x0000000102ea5736 fill_in_cmds + 54
+3   minishell                           0x0000000102ea54f3 tokenizing + 227
+4   minishell                           0x0000000102ea4cc0 parsing + 176
+5   minishell         exit
+                  0x0000000102ea3dbb main + 187
+6   libdyld.dylib                       0x00007fff600093d5 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa4544032e0
+srcs/parsing/states/state_default.c:24
+0   minishell                           0x0000000102ea6370 state_default + 224
+1   minishell                           0x0000000102ea5736 fill_in_cmds + 54
+2   minishell                           0x0000000102ea54f3 tokenizing + 227
+3   minishell                           0x0000000102ea4cc0 parsing + 176
+4   minishell                           0x0000000102ea3dbb main + 187
+5   libdyld.dylib                       0x00007fff600093d5 start + 1
+6   ???                                 0x0000000000000001 0x0 + 1
+MALLOCED 0x7fa454402bd0
+ft_lstnew.c:19
+0   minishell                           0x0000000102ea78d6 ft_lstnew + 102
+1   minishell                           0x0000000102ea64b8 state_default + 552
+2   minishell                           0x0000000102ea5736 fill_in_cmds + 54
+3   minishell                           0x0000000102ea54f3 tokenizing + 227
+4   minishell                           0x0000000102ea4cc0 parsing + 176
+5   minishell                           0x0000000102ea3dbb main + 187
+6   libdyld.dylib                       0x00007fff600093d5 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1
+aaaaaaaaaaaaaaa, bbbbbbbbbbbbbbbbbb, cccccccccccccccccc, 
+[0m
+[0mProcess:         minishell [14171]
+Path:            /Volumes/VOLUME/*/minishell
+Load Address:    0x102ea3000
+Identifier:      minishell
+Version:         ???
+Code Type:       X86-64
+Parent Process:  leaks [14170]
+
+Date/Time:       2021-10-06 17:36:46.298 +0200
+Launch Time:     2021-10-06 17:36:40.392 +0200
+OS Version:      Mac OS X 10.14.6 (18G103)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 11.3.1 (11C505)
+
+Physical footprint:         552K
+Physical footprint (peak):  552K
+----
+
+leaks Report Version: 4.0
+Process 14171: 293 nodes malloced for 207 KB
+Process 14171: 0 leaks for 0 total leaked bytes.
+

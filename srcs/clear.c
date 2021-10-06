@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 14:20:48 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 17:33:44 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,52 @@
 void	del(void *content)
 {
 	if (content)
+	{
+		print_cmds_cmd(((t_cmd *)content));
+		ft_lstclear(&(((t_cmd *)content)->cmd), free);
+		print_cmds_cmd(((t_cmd *)content));
 		free(content);
-}
-
-static void	clear_cmd(t_cmd *cmds)
-{
-	ft_lstclear(&(cmds->cmd), del);
-}
-
-void	clear_cmds(t_list *cmds)
-{
-	t_list	*tmp;
-
-	tmp = cmds;
-	while (cmds)
-	{
-		// if (((t_cmd *)((*cmds)->content))->cmd)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->cmd), del);
-		if (cmds->content)
-			clear_cmd(cmds->content);
-		
-		// if (((t_cmd *)((*cmds)->content))->s_red_in)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->s_red_in), del);
-		// if (((t_cmd *)((*cmds)->content))->s_red_out)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->s_red_out), del);
-		// if (((t_cmd *)((*cmds)->content))->d_red_in)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->d_red_in), del);
-		// if (((t_cmd *)((*cmds)->content))->d_red_out)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->d_red_out), del);
-		cmds = cmds->next;
 	}
-	cmds = tmp;
-	if (cmds)
-		ft_lstclear(&cmds, del);
 }
 
-short int	clear(t_exec_info **global, char **line, int ret)
+// static void	clear_cmd(t_cmd *cmds)
+// {
+// 	ft_lstclear(&(cmds->cmd), del);
+// }
+
+void	clear_cmds(t_exec_info *global)
 {
-	if (*global)
+	// t_list	*tmp;
+
+	// printf("clear in the loop\n");
+	// tmp = global->cmds;
+	// while (global->cmds)
+	// {
+	// 	if (global->cmds->content)
+	// 		clear_cmd(global->cmds->content);
+	// 	global->cmds = global->cmds->next;
+	// }
+	// global->cmds = tmp;
+	if (global->cmds)
+		ft_lstclear(&global->cmds, del);
+}
+
+short int	clear(t_exec_info *global, char **line, int ret)
+{
+	// printf("clear at the end 1\n");
+	if (global)
 	{
-		if (((*global)->cmds))
+		// printf("clear at the end 2\n");
+		if ((global->cmds))
 		{
-			clear_cmds((*global)->cmds);
-			(*global)->cmds = NULL;
+			// printf("clear at the end 3\n");
+			clear_cmds(global);
 		}
-		if (((*global)->env))
+		if ((global->env))
 		{
-			ft_lstclear(&((*global)->env), del);
+			ft_lstclear(&(global->env), free);
 		}
-		free((*global));
+		free(global);
 	}
 	if (*line)
 		free(*line);

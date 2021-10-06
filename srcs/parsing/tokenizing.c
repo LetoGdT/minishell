@@ -6,11 +6,37 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:49:09 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 17:26:22 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	starting(t_list **tmp, t_states *st)
+{
+	t_list	*new;
+
+	new = init_cmds(tmp);
+	if (!new)
+		return (FAILURE);
+	ft_lstadd_back(tmp, new);
+	*st = _DEFAULT;
+	return (SUCCESS);
+}
+
+static int	restarting(t_list **tmp, int *i)
+{
+	t_list	*new;
+
+	new = init_cmds(tmp);
+	if (!new)
+		return (FAILURE);
+
+	ft_lstadd_back(tmp, new);
+	// *tmp = ft_lstlast(*tmp);
+	(*i) += 2;
+	return (SUCCESS);
+}
 
 static t_states	which_state(char *str, int i, char c)
 {
@@ -24,12 +50,12 @@ static t_states	which_state(char *str, int i, char c)
 	return (_DEFAULT);
 }
 
-static short int	fill_in_cmds(t_cmd *cmds, char *line, int *i, \
+static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 		t_states *st)
 {
 	if (*st == _DEFAULT)
 	{
-		if (!state_default(cmds, line, i))
+		if (!state_default(content, line, i))
 			return (FAILURE);
 	}
 	// else if (*st == _RED_SINGLE)
@@ -61,34 +87,19 @@ short int	tokenizing(t_exec_info **global, char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (st == _START)
-		{
-			if (!init_cmds(&((*global)->cmds)))
+		if (st == _START) {
+			if (!starting(&tmp, &st))
 				return (FAILURE);
-			tmp = (*global)->cmds;
-			st = _DEFAULT;
 		}
-		if (line[i] == '|' && st != _START)
-		{
-			if (!init_cmds(&((*global)->cmds)))
+		else if (line[i] == '|')
+			if (!restarting(&tmp, &i))
 				return (FAILURE);
-			(*global)->cmds = ft_lstlast((*global)->cmds);
-			i += 2;
-		}
 		st = which_state(line, i, line[i]);
-		if (!fill_in_cmds((*global)->cmds->content, line, &i, &st))
+		if (!fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st))
 			return (FAILURE);
-		// (*global)->cmds = ft_lstlast((*global)->cmds);
 		i++;
 	}
 	(*global)->cmds = tmp;
-	// while ((*global)->cmds)
-	// {
-	// 	printf("list cmds :\033[33m\n");
-	// 	print_cmds_cmd((*global)->cmds->content);
-	// 	(*global)->cmds = (*global)->cmds->next;
-	// }
-	// (*global)->cmds = tmp;
 	return (SUCCESS);
 }
 

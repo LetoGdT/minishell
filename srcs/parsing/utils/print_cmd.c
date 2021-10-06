@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 13:15:30 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 17:35:07 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	print_cmd(t_exec_info *global)
 		return ;
 	}
 	tmp = global->cmds;
-	while (global->cmds)
+	while (tmp)
 	{
 		printf("list cmds :\033[33m\n");
-		print_cmds_cmd(global->cmds->content);
-		global->cmds = global->cmds->next;
+		print_cmds_cmd(tmp->content);
+		tmp = tmp->next;
 	}
-	global->cmds = tmp;
 }

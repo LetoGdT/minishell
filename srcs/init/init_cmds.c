@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 14:19:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 16:53:19 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,17 @@ static t_cmd	*init_struct_cmd(void)
 	return (cmd);
 }
 
-short int	init_cmds(t_list **cmds)
+t_list	*init_cmds(t_list **cmds)
 {
-	t_list	*tmp;
+	t_list	*new;
 	t_cmd	*cmd;
 
+	(void)cmds;
 	cmd = init_struct_cmd();
 	if (!cmd)
-		return (FAILURE);
-	tmp = ft_lstnew(cmd);
-	if (!tmp)
-		return (FAILURE);
-	// (*cmds) = ft_lstnew(cmd);
-	// if (!(*cmds))
-	// 	return (FAILURE);
-	// cmds = tmp;
-	ft_lstadd_back(cmds, tmp);
-	return (SUCCESS);
+		return (NULL);
+	new = ft_lstnew(cmd);
+	if (!new)
+		return (NULL);
+	return (new);
 }
