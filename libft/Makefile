@@ -42,7 +42,8 @@ SRCS	=	ft_atoi.c\
 			ft_lstdelone.c\
 			ft_lstclear.c\
 			ft_lstiter.c\
-			ft_lstmap.c
+			ft_lstmap.c \
+			ft_realloc.c
 
 HDRS	= libft.h
 CC		= gcc

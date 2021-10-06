@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmd.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 11:01:24 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/07 13:36:03 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/06 11:04:16 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	print_cmd(t_exec_info *global)
+char	*ft_realloc(char *str, size_t size)
 {
-	t_list		*tmp;
+	char	*str2;
+	int		i;
 
-	tmp = global->cmds;
-	while (global->cmds)
+	if (!str)
+		return (NULL);
+	str2 = malloc(sizeof(char) * size);
+	if (!str2)
 	{
-		printf("list cmds :\033[33m\n");
-		print_cmds_cmd(global->cmds->content);
-		global->cmds = global->cmds->next;
+		free(str);
+		return (NULL);
 	}
-	global->cmds = tmp;
+	i = 0;
+	while (size > 0 && str[i] != '\0')
+	{
+		str2[i] = str[i];
+		size--;
+		i++;
+	}
+	str2[i] = 0;
+	free(str);
+	return (str2);
 }

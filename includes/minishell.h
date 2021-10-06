@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 16:59:45 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 11:02:04 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef enum e_redir
 	_REDIR_SINGLE,
 	_REDIR_DOUBLE
 }	t_redir;
+
 typedef struct s_file_redir
 {
 	char	*name;
@@ -101,7 +102,7 @@ short int	is_brackets_quote(char c);
 short int	is_separator(char c);
 short int	is_quotes_pipe(char c);
 short int	is_pipe(char c);
-// void		print_cmd(t_cmd *cmds);
+void		print_cmd(t_exec_info *global);
 void		print_cmds_cmd(t_cmd *content);
 short int	is_state_symbol(char c);
 

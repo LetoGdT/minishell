@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaudet- <lgaudet-@student.42lyon.f>       +#+  +:+       +#+        */
+/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 12:20:11 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/06/22 19:50:18 by lgaudet-         ###   ########lyon.fr   */
+/*   Updated: 2021/10/06 11:04:42 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 int					is_in_string(char c, const char *str);
 void				ft_free_token_list(char **token_list);
+char				*ft_realloc(char *str, size_t size);
+
 typedef struct s_list
 {
 	void			*content;

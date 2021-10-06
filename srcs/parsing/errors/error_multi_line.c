@@ -6,11 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:57:00 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/04 15:09:22 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 12:02:17 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+# define _PIPE 1
+# define _MATCH 2
 
 typedef struct s_special {
 	short int	s_quote;
@@ -45,6 +47,7 @@ static void	fill_spe(t_special *spe, char c)
 
 static void	find_match(t_special *spe, char *line, int *i, char c)
 {
+	(*i)++;
 	while (line[(*i)] && line[(*i)] != c)
 		(*i)++;
 	if (line[(*i)] == c)
@@ -63,14 +66,19 @@ static void	init_spe(t_special *spe)
 	spe->s_brackets_match = 0;
 }
 
-static short int	check_match(t_special spe)
+static short int	ret(t_special spe, int ret)
 {
-	if (spe.s_quote % 2 || spe.d_quote % 2)
+	if (ret == _PIPE)
 		return (FAILURE);
-	if ((spe.r_brackets != spe.r_brackets_match) \
-		|| (spe.c_brackets != spe.c_brackets_match) \
-		|| (spe.s_brackets != spe.s_brackets_match))
-		return (FAILURE);
+	else
+	{
+		if (spe.s_quote % 2 || spe.d_quote % 2)
+			return (FAILURE);
+		if ((spe.r_brackets != spe.r_brackets_match) \
+			|| (spe.c_brackets != spe.c_brackets_match) \
+			|| (spe.s_brackets != spe.s_brackets_match))
+			return (FAILURE);
+	}
 	return (SUCCESS);
 }
 
@@ -90,15 +98,15 @@ short int	error_multi_line(char *line)
 			find_match(&spe, line, &i, line[i]);
 		else if (line[i] == '|')
 		{
-			j = i;
+			j = i + 1;
 			while (line[j] && line[j] == ' ')
 				j++;
-			if (!line[j])
-				return (FAILURE);
+			if (!(line[j]))
+				return (ret(spe, _PIPE)) ;
 		}
 		if (spe.s_quote % 2 || spe.d_quote % 2)
-			return (FAILURE);
+			break ;
 		i++;
 	}
-	return (check_match(spe));
+	return (ret(spe, _MATCH));
 }
