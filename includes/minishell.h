@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 17:03:38 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 18:31:49 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ short int	var_env(char **line, t_exec_info *global);
 short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info **global, char *line);
 int short	state_default(t_cmd *cmds, char *line, int *i);
+int short	state_redir(t_cmd *cmds, char *line, int *i);
 short int	trim_space(char **line);
 
 	// #Fontions utils du parsing
@@ -102,13 +103,13 @@ short int	is_brackets_quote(char c);
 short int	is_separator(char c);
 short int	is_quotes_pipe(char c);
 short int	is_pipe(char c);
-void		print_cmd(t_exec_info *global);
-void		print_cmds_cmd(t_cmd *content);
+void		print_cmds(t_exec_info *global);
+void		print_content_cmd(t_cmd *content);
 short int	is_state_symbol(char c);
 
 // #Fonctions pour init
 short int	init(t_exec_info **global, char **env);
-t_list		*init_cmds(t_list **cmds);;
+t_list		*init_content(void);;
 
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info *global, char **line, int ret);

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:57:00 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 12:54:00 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 18:33:18 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static short int	ret(t_special spe, int ret)
 			|| (spe.c_brackets != spe.c_brackets_match) \
 			|| (spe.s_brackets != spe.s_brackets_match))
 		{
-			write(1, "error : multiline \n", 18);
+			write(1, "error : multiline\n", 18);
 			return (FAILURE);
 		}
 	}

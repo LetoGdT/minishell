@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmd.c                                        :+:      :+:    :+:   */
+/*   state_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:35:07 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/06 18:30:07 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/06 18:39:24 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_cmd(t_exec_info *global)
+int short	state_redir(t_cmd *content, char *line, int *i)
 {
-	t_list		*tmp;
-
-	if (!(global->cmds))
-	{
-		printf("list empty\n");
-		return ;
-	}
-	tmp = global->cmds;
-	while (tmp)
-	{
-		printf("list cmds :\033[33m\n");
-		print_cmds_cmd(tmp->content);
-		tmp = tmp->next;
-	}
+	(void)content;
+	(void)line;
+	(void)i;
+	return (SUCCESS);
 }

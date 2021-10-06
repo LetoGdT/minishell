@@ -6,11 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 14:59:06 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/06 18:35:06 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+# define ERROR_SPACE 2
 
 static short int	is_space(char *str)
 {
@@ -23,6 +25,20 @@ static short int	is_space(char *str)
 			return (SUCCESS);
 		i++;
 	}
+	return (FAILURE);
+}
+
+static short int	only_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+	{
+		i++;
+	}
+	if (!str[i])
+		return (SUCCESS);
 	return (FAILURE);
 }
 
@@ -58,6 +74,8 @@ short int	trim_space(char **line)
 
 	if (is_space(*line))
 	{
+		if (only_space(*line))
+			return (ERROR_SPACE);
 		str = ft_strdup(*line);
 		if (!str)
 			return (FAILURE);

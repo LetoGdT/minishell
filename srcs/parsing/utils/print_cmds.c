@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cmds.c                                        :+:      :+:    :+:   */
+/*   print_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 16:53:19 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/06 17:56:25 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_cmd	*init_struct_cmd(void)
+void	print_cmds(t_exec_info *global)
 {
-	t_cmd	*cmd;
+	t_list	*tmp;
+	int		i;
 
-	cmd = malloc(sizeof(t_cmd));
-	if (!cmd)
-		return (NULL);
-	cmd->cmd = NULL;
-	cmd->infile = NULL;
-	cmd->outfile = NULL;
-	return (cmd);
-}
-
-t_list	*init_cmds(t_list **cmds)
-{
-	t_list	*new;
-	t_cmd	*cmd;
-
-	(void)cmds;
-	cmd = init_struct_cmd();
-	if (!cmd)
-		return (NULL);
-	new = ft_lstnew(cmd);
-	if (!new)
-		return (NULL);
-	return (new);
+	if (!(global->cmds))
+	{
+		printf("list empty\n");
+		return ;
+	}
+	i = 0;
+	tmp = global->cmds;
+	printf("\n");
+	printf("\n");
+	while (tmp)
+	{
+		printf("list content->cmd %d :\033[33m", i);
+		print_content_cmd(tmp->content);
+		printf("\n");
+		tmp = tmp->next;
+		i++;
+	}
+	printf("\n");
 }
