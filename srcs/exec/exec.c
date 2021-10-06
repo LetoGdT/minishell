@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 21:30:21 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/06 19:11:01 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	exec(t_exec_info *info)
 		else if (pid == 0)
 		{
 			child(pid, (t_cmd *)head->content, &run, info);
+			clear(info, NULL, 0);
 			exit(ft_atoi(ft_getenv_value("?", info->env)));
 		}
 		else if (pid > 0)
@@ -52,7 +53,7 @@ int	exec(t_exec_info *info)
 		head = head->next;
 		i++;
 	}
-	wait_children(pid, &i, i);
+	wait_children(pid, &i);
 	if (WIFEXITED(i))
 		return (change_env_dollar_question(WEXITSTATUS(i), &info->env));
 	return (SUCCESS);
@@ -126,6 +127,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info *info)
 		free_token_list(argv);
 		return (FAILURE);
 	}
+	clear(info, NULL, 0);
 	if (execve(path, argv, env))
 	{
 		free(path);
