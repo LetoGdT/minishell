@@ -6,11 +6,11 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:36:03 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 17:06:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 17:20:50 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 int short	state_redir(t_cmd *content, char *line, int *i)
 {

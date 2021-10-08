@@ -24,7 +24,6 @@ SRCS_FILES	:=	minishell.c \
 				parsing/states/state_quotes.c \
 				init/init.c \
 				init/init_content.c \
-				init/init_cmds.c \
 				builtins/echo.c\
 				builtins/cd.c\
 				builtins/export.c\

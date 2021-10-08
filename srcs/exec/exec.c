@@ -6,13 +6,13 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 16:17:25 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:23:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	exec(t_exec_info *info)
+int	exec(t_exec_info info)
 {
 	t_list		*head;
 	t_run_info	run;
@@ -27,7 +27,7 @@ int	exec(t_exec_info *info)
 		perror(ERR_EXEC);
 		return (FAILURE);
 	}
-	head = info->cmds;
+	head = info.cmds;
 	i = 0;
 	while (head)
 	{
@@ -41,7 +41,7 @@ int	exec(t_exec_info *info)
 		{
 			child(pid, (t_cmd *)head->content, &run, info);
 			clear(info, NULL, 0);
-			exit(ft_atoi(ft_getenv_value("?", info->env)));
+			exit(ft_atoi(ft_getenv_value("?", info.env)));
 		}
 		else if (pid > 0)
 			parent(i, &run);
@@ -55,11 +55,11 @@ int	exec(t_exec_info *info)
 	}
 	wait_children(pid, &i);
 	if (WIFEXITED(i))
-		return (change_env_dollar_question(WEXITSTATUS(i), &info->env));
+		return (change_env_dollar_question(WEXITSTATUS(i), &info.env));
 	return (SUCCESS);
 }
 
-int	child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info *info)
+int	child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info info)
 {
 	if (!prepare_redir(cmd, run))
 		return (FAILURE);
@@ -82,7 +82,7 @@ int	parent(int rank, t_run_info *run)
 	return (SUCCESS);
 }
 
-int	launch_prog(pid_t pid, t_cmd *cmd, t_exec_info *info)
+int	launch_prog(pid_t pid, t_cmd *cmd, t_exec_info info)
 {
 	char		**argv;
 	int			res;
@@ -97,21 +97,21 @@ int	launch_prog(pid_t pid, t_cmd *cmd, t_exec_info *info)
 	fun = builtin_get_fun_ptr((char *)cmd->cmd->content);
 	if (fun)
 	{
-		res = (fun)(ft_lstsize(cmd->cmd), argv, &info->env);
+		res = (fun)(ft_lstsize(cmd->cmd), argv, &info.env);
 		free_token_list(argv);
 		if (pid != 0)
-			return (change_env_dollar_question(res, &info->env));
+			return (change_env_dollar_question(res, &info.env));
 		return (SUCCESS);
 	}
 	return (!call_execve(argv, cmd, info));
 }
 
-int	call_execve(char **argv, t_cmd *cmd, t_exec_info *info)
+int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 {
 	char	*path;
 	char	**env;
 
-	path = get_path((char *)cmd->cmd->content, info->env);
+	path = get_path((char *)cmd->cmd->content, info.env);
 	if (!path)
 	{
 		//il faut utiliser fprintf(stderr, ...) ici
@@ -119,7 +119,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info *info)
 		free_token_list(argv);
 		return (FAILURE);
 	}
-	env = t_list_to_char(info->env);
+	env = t_list_to_char(info.env);
 	if (!env)
 	{
 		fprintln_str(STDERR_FILENO, ERR_MEM);

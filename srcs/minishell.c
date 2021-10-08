@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 17:10:23 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 17:24:39 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char *env[])
 					return (clear(global, line, EXIT_FAILURE));
 				if (line)
 					free(line);
-				if (!exec(&global))
+				if (!exec(global))
 					return (clear(global, line, EXIT_FAILURE));
 				// print_cmds(global);
 				clear_cmds(global);
