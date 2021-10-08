@@ -4,6 +4,7 @@ SRCS_FILES	:=	minishell.c \
 				env.c \
 				env_2.c\
 				get_path.c\
+				signal.c\
 				free.c\
 				clear.c \
 				output.c \

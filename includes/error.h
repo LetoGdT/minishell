@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:20:27 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 20:27:50 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/08 19:03:23 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # define ERR_COMM_NOT_FOUND "minishell: command not found"
 # define ERR_MEM "minishell: a memory error occurred"
 # define ERR_TOO_ARG "too many arguments"
+# define ERR_SIGINT "Cannot catch sigint"
+# define ERR_SIGQUIT "Cannot catch sigquit"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 17:23:12 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/08 19:55:08 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "error.h"
 # define FAILURE 0
 # define SUCCESS 1
+
+int	g_children_running;
 
 typedef enum e_states
 {
@@ -109,8 +111,8 @@ void		free_token_list(char **list);
 
 // Fonctions sur les signaux
 void		sig_handler(int signo);
-void		sig_int(t_exec_info info);
-void		sig_quit(t_exec_info info);
+void		sig_int(int signo);
+void		sig_quit(int signo);
 
 // #Fonctions pour le parsing
 short int	parsing(char **line, t_exec_info *global);
