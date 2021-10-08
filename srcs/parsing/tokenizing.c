@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 18:36:23 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 15:30:37 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static int	restarting(t_list **tmp, int *i)
 
 static t_states	which_state(char *str, int i, char c)
 {
-	if ((c == '>' && str[i + 1] && str[i + 1] == '>') \
+	if (c == '\'' || c == '\"')
+		return (_QUOTES);
+	else if ((c == '>' && str[i + 1] && str[i + 1] == '>') \
 		|| (c == '<' && str[i + 1] && str[i + 1] == '<'))
 		return (_RED_DOUBLE);
 	else if (c == '>' || c == '<')
 		return (_RED_SINGLE);
-	else if (c == '\'' || c == '\"')
-		return (_QUOTES);
 	return (_DEFAULT);
 }
 
@@ -58,9 +58,14 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 		if (!state_default(content, line, i))
 			return (FAILURE);
 	}
-	else if (*st == _RED_SINGLE || *st == _REDIR_DOUBLE)
+	else if (*st == _RED_SINGLE || *st == _RED_DOUBLE)
 	{
 		if (!state_redir(content, line, i))
+			return (FAILURE);
+	}
+	else if (*st == _QUOTES)
+	{
+		if (!state_quotes(content, line, i, line[*i]))
 			return (FAILURE);
 	}
 	return (SUCCESS);
@@ -77,7 +82,8 @@ short int	tokenizing(t_exec_info **global, char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (st == _START){
+		if (st == _START)
+		{
 			if (!starting(&tmp, &st))
 				return (FAILURE);
 		}

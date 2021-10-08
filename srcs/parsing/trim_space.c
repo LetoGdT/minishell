@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 18:35:06 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 16:30:09 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ static short int	is_space(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] != '\'')
+			{
+				i++;
+			}
+		}
+		if (str[i] == '\"')
+		{
+			i++;
+			while (str[i] != '\"')
+			{
+				i++;
+			}
+		}
 		if (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
 			return (SUCCESS);
 		i++;
@@ -67,11 +83,15 @@ static int	find_size(char *str)
 
 short int	trim_space(char **line)
 {
-	int		i;
-	int		j;
-	char	*str;
-	int		size;
+	int			i;
+	int			j;
+	char		*str;
+	int			size;
+	short int	s_quote;
+	short int	d_quote;
 
+	s_quote = 0;
+	d_quote = 0;
 	if (is_space(*line))
 	{
 		if (only_space(*line))
@@ -92,7 +112,12 @@ short int	trim_space(char **line)
 				while (str[i] == ' ')
 					i++;
 			}
-			while (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
+			if (str[i] == '\'')
+				s_quote++;
+			if (str[i] == '\"')
+				d_quote++;
+			while (!(s_quote % 2) && !(d_quote % 2) && str[i] == ' ' \
+					&& str[i + 1] && str[i + 1] == ' ')
 				i++;
 			(*line)[j] = str[i];
 			i++;
@@ -103,5 +128,3 @@ short int	trim_space(char **line)
 	}
 	return (SUCCESS);
 }
-
-//	>no need when "" or ''

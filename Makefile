@@ -21,6 +21,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				parsing/states/state_redir.c \
+				parsing/states/state_quotes.c \
 				init/init.c \
 				init/init_content.c \
 				builtins/cd.c \

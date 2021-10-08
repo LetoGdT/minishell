@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 18:31:49 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 16:32:30 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info **global, char *line);
 int short	state_default(t_cmd *cmds, char *line, int *i);
 int short	state_redir(t_cmd *cmds, char *line, int *i);
+int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **line);
 
 	// #Fontions utils du parsing
@@ -112,7 +113,7 @@ short int	init(t_exec_info **global, char **env);
 t_list		*init_content(void);;
 
 // #Fonctions pour free avant d'exit
-short int	clear(t_exec_info *global, char **line, int ret);
+short int	clear(t_exec_info *global, char *line, int ret);
 void		clear_cmds(t_exec_info *global);
 
 //Builtins
