@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 15:30:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 16:37:24 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 	return (SUCCESS);
 }
 
-short int	tokenizing(t_exec_info **global, char *line)
+short int	tokenizing(t_exec_info *global, char *line)
 {
 	t_list		*tmp;
 	t_states	st;
@@ -97,6 +97,6 @@ short int	tokenizing(t_exec_info **global, char *line)
 			return (FAILURE);
 		i++;
 	}
-	(*global)->cmds = tmp;
+	global->cmds = tmp;
 	return (SUCCESS);
 }

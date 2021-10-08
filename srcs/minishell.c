@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 16:33:08 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 16:39:22 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	main(int argc, char **argv, char *env[])
 {
 	char		*line;
-	t_exec_info	*global;
-	// t_list		*tmp;
+	t_exec_info	global;
 
-	global = NULL;
 	line = NULL;
 	if (argc > 1 || argv[1])
 		write(1, "Wrong numbers of arguments\n", 27);
@@ -38,7 +36,7 @@ int	main(int argc, char **argv, char *env[])
 				// exec
 				print_cmds(global);
 				clear_cmds(global);
-				global->cmds = NULL;
+				global.cmds = NULL;
 			}
 			else
 			{
@@ -47,7 +45,7 @@ int	main(int argc, char **argv, char *env[])
 			}
 		}
 	}
-	return (clear(global, line, EXIT_SUCCESS));
+	return (EXIT_SUCCESS);
 }
 
 // suppprime fichier _trace dans libft
