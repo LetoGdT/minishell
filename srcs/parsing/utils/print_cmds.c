@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   print_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 14:08:43 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 13:25:06 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/30 16:17:09 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/08 16:40:54 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	print_cmds(t_exec_info global)
 {
-	t_list	*curr;
-	t_list	*next;
+	t_list	*tmp;
+	int		i;
 
-	if (!*lst)
-		return ;
-	curr = *lst;
-	while (curr)
+	if (!(global.cmds))
 	{
-		next = curr->next;
-		ft_lstdelone(curr, del);
-		curr = next;
+		printf("list empty\n");
+		return ;
 	}
-	*lst = NULL;
+	i = 0;
+	tmp = global.cmds;
+	printf("\n");
+	printf("\n");
+	while (tmp)
+	{
+		printf("list content->cmd %d :\033[33m", i);
+		print_content_cmd(tmp->content);
+		printf("\n");
+		tmp = tmp->next;
+		i++;
+	}
+	printf("\n");
 }

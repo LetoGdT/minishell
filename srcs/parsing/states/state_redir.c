@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   state_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 14:08:43 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 13:25:06 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/07 13:36:03 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/08 17:06:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int short	state_redir(t_cmd *content, char *line, int *i)
 {
-	t_list	*curr;
-	t_list	*next;
-
-	if (!*lst)
-		return ;
-	curr = *lst;
-	while (curr)
-	{
-		next = curr->next;
-		ft_lstdelone(curr, del);
-		curr = next;
-	}
-	*lst = NULL;
+	(void)content;
+	(void)line;
+	(void)i;
+	return (SUCCESS);
 }

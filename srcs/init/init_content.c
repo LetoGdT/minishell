@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmds_cmd.c                                   :+:      :+:    :+:   */
+/*   init_content.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 16:36:37 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/05 16:11:27 by mballet          ###   ########.fr       */
+/*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/08 17:10:16 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_cmds_cmd(t_cmd *content)
+static t_cmd	*init_t_cmd(void)
 {
-	while (content->cmd)
-	{
-		// printlst_str(content->cmd);
-		printf("%s, ", content->cmd->content);
-		content->cmd = content->cmd->next;
-	}
-	printf("\n\033[0m");
+	t_cmd	*cmd;
+
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
+	cmd->cmd = NULL;
+	cmd->infile = NULL;
+	cmd->outfile = NULL;
+	return (cmd);
+}
+
+t_list	*init_content(void)
+{
+	t_list	*new;
+	t_cmd	*cmd;
+
+	cmd = init_t_cmd();
+	if (!cmd)
+		return (NULL);
+	new = ft_lstnew(cmd);
+	if (!new)
+		return (NULL);
+	return (new);
 }

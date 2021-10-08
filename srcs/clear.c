@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 16:16:12 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:05:29 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,29 @@
 void	del(void *content)
 {
 	if (content)
+	{
+		ft_lstclear(&(((t_cmd *)content)->cmd), free);
+		ft_lstclear(&(((t_cmd *)content)->infile), free);
+		ft_lstclear(&(((t_cmd *)content)->outfile), free);
 		free(content);
-}
-
-static void	clear_cmd(t_cmd *cmds)
-{
-	if (&(cmds->cmd))
-		ft_lstclear(&(cmds->cmd), del);
-}
-
-void	clear_cmds(t_list *cmds)
-{
-	t_list	*tmp;
-
-	tmp = cmds;
-	while (cmds)
-	{
-		// if (((t_cmd *)((*cmds)->content))->cmd)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->cmd), del);
-
-		clear_cmd(cmds->content);
-		
-		// if (((t_cmd *)((*cmds)->content))->s_red_in)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->s_red_in), del);
-		// if (((t_cmd *)((*cmds)->content))->s_red_out)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->s_red_out), del);
-		// if (((t_cmd *)((*cmds)->content))->d_red_in)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->d_red_in), del);
-		// if (((t_cmd *)((*cmds)->content))->d_red_out)
-		// 	ft_lstclear(&(((t_cmd *)((*cmds)->content))->d_red_out), del);
-		cmds = cmds->next;
 	}
-	cmds = tmp;
-	if (cmds)
-		ft_lstclear(&cmds, del);
 }
 
-short int	clear(t_exec_info *global, char *line, int ret)
+void	clear_cmds(t_exec_info global)
 {
-	if (global)
+	if (global.cmds)
+		ft_lstclear(&(global.cmds), del);
+}
+
+short int	clear(t_exec_info global, char *line, int ret)
+{
+	if ((global.cmds))
 	{
-		if (global->cmds)
-		{
-			clear_cmds(global->cmds);
-		}
-		if (global->env)
-		{
-			ft_lstclear(&(global->env), del);
-		}
-		free(global);
+		clear_cmds(global);
+	}
+	if ((global.env))
+	{
+		ft_lstclear(&(global.env), free);
 	}
 	if (line)
 		free(line);

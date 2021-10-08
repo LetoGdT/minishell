@@ -1,24 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   state_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 16:41:15 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/08 15:08:30 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/08 15:30:34 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	init(t_exec_info *global, char **env)
+int short	state_quotes(t_cmd *content, char *line, int *i, char c)
 {
-	global->cmds = NULL;
-	global->pids = NULL;
-	global->env = NULL;
-	global->env = ft_new_env(env);
-	if (!global->env)
+	int		size;
+	char	*str;
+	t_list	*new;
+
+	size = 0;
+	(*i)++;
+	while (line[*i] && line[*i] != c)
+	{
+		size++;
+		(*i)++;
+	}
+	str = malloc(sizeof(char) * size + 1);
+	if (!str)
 		return (FAILURE);
+	*i -= size;
+	size = 0;
+	while (line[*i] && line[*i] != c)
+	{
+		str[size] = line[*i];
+		size++;
+		(*i)++;
+	}
+	str[size] = 0;
+	new = ft_lstnew(str);
+	ft_lstadd_back(&(content->cmd), new);
+	if (line[*i + 1] == ' ')
+		(*i)++;
 	return (SUCCESS);
 }

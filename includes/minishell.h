@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 16:16:49 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:08:35 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef enum e_redir
 	_REDIR_SINGLE,
 	_REDIR_DOUBLE
 }	t_redir;
+
 typedef struct s_file_redir
 {
 	char	*name;
@@ -111,12 +112,14 @@ void		sig_handler(int signo);
 void		sig_int(t_exec_info info);
 void		sig_quit(t_exec_info info);
 
-// Fonctions pour le parsing
-short int	parsing(char **line, t_exec_info **global);
+// #Fonctions pour le parsing
+short int	parsing(char **line, t_exec_info *global);
 short int	var_env(char **line, t_exec_info *global);
 short int	error_multi_line(char *line);
-short int	tokenizing(t_exec_info **global, char *line);
+short int	tokenizing(t_exec_info *global, char *line);
 int short	state_default(t_cmd *cmds, char *line, int *i);
+int short	state_redir(t_cmd *cmds, char *line, int *i);
+int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **line);
 
 // Fontions utils du parsing
@@ -124,18 +127,17 @@ short int	is_brackets_quote(char c);
 short int	is_separator(char c);
 short int	is_quotes_pipe(char c);
 short int	is_pipe(char c);
-// void		print_cmd(t_cmd *cmds);
-void		print_cmds_cmd(t_cmd *content);
+void		print_cmds(t_exec_info global);
+void		print_content_cmd(t_cmd *content);
 short int	is_state_symbol(char c);
 
-// Fonctions pour init
-short int	init(t_exec_info **global, char **env);
-// short int	init_cmds(t_exec_info *global);
-short int	init_cmds(t_list **cmds);
+// #Fonctions pour init
+short int	init(t_exec_info *global, char **env);
+t_list		*init_content(void);;
 
-// Fonctions pour free avant d'exit
-short int	clear(t_exec_info *global, char *line, int ret);
-void		clear_cmds(t_list *cmds);
+// #Fonctions pour free avant d'exit
+short int	clear(t_exec_info global, char *line, int ret);
+void		clear_cmds(t_exec_info global);
 
 //Builtins
 int			ft_export(int argc, char **argv, t_list **env);
