@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 12:20:11 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/06/22 19:50:18 by lgaudet-         ###   ########lyon.fr   */
+/*   Updated: 2021/10/08 15:03:08 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char				*ft_strrchr(const char *str, int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 void				*ft_calloc(size_t count, size_t size);
+char				*ft_realloc(char *str, size_t size);
 char				*ft_strdup(const char *str);
 char				*ft_substr(char const *str, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);

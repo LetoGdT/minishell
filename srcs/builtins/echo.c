@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/24 21:20:27 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 20:27:50 by lgaudet-         ###   ########.fr       */
+/*   Created: 2021/09/23 21:24:49 by lgaudet-          #+#    #+#             */
+/*   Updated: 2021/10/05 21:54:01 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
-# define ERR_MSG_CD_HOME "minishell: cd: HOME not set"
-# define ERR_MSG_CD "minishell: cd"
-# define ERR_ERR "minishell: failed to print error message"
-# define ERR_EXEC "minishell: error in exec"
-# define ERR_COMM_NOT_FOUND "minishell: command not found"
-# define ERR_MEM "minishell: a memory error occurred"
-# define ERR_TOO_ARG "too many arguments"
+#include <minishell.h>
 
-#endif
+int	ft_echo(int argc, char **argv, t_list **env)
+{
+	int	i;
+	int	is_newline;
+
+	(void)env;
+	if (argc > 1 && !ft_strncmp(argv[1], "-n", 3))
+		is_newline = 0;
+	else
+		is_newline = 1;
+	i = 1 - is_newline;
+	while (i < argc - 2)
+	{
+		printf("%s ", argv[i + 1]);
+		i++;
+	}
+	if (argc - 1 - !is_newline > 0)
+		printf("%s", argv[argc - 1]);
+	if (is_newline)
+		printf("\n");
+	return (SUCCESS);
+}

@@ -15,15 +15,21 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \
 				parsing/utils/is_pipe.c \
-				parsing/utils/print_cmd.c \
 				parsing/utils/print_cmds_cmd.c \
 				parsing/utils/is_state_symbol.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				init/init.c \
 				init/init_cmds.c \
-				builtins/cd.c \
-				builtins/export.c
+				builtins/echo.c\
+				builtins/cd.c\
+				builtins/export.c\
+				builtins/exit.c\
+				exec/exec.c\
+				exec/redir_pipe.c\
+				exec/builtin.c\
+				exec/misc.c\
+
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
 HDRS_DIR	:=	includes

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 17:00:03 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/08 14:40:06 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	try_add(const char *str, t_list **env)
 	return (res);
 }
 
-// >>	QUand tu trouves pas la cles faut que tu me
-//		renvoie une chaine malloce mais vide
 char	*ft_getenv_value(char *key, t_list *env)
 {
 	char	**env_entry;
@@ -59,16 +57,28 @@ char	*ft_getenv_value(char *key, t_list *env)
 
 	env_entry = ft_getenv_entry(key, env);
 	if (!env_entry)
-	{
-		res = malloc(sizeof(char) * 1);
-		if (!res)
-			return (NULL);
-		res[0] = 0;
-		return (res);
-	}
+		return (NULL);
 	res = ft_strchr(*env_entry, '=') + sizeof(char);
 	if (!res)
 		return (NULL);
 	res = ft_strdup(res);
+	return (res);
+}
+
+int	change_env_dollar_question(int n, t_list **env)
+{
+	char	*tmp;
+	char	*str;
+	int		res;
+
+	tmp = ft_itoa(n);
+	if (!tmp)
+		return (FAILURE);
+	str = ft_strjoin("?", tmp);
+	free(tmp);
+	if (!str)
+		return (FAILURE);
+	res = try_add(str, env);
+	free(str);
 	return (res);
 }

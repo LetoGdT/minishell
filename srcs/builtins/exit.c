@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/24 21:20:27 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 20:27:50 by lgaudet-         ###   ########.fr       */
+/*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
+/*   Updated: 2021/10/06 20:29:35 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
-# define ERR_MSG_CD_HOME "minishell: cd: HOME not set"
-# define ERR_MSG_CD "minishell: cd"
-# define ERR_ERR "minishell: failed to print error message"
-# define ERR_EXEC "minishell: error in exec"
-# define ERR_COMM_NOT_FOUND "minishell: command not found"
-# define ERR_MEM "minishell: a memory error occurred"
-# define ERR_TOO_ARG "too many arguments"
+#include <minishell.h>
+#include <unistd.h>
 
-#endif
+int	ft_exit(int argc, char **argv, t_list **env)
+{
+	(void)env;
+	if (argc > 2)
+	{
+		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], ERR_TOO_ARG);
+		return (1);
+	}
+	printf("%s\n", EXIT_MSG);
+	if (argc == 1)
+		exit(0);
+	exit(ft_atoi(argv[1]));
+}

@@ -1,0 +1,1092 @@
+[
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/get_path.c", 
+   "-o", 
+   "objs/get_path.o"
+  ], 
+  "file": "srcs/get_path.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_is_in_string.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_is_in_string.o"
+  ], 
+  "file": "ft_is_in_string.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_atoi.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_atoi.o"
+  ], 
+  "file": "ft_atoi.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/clear.c", 
+   "-o", 
+   "objs/clear.o"
+  ], 
+  "file": "srcs/clear.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_isalpha.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_isalpha.o"
+  ], 
+  "file": "ft_isalpha.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/parsing/states/is_special_state.c", 
+   "-o", 
+   "objs/parsing/states/is_special_state.o"
+  ], 
+  "file": "srcs/parsing/states/is_special_state.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/builtins/cd.c", 
+   "-o", 
+   "objs/builtins/cd.o"
+  ], 
+  "file": "srcs/builtins/cd.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/parsing/errors/basic_errors.c", 
+   "-o", 
+   "objs/parsing/errors/basic_errors.o"
+  ], 
+  "file": "srcs/parsing/errors/basic_errors.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_memset.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_memset.o"
+  ], 
+  "file": "ft_memset.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/env.c", 
+   "-o", 
+   "objs/env.o"
+  ], 
+  "file": "srcs/env.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_putendl_fd.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_putendl_fd.o"
+  ], 
+  "file": "ft_putendl_fd.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstnew.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstnew.o"
+  ], 
+  "file": "ft_lstnew.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strlcat.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strlcat.o"
+  ], 
+  "file": "ft_strlcat.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/parsing/parsing.c", 
+   "-o", 
+   "objs/parsing/parsing.o"
+  ], 
+  "file": "srcs/parsing/parsing.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_split.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_split.o"
+  ], 
+  "file": "ft_split.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strlen.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strlen.o"
+  ], 
+  "file": "ft_strlen.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/init/init_struct_cmd.c", 
+   "-o", 
+   "objs/init/init_struct_cmd.o"
+  ], 
+  "file": "srcs/init/init_struct_cmd.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/parsing/line_without_dollar.c", 
+   "-o", 
+   "objs/parsing/line_without_dollar.o"
+  ], 
+  "file": "srcs/parsing/line_without_dollar.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/exec/redir_pipe.c", 
+   "-o", 
+   "objs/exec/redir_pipe.o"
+  ], 
+  "file": "srcs/exec/redir_pipe.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strlcpy.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strlcpy.o"
+  ], 
+  "file": "ft_strlcpy.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_isascii.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_isascii.o"
+  ], 
+  "file": "ft_isascii.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/exec/misc.c", 
+   "-o", 
+   "objs/exec/misc.o"
+  ], 
+  "file": "srcs/exec/misc.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_isprint.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_isprint.o"
+  ], 
+  "file": "ft_isprint.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_putstr_fd.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_putstr_fd.o"
+  ], 
+  "file": "ft_putstr_fd.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_isalnum.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_isalnum.o"
+  ], 
+  "file": "ft_isalnum.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/builtins/export.c", 
+   "-o", 
+   "objs/builtins/export.o"
+  ], 
+  "file": "srcs/builtins/export.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strtrim.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strtrim.o"
+  ], 
+  "file": "ft_strtrim.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstadd_back.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstadd_back.o"
+  ], 
+  "file": "ft_lstadd_back.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_memccpy.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_memccpy.o"
+  ], 
+  "file": "ft_memccpy.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strmapi.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strmapi.o"
+  ], 
+  "file": "ft_strmapi.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/exec/exec.c", 
+   "-o", 
+   "objs/exec/exec.o"
+  ], 
+  "file": "srcs/exec/exec.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/minishell.c", 
+   "-o", 
+   "objs/minishell.o"
+  ], 
+  "file": "srcs/minishell.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/exec/builtin.c", 
+   "-o", 
+   "objs/exec/builtin.o"
+  ], 
+  "file": "srcs/exec/builtin.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_calloc.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_calloc.o"
+  ], 
+  "file": "ft_calloc.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strdup.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strdup.o"
+  ], 
+  "file": "ft_strdup.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_tolower.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_tolower.o"
+  ], 
+  "file": "ft_tolower.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_memchr.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_memchr.o"
+  ], 
+  "file": "ft_memchr.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstsize.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstsize.o"
+  ], 
+  "file": "ft_lstsize.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstadd_front.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstadd_front.o"
+  ], 
+  "file": "ft_lstadd_front.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_putchar_fd.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_putchar_fd.o"
+  ], 
+  "file": "ft_putchar_fd.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstmap.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstmap.o"
+  ], 
+  "file": "ft_lstmap.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_isdigit.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_isdigit.o"
+  ], 
+  "file": "ft_isdigit.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/init/init.c", 
+   "-o", 
+   "objs/init/init.o"
+  ], 
+  "file": "srcs/init/init.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/free.c", 
+   "-o", 
+   "objs/free.o"
+  ], 
+  "file": "srcs/free.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strrchr.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strrchr.o"
+  ], 
+  "file": "ft_strrchr.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_toupper.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_toupper.o"
+  ], 
+  "file": "ft_toupper.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_memmove.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_memmove.o"
+  ], 
+  "file": "ft_memmove.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strjoin.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strjoin.o"
+  ], 
+  "file": "ft_strjoin.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_substr.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_substr.o"
+  ], 
+  "file": "ft_substr.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_itoa.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_itoa.o"
+  ], 
+  "file": "ft_itoa.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/env_2.c", 
+   "-o", 
+   "objs/env_2.o"
+  ], 
+  "file": "srcs/env_2.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_putnbr_fd.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_putnbr_fd.o"
+  ], 
+  "file": "ft_putnbr_fd.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell", 
+  "arguments": [
+   "gcc", 
+   "-include", 
+   "includes/minishell.h", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-Iincludes", 
+   "-g", 
+   "-c", 
+   "srcs/output.c", 
+   "-o", 
+   "objs/output.o"
+  ], 
+  "file": "srcs/output.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_memcpy.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_memcpy.o"
+  ], 
+  "file": "ft_memcpy.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strncmp.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strncmp.o"
+  ], 
+  "file": "ft_strncmp.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstdelone.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstdelone.o"
+  ], 
+  "file": "ft_lstdelone.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstlast.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstlast.o"
+  ], 
+  "file": "ft_lstlast.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_bzero.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_bzero.o"
+  ], 
+  "file": "ft_bzero.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstclear.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstclear.o"
+  ], 
+  "file": "ft_lstclear.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_lstiter.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_lstiter.o"
+  ], 
+  "file": "ft_lstiter.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strnstr.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strnstr.o"
+  ], 
+  "file": "ft_strnstr.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_strchr.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_strchr.o"
+  ], 
+  "file": "ft_strchr.c"
+ }, 
+ {
+  "directory": "/Users/lgaudet-/Documents/minishell/libft", 
+  "arguments": [
+   "gcc", 
+   "-Wall", 
+   "-Wextra", 
+   "-Werror", 
+   "-I.", 
+   "-c", 
+   "ft_memcmp.c", 
+   "-include", 
+   "libft.h", 
+   "-o", 
+   "ft_memcmp.o"
+  ], 
+  "file": "ft_memcmp.c"
+ }
+]
