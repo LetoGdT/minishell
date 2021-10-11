@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 14:40:06 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:23:46 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	try_add(const char *str, t_list **env)
 	{
 		free(*env_entry);
 		*env_entry = ft_strdup(str);
-		res = *env_entry == NULL;
+		res = *env_entry != NULL;
 	}
 	else
 		res = ft_add_to_env(str, env);
@@ -74,7 +74,7 @@ int	change_env_dollar_question(int n, t_list **env)
 	tmp = ft_itoa(n);
 	if (!tmp)
 		return (FAILURE);
-	str = ft_strjoin("?", tmp);
+	str = ft_strjoin("?=", tmp);
 	free(tmp);
 	if (!str)
 		return (FAILURE);

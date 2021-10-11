@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/05 21:34:08 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:38:01 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)
 		!builtin_get_default_fork((char *) \
 		((t_cmd *)head->content)->cmd->content))
 		return (-2);
+	g_children_running = 1;
 	return (fork());
 }

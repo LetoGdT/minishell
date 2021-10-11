@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 16:04:30 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:36:33 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,21 @@ char	**t_list_to_char(t_list *lst)
 
 void	wait_children(pid_t last_child, int *stat_loc)
 {
+	g_children_running = 0;
 	waitpid(last_child, stat_loc, 0);
 	while (wait(NULL) != -1)
 		;
+}
+
+int		init_exec(t_run_info *run)
+{
+	run->fd_real_in = dup(0);
+	run->fd_real_out = dup(1);
+	run->left_pipe[0] = -1;
+	if (run->fd_real_out == -1 || run->fd_real_in == -1)
+	{
+		perror(ERR_EXEC);
+		return (FAILURE);
+	}
+	return (SUCCESS);
 }

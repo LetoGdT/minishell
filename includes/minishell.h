@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 19:55:08 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:36:51 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int			fprintln_str(int fd, char *str);
 int			ft_fprintf(int fd, char *format, ...);
 
 // Fonctions liées à l’éxecution
+int			init_exec(t_run_info *run);
 int			exec(t_exec_info info);
 pid_t		prepare_fork_pipe(int rank, t_list *head, t_run_info *run);
 int			launch_prog(pid_t pid, t_cmd *cmd, t_exec_info info);

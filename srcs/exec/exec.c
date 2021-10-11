@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 20:11:38 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:43:05 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,8 @@ int	exec(t_exec_info info)
 	pid_t		pid;
 	int			i;
 
-	run.fd_real_in = dup(0);
-	run.fd_real_out = dup(1);
-	run.left_pipe[0] = -1;
-	if (run.fd_real_out == -1 || run.fd_real_in == -1)
-	{
-		perror(ERR_EXEC);
+	if (!init_exec(&run))
 		return (FAILURE);
-	}
 	head = info.cmds;
 	i = 0;
 	while (head)
@@ -57,7 +51,9 @@ int	exec(t_exec_info info)
 	wait_children(pid, &i);
 	if (WIFEXITED(i))
 		return (change_env_dollar_question(WEXITSTATUS(i), &info.env));
-	return (SUCCESS);
+	if (WIFSIGNALED(i))
+		return (change_env_dollar_question(WTERMSIG(i) + 128, &info.env));
+	return (FAILURE);
 }
 
 int	child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info info)
