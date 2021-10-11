@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 17:36:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/11 19:15:19 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <termios.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 # include "const.h"
 # include "error.h"
 # define FAILURE 0
@@ -92,7 +92,6 @@ char		**t_list_to_char(t_list *lst);
 
 //Affichage
 int			fprintln_str(int fd, char *str);
-int			ft_fprintf(int fd, char *format, ...);
 
 // Fonctions liées à l’éxecution
 int			init_exec(t_run_info *run);
