@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 17:36:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 16:27:04 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int			child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info info);
 void		wait_children(pid_t last_child, int *stat_loc);
 int			parent(int rank, t_run_info *run);
 int			prepare_redir(t_cmd *cmd, t_run_info *run);
+int			heredoc(t_file_redir *redir);
 int			restore_io(t_run_info *run);
 int			builtin_get_default_fork(char *cmd_name);
 t_built_fun	builtin_get_fun_ptr(char *cmd_name);
@@ -124,6 +125,7 @@ int short	state_default(t_cmd *cmds, char *line, int *i);
 int short	state_redir(t_cmd *cmds, char *line, int *i);
 int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **line);
+int			heredoc_parsing(int fd, t_file_redir *redir);
 
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);
