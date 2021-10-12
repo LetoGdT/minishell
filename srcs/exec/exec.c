@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 18:52:25 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 22:08:31 by lgaudet-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	exec(t_exec_info info)
 		else
 		{
 			perror(ERR_EXEC);
+			clear(info, NULL, 0);
 			return (FAILURE);
 		}
 		head = head->next;
@@ -58,11 +59,17 @@ int	exec(t_exec_info info)
 int	child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info info)
 {
 	if (!prepare_redir(cmd, run))
+	{
+		perror(ERR_REDIR);
 		return (FAILURE);
+	}
 	if (!launch_prog(pid, cmd, info))
 		return (FAILURE);
 	if (!restore_io(run))
+	{
+		perror(ERR_REDIR);
 		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 
@@ -110,8 +117,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	path = get_path((char *)cmd->args->content, info.env);
 	if (!path)
 	{
-		//il faut utiliser fprintf(stderr, ...) ici
-		fprintln_str(STDERR_FILENO, ERR_COMM_NOT_FOUND);
+		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_COMM_NOT_FOUND);
 		ft_free_token_list(argv);
 		return (FAILURE);
 	}
@@ -130,6 +136,6 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 		ft_free_token_list(argv);
 		ft_free_token_list(env);
 	}
-		// faire l’affichage d’erreur
+	perror(MINISHELL);
 	return (FAILURE);
 }
