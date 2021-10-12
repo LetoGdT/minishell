@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 12:50:33 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:37:26 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_builtin
 //Fonctions liées à l’environnement
 char		**ft_getenv(t_list *env);
 t_list		*ft_new_env(char *env[]);
-int 		try_add(const char *str, t_list **env);
+int			try_add(const char *str, t_list **env);
 int			ft_remove_from_env(char *key, t_list **env);
 char		**ft_getenv_entry(char *key, t_list *env);
 char		*ft_getenv_value(char *key, t_list *env);
@@ -109,10 +109,11 @@ void		print_content_args(t_cmd *content);
 void		print_content_infile(t_cmd *content);
 void		print_content_outfile(t_cmd *content);
 short int	is_state_symbol(char c);
+short int	is_space_and_next(char *str, int i, char c);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);
-t_list		*init_content(void);;
+t_list		*init_content(void);
 
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info global, char *line, int ret);

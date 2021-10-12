@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 13:14:16 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:15:05 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static t_states	which_state(char *str, int i, char c)
 static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 		t_states *st)
 {
-
 	if (*st == _DEFAULT)
 	{
 		if (!state_default(content, line, i))
@@ -89,10 +88,8 @@ short int	tokenizing(t_exec_info *global, char *line)
 				return (FAILURE);
 		}
 		else if (line[i] == '|')
-		{
 			if (!restarting(line, &tmp, &i))
 				return (FAILURE);
-		}
 		st = which_state(line, i, line[i]);
 		if (!fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st))
 			return (FAILURE);

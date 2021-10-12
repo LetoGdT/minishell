@@ -6,14 +6,14 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 12:18:48 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:13:45 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-# define _REDIR_IN 0
-# define _REDIR_OUT 1
+#define _REDIR_IN 0
+#define _REDIR_OUT 1
 
 void	ft_lstclear_redir(t_list **lst, void (*del)(void*), short int nb)
 {
@@ -27,9 +27,15 @@ void	ft_lstclear_redir(t_list **lst, void (*del)(void*), short int nb)
 	{
 		next = curr->next;
 		if (nb == _REDIR_IN)
-			free(((t_file_redir *)curr->content)->name);
+		{
+				if (((t_file_redir *)curr->content)->name)
+				free(((t_file_redir *)curr->content)->name);
+		}
 		else if (nb == _REDIR_OUT)
-			free(((t_file_redir *)curr->content)->name);
+		{
+			if (((t_file_redir *)curr->content)->name)
+				free(((t_file_redir *)curr->content)->name);
+		}
 		ft_lstdelone(curr, del);
 		curr = next;
 	}
@@ -46,7 +52,6 @@ void	del(void *content)
 		free(content);
 	}
 }
-
 
 void	clear_cmds(t_exec_info global)
 {

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:30:07 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 14:10:25 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:12:25 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ static void	simple_or_double(t_file_redir **redir, t_states *st, int *i)
 	}
 }
 
+static int	find_size(char *str, int i, char c)
+{
+	int	size;
+
+	size = 0;
+	while (str[i] && str[i] != c)
+	{
+		size++;
+		i++;
+	}
+	return (size);
+}
+
 static int short	infile(t_file_redir *redir, t_cmd *content, \
 						char *line, int *i)
 {
@@ -32,10 +45,10 @@ static int short	infile(t_file_redir *redir, t_cmd *content, \
 	(*i)++;
 	if (line[*i] == ' ')
 		(*i)++;
-	size = *i;
-	while (line[size] && line[size] != ' ')
-		size++;
-	redir->name = malloc(sizeof(char) * (size - (*i) + 1));
+	size = find_size(line, *i, ' ');
+	if (!size)
+		return (SUCCESS);
+	redir->name = malloc(sizeof(char) * (size + 1));
 	if (!redir->name)
 		return (FAILURE);
 	size = 0;
@@ -50,7 +63,7 @@ static int short	infile(t_file_redir *redir, t_cmd *content, \
 	if (!new)
 		return (FAILURE);
 	ft_lstadd_back(&(content->infile), new);
-	return (SUCCESS); 
+	return (SUCCESS);
 }
 
 static int short	outfile(t_file_redir *redir, t_cmd *content, \
@@ -62,12 +75,10 @@ static int short	outfile(t_file_redir *redir, t_cmd *content, \
 	(*i)++;
 	if (line[*i] == ' ')
 		(*i)++;
-	size = *i;
-	while (line[size] && line[size] != ' ')
-		size++;
-	if (!(size - *i))
+	size = find_size(line, *i, ' ');
+	if (!size)
 		return (SUCCESS);
-	redir->name = malloc(sizeof(char) * (size - *i + 1));
+	redir->name = malloc(sizeof(char) * (size + 1));
 	if (!redir->name)
 		return (FAILURE);
 	size = 0;

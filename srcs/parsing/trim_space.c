@@ -6,20 +6,20 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 16:30:09 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:35:05 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-# define ERROR_SPACE 2
+#define ERROR_SPACE 2
 
 static short int	is_space(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		if (str[i] == '\'')
 		{
@@ -39,7 +39,6 @@ static short int	is_space(char *str)
 		}
 		if (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
 			return (SUCCESS);
-		i++;
 	}
 	return (FAILURE);
 }
@@ -81,10 +80,36 @@ static int	find_size(char *str)
 	return (j);
 }
 
+static char	*new_line(char *str, char **line, short int s, short int d)
+{
+	int		i;
+	int		j;
+	int		size;
+
+	size = find_size(str);
+	i = 0;
+	j = 0;
+	while (str[i] && j < size)
+	{
+		if (i == 0)
+			while (str[i] == ' ')
+				i++;
+		if (str[i] == '\'')
+			s++;
+		if (str[i] == '\"')
+			d++;
+		while (!(s % 2) && !(d % 2) && is_space_and_next(str, i, ' '))
+			i++;
+		(*line)[j] = str[i];
+		i++;
+		j++;
+	}
+	(*line)[j] = 0;
+	return (str);
+}
+
 short int	trim_space(char **line)
 {
-	int			i;
-	int			j;
 	char		*str;
 	int			size;
 	short int	s_quote;
@@ -103,27 +128,8 @@ short int	trim_space(char **line)
 		*line = ft_realloc(*line, size + 1);
 		if (!(*line))
 			return (FAILURE);
-		i = 0;
-		j = 0;
-		while (str[i] && j < size)
-		{
-			if (i == 0)
-			{
-				while (str[i] == ' ')
-					i++;
-			}
-			if (str[i] == '\'')
-				s_quote++;
-			if (str[i] == '\"')
-				d_quote++;
-			while (!(s_quote % 2) && !(d_quote % 2) && str[i] == ' ' \
-					&& str[i + 1] && str[i + 1] == ' ')
-				i++;
-			(*line)[j] = str[i];
-			i++;
-			j++;
-		}
-		(*line)[j] = 0;
+		if (!new_line(str, line, s_quote, d_quote))
+			return (FAILURE);
 		free(str);
 	}
 	return (SUCCESS);

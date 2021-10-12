@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 11:26:12 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:05:55 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-# define ERROR_SPACE 2
+#define ERROR_SPACE 2
 
 short int	parsing(char **line, t_exec_info *global)
 {

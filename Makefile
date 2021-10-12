@@ -18,6 +18,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/print_cmds.c \
 				parsing/utils/print_content_cmd.c \
 				parsing/utils/is_state_symbol.c \
+				parsing/utils/is_space_and_next.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				parsing/states/state_redir.c \

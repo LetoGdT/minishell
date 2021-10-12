@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 16:36:37 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 14:54:42 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:16:49 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_content_infile(t_cmd *content)
 {
 	t_list	*tmp;
-	
+
 	tmp = content->infile;
 	while (tmp)
 	{
@@ -32,7 +32,7 @@ void	print_content_infile(t_cmd *content)
 void	print_content_outfile(t_cmd *content)
 {
 	t_list	*tmp;
-	
+
 	tmp = content->outfile;
 	while (tmp)
 	{
@@ -49,7 +49,7 @@ void	print_content_outfile(t_cmd *content)
 void	print_content_args(t_cmd *content)
 {
 	t_list	*tmp;
-	
+
 	tmp = content->args;
 	while (tmp)
 	{
