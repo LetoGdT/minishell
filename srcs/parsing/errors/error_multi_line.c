@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 13:57:00 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 18:33:18 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:05:24 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-# define _PIPE 1
-# define _MATCH 2
+#define _PIPE 1
+#define _MATCH 2
 
 typedef struct s_special {
 	short int	s_quote;
@@ -111,7 +111,7 @@ short int	error_multi_line(char *line)
 			while (line[j] && line[j] == ' ')
 				j++;
 			if (!(line[j]))
-				return (ret(spe, _PIPE)) ;
+				return (ret(spe, _PIPE));
 		}
 		if (spe.s_quote % 2 || spe.d_quote % 2)
 			break ;

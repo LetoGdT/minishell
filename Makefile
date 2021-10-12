@@ -19,6 +19,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/print_cmds.c \
 				parsing/utils/print_content_cmd.c \
 				parsing/utils/is_state_symbol.c \
+				parsing/utils/is_space_and_next.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				parsing/states/state_redir.c \
@@ -51,18 +52,21 @@ SANFLAGS	:=	-fsanitize=address -g3
 LDFLAGS		:= -lreadline
 RM			:=	rm -f
 
+ifeq ($(ASAN), 1)
+CFLAGS := $(CFLAGS) $(SANFLAGS)
+LDFLAGS := $(LDFLAGS) $(SANFLAGS)
+endif
+
 all:			$(NAME)
 
 $(NAME):		libs $(OBJS)
 				@echo "Linking $(NAME)"
 				@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
-#				@$(CC) $(SANFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
 objs/%.o:		$(SRCS_DIR)/%.c $(HDRS)
 				@mkdir -p $(dir $@)
 				@echo "Compiling $<"
 				@$(CC) -include $(HDRS) $(CFLAGS) -c $< -o $@
-#				@$(CC) $(SANFLAGS) -include $(HDRS) $(CFLAGS) -c $< -o $@
 
 libs:
 				@echo "Making libft"

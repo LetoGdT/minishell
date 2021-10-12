@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 10:56:52 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 17:10:16 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 16:46:31 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_cmd	*init_t_cmd(void)
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	cmd->cmd = NULL;
+	cmd->args = NULL;
 	cmd->infile = NULL;
 	cmd->outfile = NULL;
 	return (cmd);
