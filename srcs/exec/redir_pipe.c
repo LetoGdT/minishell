@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:43:24 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:11:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	right_redir(t_cmd *cmd, t_run_info *run)
 			flags = O_CREAT | O_TRUNC | O_WRONLY;
 		else
 			flags = O_CREAT | O_APPEND | O_WRONLY;
-		fd = open(((t_file_redir *)redir_head->content)->name, flags);
+		fd = open(((t_file_redir *)redir_head->content)->name, flags, 0644);
 		if (fd < 0)
 			return (FAILURE);
 		if (dup2(fd, 1) == -1)

@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:54:06 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:52:25 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	launch_prog(pid_t pid, t_cmd *cmd, t_exec_info info)
 	argv = t_list_to_char(cmd->args);
 	if (!argv)
 	{
-		fprintln_str(STDERR_FILENO, ERR_MEM);
+		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
 		return (FAILURE);
 	}
 	fun = builtin_get_fun_ptr((char *)cmd->args->content);
@@ -118,7 +118,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	env = t_list_to_char(info.env);
 	if (!env)
 	{
-		fprintln_str(STDERR_FILENO, ERR_MEM);
+		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
 		free(path);
 		ft_free_token_list(argv);
 		return (FAILURE);

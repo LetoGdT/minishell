@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:52:12 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:17:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include "../libft/includes/libft.h"
 # include "const.h"
 # include "error.h"
-# define FAILURE 0
-# define SUCCESS 1
 
 int	g_children_running;
 
