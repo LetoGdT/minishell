@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 17:43:05 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:21:07 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	exec(t_exec_info info)
 		}
 		else if (pid == 0)
 		{
-			g_children_running = 1;
 			child(pid, (t_cmd *)head->content, &run, info);
 			clear(info, NULL, 0);
 			exit(ft_atoi(ft_getenv_value("?", info.env)));

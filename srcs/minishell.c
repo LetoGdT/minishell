@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/11 19:54:43 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:05:47 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv, char *env[])
 	t_exec_info	global;
 
 	line = NULL;
-	ft_fprintf(STDERR_FILENO, "pouet\n");
 	if (argc > 1 || argv[1])
 		write(1, "Wrong numbers of arguments\n", 27);
 	else

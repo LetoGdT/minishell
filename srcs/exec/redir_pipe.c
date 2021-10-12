@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 17:38:01 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:32:03 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ static int	right_redir(t_cmd *cmd, t_run_info *run)
 
 	if (run->right_pipe[1] != -1)
 	{
-		if (dup2(run->right_pipe[1], 1))
+		if (dup2(run->right_pipe[1], 1) == -1)
 			return (FAILURE);
-		if (close(run->right_pipe[1]))
+		if (close(run->right_pipe[0]) == -1)
+			return (FAILURE);
+		if (close(run->right_pipe[1]) == -1)
 			return (FAILURE);
 	}
 	redir_head = cmd->outfile;
@@ -35,7 +37,7 @@ static int	right_redir(t_cmd *cmd, t_run_info *run)
 		fd = open(((t_file_redir *)redir_head->content)->name, flags);
 		if (fd < 0)
 			return (FAILURE);
-		if (dup2(fd, 1))
+		if (dup2(fd, 1) == -1)
 			return (FAILURE);
 		if (close(fd))
 			return (FAILURE);
@@ -51,9 +53,11 @@ static int	left_redir(t_cmd *cmd, t_run_info *run)
 
 	if (run->left_pipe[0] != -1)
 	{
-		if (dup2(run->left_pipe[0], 0))
+		if (dup2(run->left_pipe[0], 0) == -1)
 			return (FAILURE);
-		if (close(run->left_pipe[0]))
+		if (close(run->left_pipe[0]) == -1)
+			return (FAILURE);
+		if (close(run->left_pipe[1]) == -1)
 			return (FAILURE);
 	}
 	redir_head = cmd->infile;
@@ -62,9 +66,9 @@ static int	left_redir(t_cmd *cmd, t_run_info *run)
 		fd = open((char *)redir_head->content, O_RDONLY);
 		if (fd < 0)
 			return (FAILURE);
-		if (dup2(fd, 0))
+		if (dup2(fd, 0) == -1)
 			return (FAILURE);
-		if (close(fd))
+		if (close(fd) == -1)
 			return (FAILURE);
 		redir_head = redir_head->next;
 	}
@@ -82,9 +86,9 @@ int	prepare_redir(t_cmd *cmd, t_run_info *run)
 
 int	restore_io(t_run_info *run)
 {
-	if (dup2(0, run->fd_real_in))
+	if (dup2(0, run->fd_real_in) == -1)
 		return (FAILURE);
-	if (dup2(1, run->fd_real_out))
+	if (dup2(1, run->fd_real_out) == -1)
 		return (FAILURE);
 	return (SUCCESS);
 }

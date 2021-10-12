@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 17:36:33 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:44:03 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		init_exec(t_run_info *run)
 	run->fd_real_in = dup(0);
 	run->fd_real_out = dup(1);
 	run->left_pipe[0] = -1;
+	run->left_pipe[1] = -1;
 	if (run->fd_real_out == -1 || run->fd_real_in == -1)
 	{
 		perror(ERR_EXEC);
