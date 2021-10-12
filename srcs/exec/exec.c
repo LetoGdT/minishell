@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 15:21:07 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:42:05 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ int	launch_prog(pid_t pid, t_cmd *cmd, t_exec_info info)
 	int			res;
 	t_built_fun	fun;
 
-	argv = t_list_to_char(cmd->cmd);
+	argv = t_list_to_char(cmd->args);
 	if (!argv)
 	{
 		fprintln_str(STDERR_FILENO, ERR_MEM);
 		return (FAILURE);
 	}
-	fun = builtin_get_fun_ptr((char *)cmd->cmd->content);
+	fun = builtin_get_fun_ptr((char *)cmd->args->content);
 	if (fun)
 	{
-		res = (fun)(ft_lstsize(cmd->cmd), argv, &info.env);
+		res = (fun)(ft_lstsize(cmd->args), argv, &info.env);
 		free_token_list(argv);
 		if (pid != 0)
 			return (change_env_dollar_question(res, &info.env));
@@ -107,7 +107,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	char	*path;
 	char	**env;
 
-	path = get_path((char *)cmd->cmd->content, info.env);
+	path = get_path((char *)cmd->args->content, info.env);
 	if (!path)
 	{
 		//il faut utiliser fprintf(stderr, ...) ici
