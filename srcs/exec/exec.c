@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:42:05 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:54:06 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	launch_prog(pid_t pid, t_cmd *cmd, t_exec_info info)
 	if (fun)
 	{
 		res = (fun)(ft_lstsize(cmd->args), argv, &info.env);
-		free_token_list(argv);
+		ft_free_token_list(argv);
 		if (pid != 0)
 			return (change_env_dollar_question(res, &info.env));
 		return (SUCCESS);
@@ -112,7 +112,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	{
 		//il faut utiliser fprintf(stderr, ...) ici
 		fprintln_str(STDERR_FILENO, ERR_COMM_NOT_FOUND);
-		free_token_list(argv);
+		ft_free_token_list(argv);
 		return (FAILURE);
 	}
 	env = t_list_to_char(info.env);
@@ -120,15 +120,15 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	{
 		fprintln_str(STDERR_FILENO, ERR_MEM);
 		free(path);
-		free_token_list(argv);
+		ft_free_token_list(argv);
 		return (FAILURE);
 	}
 	clear(info, NULL, 0);
 	if (execve(path, argv, env))
 	{
 		free(path);
-		free_token_list(argv);
-		free_token_list(env);
+		ft_free_token_list(argv);
+		ft_free_token_list(env);
 	}
 		// faire l’affichage d’erreur
 	return (FAILURE);

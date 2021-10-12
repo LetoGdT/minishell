@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 14:44:03 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:54:25 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**t_list_to_char(t_list *lst)
 		res[i] = ft_strdup((char *)head->content);
 		if (!res[i])
 		{
-			free_token_list(res);
+			ft_free_token_list(res);
 			return (NULL);
 		}
 		head = head->next;

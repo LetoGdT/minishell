@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 01:10:38 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:51:36 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:54:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static char	**add_cmd(char **path, int i, char *cmd)
 	tmp = ft_strjoin(path[i], "/");
 	if (!tmp)
 	{
-		free_token_list(path);
+		ft_free_token_list(path);
 		return (NULL);
 	}
 	free(path[i]);
 	com = ft_strjoin(tmp, cmd);
 	if (!com)
 	{
-		free_token_list(path);
+		ft_free_token_list(path);
 		free(tmp);
 		return (NULL);
 	}
@@ -82,6 +82,6 @@ char	*get_path(char *cmd, t_list *env)
 		}
 		i++;
 	}
-	free_token_list(path);
+	ft_free_token_list(path);
 	return (res);
 }

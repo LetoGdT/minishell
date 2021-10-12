@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 16:45:50 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 17:52:12 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int			restore_io(t_run_info *run);
 int			builtin_get_default_fork(char *cmd_name);
 t_built_fun	builtin_get_fun_ptr(char *cmd_name);
 char		*get_path(char *cmd, t_list *env);
-void		free_token_list(char **list);
 
 // Fonctions sur les signaux
 void		sig_handler(int signo);
