@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 16:37:24 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 13:14:16 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ static int	starting(t_list **tmp, t_states *st)
 	return (SUCCESS);
 }
 
-static int	restarting(t_list **tmp, int *i)
+static int	restarting(char *line, t_list **tmp, int *i)
 {
 	t_list	*new;
 
 	new = init_content();
 	if (!new)
 		return (FAILURE);
-
 	ft_lstadd_back(tmp, new);
-	(*i) += 2;
+	(*i)++;
+	if (line[(*i)] == ' ')
+		(*i)++;
 	return (SUCCESS);
 }
 
@@ -60,7 +61,7 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 	}
 	else if (*st == _RED_SINGLE || *st == _RED_DOUBLE)
 	{
-		if (!state_redir(content, line, i))
+		if (!state_redir(content, line, i, st))
 			return (FAILURE);
 	}
 	else if (*st == _QUOTES)
@@ -89,7 +90,7 @@ short int	tokenizing(t_exec_info *global, char *line)
 		}
 		else if (line[i] == '|')
 		{
-			if (!restarting(&tmp, &i))
+			if (!restarting(line, &tmp, &i))
 				return (FAILURE);
 		}
 		st = which_state(line, i, line[i]);

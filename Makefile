@@ -43,18 +43,21 @@ SANFLAGS	:=	-fsanitize=address -g3
 LDFLAGS		:= -lreadline
 RM			:=	rm -f
 
+ifeq ($(ASAN), 1)
+CFLAGS := $(CFLAGS) $(SANFLAGS)
+LDFLAGS := $(LDFLAGS) $(SANFLAGS)
+endif
+
 all:			$(NAME)
 
 $(NAME):		libs $(OBJS)
 				@echo "Linking $(NAME)"
 				@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
-#				@$(CC) $(SANFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
 objs/%.o:		$(SRCS_DIR)/%.c $(HDRS)
 				@mkdir -p $(dir $@)
 				@echo "Compiling $<"
 				@$(CC) -include $(HDRS) $(CFLAGS) -c $< -o $@
-#				@$(CC) $(SANFLAGS) -include $(HDRS) $(CFLAGS) -c $< -o $@
 
 libs:
 				@echo "Making libft"

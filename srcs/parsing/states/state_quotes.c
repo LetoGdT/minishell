@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:08:30 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 15:30:34 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/12 12:22:36 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int short	state_quotes(t_cmd *content, char *line, int *i, char c)
 	}
 	str[size] = 0;
 	new = ft_lstnew(str);
-	ft_lstadd_back(&(content->cmd), new);
+	ft_lstadd_back(&(content->args), new);
 	if (line[*i + 1] == ' ')
 		(*i)++;
 	return (SUCCESS);
