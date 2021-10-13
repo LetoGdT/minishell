@@ -28,7 +28,7 @@
    "-c", 
    "ft_is_in_string.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_is_in_string.o"
   ], 
@@ -45,7 +45,7 @@
    "-c", 
    "ft_atoi.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_atoi.o"
   ], 
@@ -80,7 +80,7 @@
    "-c", 
    "ft_isalpha.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_isalpha.o"
   ], 
@@ -151,7 +151,7 @@
    "-c", 
    "ft_memset.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_memset.o"
   ], 
@@ -186,7 +186,7 @@
    "-c", 
    "ft_putendl_fd.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_putendl_fd.o"
   ], 
@@ -203,7 +203,7 @@
    "-c", 
    "ft_lstnew.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstnew.o"
   ], 
@@ -220,7 +220,7 @@
    "-c", 
    "ft_strlcat.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strlcat.o"
   ], 
@@ -255,7 +255,7 @@
    "-c", 
    "ft_split.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_split.o"
   ], 
@@ -272,7 +272,7 @@
    "-c", 
    "ft_strlen.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strlen.o"
   ], 
@@ -343,7 +343,7 @@
    "-c", 
    "ft_strlcpy.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strlcpy.o"
   ], 
@@ -360,7 +360,7 @@
    "-c", 
    "ft_isascii.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_isascii.o"
   ], 
@@ -395,7 +395,7 @@
    "-c", 
    "ft_isprint.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_isprint.o"
   ], 
@@ -412,7 +412,7 @@
    "-c", 
    "ft_putstr_fd.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_putstr_fd.o"
   ], 
@@ -429,7 +429,7 @@
    "-c", 
    "ft_isalnum.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_isalnum.o"
   ], 
@@ -464,7 +464,7 @@
    "-c", 
    "ft_strtrim.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strtrim.o"
   ], 
@@ -481,7 +481,7 @@
    "-c", 
    "ft_lstadd_back.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstadd_back.o"
   ], 
@@ -498,7 +498,7 @@
    "-c", 
    "ft_memccpy.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_memccpy.o"
   ], 
@@ -515,7 +515,7 @@
    "-c", 
    "ft_strmapi.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strmapi.o"
   ], 
@@ -586,7 +586,7 @@
    "-c", 
    "ft_calloc.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_calloc.o"
   ], 
@@ -603,7 +603,7 @@
    "-c", 
    "ft_strdup.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strdup.o"
   ], 
@@ -620,7 +620,7 @@
    "-c", 
    "ft_tolower.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_tolower.o"
   ], 
@@ -637,7 +637,7 @@
    "-c", 
    "ft_memchr.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_memchr.o"
   ], 
@@ -654,7 +654,7 @@
    "-c", 
    "ft_lstsize.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstsize.o"
   ], 
@@ -671,7 +671,7 @@
    "-c", 
    "ft_lstadd_front.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstadd_front.o"
   ], 
@@ -688,7 +688,7 @@
    "-c", 
    "ft_putchar_fd.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_putchar_fd.o"
   ], 
@@ -705,7 +705,7 @@
    "-c", 
    "ft_lstmap.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstmap.o"
   ], 
@@ -722,7 +722,7 @@
    "-c", 
    "ft_isdigit.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_isdigit.o"
   ], 
@@ -775,7 +775,7 @@
    "-c", 
    "ft_strrchr.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strrchr.o"
   ], 
@@ -792,7 +792,7 @@
    "-c", 
    "ft_toupper.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_toupper.o"
   ], 
@@ -809,7 +809,7 @@
    "-c", 
    "ft_memmove.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_memmove.o"
   ], 
@@ -826,7 +826,7 @@
    "-c", 
    "ft_strjoin.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strjoin.o"
   ], 
@@ -843,7 +843,7 @@
    "-c", 
    "ft_substr.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_substr.o"
   ], 
@@ -860,7 +860,7 @@
    "-c", 
    "ft_itoa.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_itoa.o"
   ], 
@@ -895,7 +895,7 @@
    "-c", 
    "ft_putnbr_fd.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_putnbr_fd.o"
   ], 
@@ -930,7 +930,7 @@
    "-c", 
    "ft_memcpy.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_memcpy.o"
   ], 
@@ -947,7 +947,7 @@
    "-c", 
    "ft_strncmp.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strncmp.o"
   ], 
@@ -964,7 +964,7 @@
    "-c", 
    "ft_lstdelone.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstdelone.o"
   ], 
@@ -981,7 +981,7 @@
    "-c", 
    "ft_lstlast.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstlast.o"
   ], 
@@ -998,7 +998,7 @@
    "-c", 
    "ft_bzero.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_bzero.o"
   ], 
@@ -1015,7 +1015,7 @@
    "-c", 
    "ft_lstclear.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstclear.o"
   ], 
@@ -1032,7 +1032,7 @@
    "-c", 
    "ft_lstiter.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_lstiter.o"
   ], 
@@ -1049,7 +1049,7 @@
    "-c", 
    "ft_strnstr.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strnstr.o"
   ], 
@@ -1066,7 +1066,7 @@
    "-c", 
    "ft_strchr.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_strchr.o"
   ], 
@@ -1083,7 +1083,7 @@
    "-c", 
    "ft_memcmp.c", 
    "-include", 
-   "libft.h", 
+   <libft.h>, 
    "-o", 
    "ft_memcmp.o"
   ], 
