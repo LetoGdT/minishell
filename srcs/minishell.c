@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 15:05:47 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/13 10:55:15 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv, char *env[])
 			line = readline("minishell$ ");
 			if (line)
 			{
+				add_history(line);
 				if (!parsing(&line, &global))
 					return (clear(global, line, EXIT_FAILURE));
 				if (line)
