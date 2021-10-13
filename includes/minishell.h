@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 16:27:04 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:52:09 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ int short	state_default(t_cmd *cmds, char *line, int *i);
 int short	state_redir(t_cmd *cmds, char *line, int *i);
 int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **line);
-int			heredoc_parsing(int fd, t_file_redir *redir);
 
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);

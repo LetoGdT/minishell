@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/11 18:12:04 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:56:40 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ int	main(int argc, char **argv, char *env[])
 			line = readline("minishell$ ");
 			if (line)
 			{
+				if (!ft_strncmp(line, "exit", 4))
+				{
+					free(line);
+					break ;
+				}
 				if (!parsing(&line, &global))
 					return (clear(global, line, EXIT_FAILURE));
-				if (line)
-					free(line);
+				free(line);
 				if (!exec(global))
 					return (clear(global, NULL, EXIT_FAILURE));
 				// print_cmds(global);
