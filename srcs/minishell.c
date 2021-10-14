@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/14 17:14:16 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:17:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ int	main(int argc, char **argv, char *env[])
 			if (line)
 			{
 				add_history(line);
-				if (!ft_strncmp(line, "exit", 4))
-				{
-					free(line);
-					break ;
-				}
 				if (!parsing(&line, &global))
 					return (clear(global, line, EXIT_FAILURE));
 				free(line);
