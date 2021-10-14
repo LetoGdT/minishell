@@ -6,22 +6,42 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 22:14:56 by lgaudet-         ###   ########lyon.fr   */
+/*   Updated: 2021/10/14 20:24:54 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int change_pwd(char *target_dir, t_list **env)
+static int	free_and_return(char *str, int ret)
 {
-	char	*tmp;
+	free(str);
+	return (ret);
+}
+
+static int change_pwd(t_list **env)
+{
+	char	*env_entry;
+	char	*dir;
 	int		res;
 
-	tmp = ft_strjoin(PWD, target_dir);
-	if (!tmp)
+	dir = getcwd(NULL, 0);
+	if (!dir)
 		return (FAILURE);
-	res = try_add(tmp, env);
-	free(tmp);
+	env_entry = ft_strjoin(PWD, dir);
+	free(dir);
+	if (!env_entry)
+		return (FAILURE);
+	dir = ft_getenv_value(PWD, *env);
+	res = try_add(env_entry, env);
+	free(env_entry);
+	if (!res)
+		free_and_return(dir, FAILURE);
+	env_entry = ft_strjoin(OLDPWD, dir);
+	free(dir);
+	if (!env_entry)
+		return (FAILURE);
+	res = try_add(env_entry, env);
+	free(env_entry);
 	return (res);
 }
 
@@ -52,7 +72,7 @@ int	ft_cd(int argc, char **argv, t_list **env)
 		free(target_dir);
 		return (PROG_FAILURE);
 	}
-	res = change_pwd(target_dir, env);
+	res = change_pwd(env);
 	free(target_dir);
 	return (!res);
 }
