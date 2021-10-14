@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/13 12:55:22 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/14 17:10:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static short int	heredoc_parsing(int fd, char *str)
+static void	heredoc_parsing(int fd, char *str)
 {
 	char	*line;
 
@@ -33,7 +33,6 @@ static short int	heredoc_parsing(int fd, char *str)
 		else
 			break;
 	}
-	return (SUCCESS);
 }
 
 int	heredoc(t_file_redir *redir)
@@ -47,8 +46,7 @@ int	heredoc(t_file_redir *redir)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (!heredoc_parsing(fd[1], redir->name))
-			exit(1);
+		heredoc_parsing(fd[1], redir->name);
 		exit(0);
 	}
 	else if (pid > 0)
