@@ -6,11 +6,11 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/07 13:36:03 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/11 19:24:02 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:13:10 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 char	*ft_realloc(char *str, size_t size)
 {

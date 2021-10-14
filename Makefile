@@ -28,6 +28,7 @@ SRCS_FILES	:=	minishell.c \
 				builtins/export.c\
 				builtins/exit.c\
 				exec/exec.c\
+				exec/heredocs.c\
 				exec/redir_pipe.c\
 				exec/builtin.c\
 				exec/misc.c\

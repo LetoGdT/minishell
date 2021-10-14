@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 22:15:34 by lgaudet-         ###   ########lyon.fr   */
+/*   Updated: 2021/10/14 17:12:31 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int			child(pid_t pid, t_cmd *cmd, t_run_info *run, t_exec_info info);
 void		wait_children(pid_t last_child, int *stat_loc);
 int			parent(int rank, t_run_info *run);
 int			prepare_redir(t_cmd *cmd, t_run_info *run);
+int			heredoc(t_file_redir *redir);
 int			restore_io(t_run_info *run);
 int			builtin_get_default_fork(char *cmd_name);
 t_built_fun	builtin_get_fun_ptr(char *cmd_name);
