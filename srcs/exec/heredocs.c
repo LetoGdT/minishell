@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/14 17:10:45 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/14 20:32:18 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	heredoc_parsing(int fd, char *str)
 	char	*line;
 
 	line = NULL;
-	while(1)
+	while (1)
 	{
 		line = readline("");
 		if (line)
@@ -25,13 +25,13 @@ static void	heredoc_parsing(int fd, char *str)
 			if (!ft_strncmp(line, str, ft_strlen(str)))
 			{
 				free(line);
-				break;
+				break ;
 			}
 			ft_putstr_fd(str, fd);
 			free(line);
 		}
 		else
-			break;
+			break ;
 	}
 }
 

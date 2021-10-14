@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/14 20:24:54 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/14 20:31:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	free_and_return(char *str, int ret)
 	return (ret);
 }
 
-static int change_pwd(t_list **env)
+static int	change_pwd(t_list **env)
 {
 	char	*env_entry;
 	char	*dir;
@@ -45,25 +45,31 @@ static int change_pwd(t_list **env)
 	return (res);
 }
 
-int	ft_cd(int argc, char **argv, t_list **env)
+static char	*set_target_dir(int argc, char **argv, t_list **env)
 {
 	char	*target_dir;
-	int		res;
 
 	if (argc == 1)
 	{
 		target_dir = ft_getenv_value(HOME, *env);
 		if (!target_dir)
-		{
-			ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], ERR_HOME);
-			return (PROG_FAILURE);
-		}
+			return (NULL);
 	}
 	else
 		target_dir = ft_strdup(argv[1]);
+	return (target_dir);
+}
+
+int	ft_cd(int argc, char **argv, t_list **env)
+{
+	char	*target_dir;
+	int		res;
+
+	target_dir = set_target_dir(argc, argv, env);
 	if (!target_dir)
 	{
-		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], ERR_MEM);
+		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], \
+		ERR_MEM);
 		return (PROG_FAILURE);
 	}
 	if (chdir(target_dir))

@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:54:25 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/14 20:32:37 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	wait_children(pid_t last_child, int *stat_loc)
 		;
 }
 
-int		init_exec(t_run_info *run)
+int	init_exec(t_run_info *run)
 {
 	run->fd_real_in = dup(0);
 	run->fd_real_out = dup(1);
