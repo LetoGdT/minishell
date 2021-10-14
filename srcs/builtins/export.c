@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/08 14:34:20 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:39:09 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int is_valid_name(char *str)
+static int	is_valid_name(char *str)
 {
 	if (!str)
 		return (FAILURE);
@@ -21,22 +21,24 @@ static int is_valid_name(char *str)
 
 int	ft_export(int argc, char **argv, t_list **env)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	while (i < argc - 1)
 	{
 		if (!is_valid_name(argv[i + 1]))
+		{
+			ft_fprintf(STDERR_FILENO, "%s: %s: %s: %s\n", MINISHELL, argv[0], \
+			argv[i + 1], ERR_IDENT);
 			return (FAILURE);
-			//faut faire de l’affichage d’erreur
-			//bash: export: %s: not a valid identifier
+		}
 		if (!ft_strchr(argv[i + 1], '='))
 			continue ;
 		if (!try_add(argv[i + 1], env))
-			return (FAILURE);
+			return (PROG_FAILURE);
 		i++;
 	}
-	return (SUCCESS);
+	return (PROG_SUCCESS);
 }
 
 int	ft_unset(int argc, char **argv, t_list **env)
@@ -52,13 +54,15 @@ int	ft_unset(int argc, char **argv, t_list **env)
 			continue ;
 		}
 		if (!is_valid_name(argv[i + 1]))
-			return (FAILURE);
-			//faut faire de l’affichage d’erreur
-			//bash: export: %s: not a valid identifier
+		{
+			ft_fprintf(STDERR_FILENO, "%s: %s: %s: %s\n", MINISHELL, argv[0], \
+			argv[i + 1], ERR_IDENT);
+			return (PROG_FAILURE);
+		}
 		ft_remove_from_env(argv[i + 1], env);
 		i++;
 	}
-	return (SUCCESS);
+	return (PROG_SUCCESS);
 }
 
 int	ft_env(int argc, char **argv, t_list **env)
@@ -72,8 +76,8 @@ int	ft_env(int argc, char **argv, t_list **env)
 	{
 		if (ft_strncmp("?", (char *)head->content, 1))
 			if (!printf("%s\n", (char *)head->content))
-				return (FAILURE);
+				return (PROG_FAILURE);
 		head = head->next;
 	}
-	return (SUCCESS);
+	return (PROG_SUCCESS);
 }

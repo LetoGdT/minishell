@@ -32,7 +32,6 @@ SRCS_FILES	:=	minishell.c \
 				exec/builtin.c\
 				exec/misc.c\
 				exec/get_path.c\
-				exec/output.c \
 
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 

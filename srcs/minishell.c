@@ -6,11 +6,12 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/13 10:55:15 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/14 17:07:00 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+int g_children_running;
 
 int	main(int argc, char **argv, char *env[])
 {

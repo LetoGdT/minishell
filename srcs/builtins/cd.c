@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 17:06:40 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/12 22:14:56 by lgaudet-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,26 @@ int	ft_cd(int argc, char **argv, t_list **env)
 		target_dir = ft_getenv_value(HOME, *env);
 		if (!target_dir)
 		{
-			fprintln_str(STDERR_FILENO, ERR_MSG_CD_HOME);
-			return (FAILURE);
+			ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], ERR_HOME);
+			return (PROG_FAILURE);
 		}
 	}
 	else
 		target_dir = ft_strdup(argv[1]);
+	if (!target_dir)
+	{
+		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], ERR_MEM);
+		return (PROG_FAILURE);
+	}
 	if (chdir(target_dir))
 	{
 		perror(ERR_MSG_CD);
 		free(target_dir);
-		return (FAILURE);
+		return (PROG_FAILURE);
 	}
 	res = change_pwd(target_dir, env);
 	free(target_dir);
-	return (res);
+	return (!res);
 }
 
 int	ft_pwd(int argc, char **argv, t_list **env)
@@ -62,10 +67,10 @@ int	ft_pwd(int argc, char **argv, t_list **env)
 	dir_path = getcwd(NULL, 0);
 	if (!dir_path)
 	{
-		perror(NULL);
-		return (FAILURE);
+		perror(MINISHELL);
+		return (PROG_FAILURE);
 	}
 	printf("%s\n", dir_path);
 	free(dir_path);
-	return (SUCCESS);
+	return (PROG_SUCCESS);
 }
