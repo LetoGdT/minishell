@@ -45,7 +45,12 @@ OBJS		:=	$(SRCS:srcs/%.c=objs/%.o)
 LIBFT_DIR	:= libft
 LIBS		:= $(LIBFT_DIR)/libft.a
 
-CC			:=	gcc
+ifneq ($(shell uname), Linux)
+READLINE_LIB_DIR_FLAG := -L$(shell brew --prefix readline)/lib
+READLINE_INC_DIR_FLAG := -I$(shell brew --prefix readline)/include
+endif
+
+CC			:=	gcc 
 CFLAGS		:=	-Wall -Wextra -Werror -Iincludes -g
 SANFLAGS	:=	-fsanitize=address -g3
 LDFLAGS		:= -lreadline
@@ -60,12 +65,12 @@ all:			$(NAME)
 
 $(NAME):		libs $(OBJS)
 				@echo "Linking $(NAME)"
-				@$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
+				@$(CC) $(READLINE_LIB_DIR_FLAG) $(LDFLAGS) $(OBJS) $(LIBS) -o $@
 
 objs/%.o:		$(SRCS_DIR)/%.c $(HDRS)
 				@mkdir -p $(dir $@)
 				@echo "Compiling $<"
-				@$(CC) -include $(HDRS) $(CFLAGS) -c $< -o $@
+				@$(CC) -include $(HDRS) $(CFLAGS) $(READLINE_INC_DIR_FLAG) -c $< -o $@
 
 libs:
 				@echo "Making libft"
