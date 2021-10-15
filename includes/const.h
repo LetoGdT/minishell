@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:19:35 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 14:34:14 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/15 16:03:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 # define EXIT_MSG "exit"
 # define MINISHELL "minishell"
 # define PROMPT "minishell$ "
+# define HEREDOC_PROMPT ">>"
 
 #endif
