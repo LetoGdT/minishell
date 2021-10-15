@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/14 17:13:25 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/15 18:04:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,8 @@ static int	right_redir(t_cmd *cmd, t_run_info *run)
 	int		fd;
 	int		flags;
 
-	if (run->right_pipe[1] != -1)
-	{
-		if (dup2(run->right_pipe[1], 1) == -1)
-			return (FAILURE);
-		if (close(run->right_pipe[0]) == -1)
-			return (FAILURE);
-		if (close(run->right_pipe[1]) == -1)
-			return (FAILURE);
-	}
+	if (!dup_pipes(1, run))
+		return (FAILURE);
 	redir_head = cmd->outfile;
 	while (redir_head)
 	{
@@ -51,15 +44,8 @@ static int	left_redir(t_cmd *cmd, t_run_info *run)
 	t_list	*redir_head;
 	int		fd;
 
-	if (run->left_pipe[0] != -1)
-	{
-		if (dup2(run->left_pipe[0], 0) == -1)
-			return (FAILURE);
-		if (close(run->left_pipe[0]) == -1)
-			return (FAILURE);
-		if (close(run->left_pipe[1]) == -1)
-			return (FAILURE);
-	}
+	if (!dup_pipes(0, run))
+		return (FAILURE);
 	redir_head = cmd->infile;
 	while (redir_head)
 	{

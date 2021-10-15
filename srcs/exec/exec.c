@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 16:13:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/15 17:59:43 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	exec(t_exec_info info)
 	t_run_info	run;
 	pid_t		pid;
 	int			i;
-	int			res;
 
 	if (!init_exec(&run))
 		return (FAILURE);
@@ -26,26 +25,11 @@ int	exec(t_exec_info info)
 	i = 0;
 	while (head)
 	{
-		pid = prepare_fork_pipe(i, head, &run);
-		if (pid == -2)
-		{
-			child((t_cmd *)head->content, &run, info);
+		pid = launch_cmd(i, head, &run, info);
+		if (pid == -1)
 			return (SUCCESS);
-		}
-		else if (pid == 0)
-		{
-			child((t_cmd *)head->content, &run, info);
-			res = ft_atoi(ft_getenv_value("?", info.env));
-			exit(res);
-		}
-		else if (pid > 0)
-			parent(i, &run);
-		else
-		{
-			perror(ERR_EXEC);
-			clear(info, NULL, 0);
+		if (pid == -2)
 			return (FAILURE);
-		}
 		head = head->next;
 		i++;
 	}
@@ -115,18 +99,8 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	char	*path;
 	char	**env;
 
-	path = get_path((char *)cmd->args->content, info.env);
-	if (!path)
+	if (prepare_execve(&path, &env, (char *)cmd->args->content, info))
 	{
-		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_COMM_NOT_FOUND);
-		ft_free_token_list(argv);
-		return (FAILURE);
-	}
-	env = t_list_to_char(info.env);
-	if (!env)
-	{
-		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
-		free(path);
 		ft_free_token_list(argv);
 		return (FAILURE);
 	}
