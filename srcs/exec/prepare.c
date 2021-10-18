@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:39:16 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 18:03:48 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:06:09 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,18 @@ pid_t	launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info)
 
 int	dup_pipes(int pipe_dir, t_run_info *run)
 {
-	if (run->right_pipe[pipe_dir] != -1)
+	int	*pipe_fd;
+
+	pipe_fd = run->left_pipe;
+	if (pipe_dir == 1)
+		pipe_fd = run->right_pipe;
+	if (pipe_fd[pipe_dir] != -1)
 	{
-		if (dup2(run->right_pipe[pipe_dir], pipe_dir) == -1)
+		if (dup2(pipe_fd[pipe_dir], pipe_dir) == -1)
 			return (FAILURE);
-		if (close(run->right_pipe[0]) == -1)
+		if (close(pipe_fd[0]) == -1)
 			return (FAILURE);
-		if (close(run->right_pipe[1]) == -1)
+		if (close(pipe_fd[1]) == -1)
 			return (FAILURE);
 	}
 	return (SUCCESS);
