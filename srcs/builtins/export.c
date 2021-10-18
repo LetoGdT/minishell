@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 18:39:09 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:24:01 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	ft_export(int argc, char **argv, t_list **env)
 			return (FAILURE);
 		}
 		if (!ft_strchr(argv[i + 1], '='))
+		{
+			i++;
 			continue ;
+		}
 		if (!try_add(argv[i + 1], env))
 			return (PROG_FAILURE);
 		i++;
