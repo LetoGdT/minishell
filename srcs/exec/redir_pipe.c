@@ -6,11 +6,30 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 18:04:49 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:31:46 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static int	dup_pipes(int pipe_dir, t_run_info *run)
+{
+	int	*pipe_fd;
+
+	pipe_fd = run->left_pipe;
+	if (pipe_dir == 1)
+		pipe_fd = run->right_pipe;
+	if (pipe_fd[pipe_dir] != -1)
+	{
+		if (dup2(pipe_fd[pipe_dir], pipe_dir) == -1)
+			return (FAILURE);
+		if (close(pipe_fd[0]) == -1)
+			return (FAILURE);
+		if (close(pipe_fd[1]) == -1)
+			return (FAILURE);
+	}
+	return (SUCCESS);
+}
 
 static int	right_redir(t_cmd *cmd, t_run_info *run)
 {
@@ -75,30 +94,4 @@ int	prepare_redir(t_cmd *cmd, t_run_info *run)
 	if (!right_redir(cmd, run))
 		return (FAILURE);
 	return (SUCCESS);
-}
-
-int	restore_io(t_run_info *run)
-{
-	if (dup2(0, run->fd_real_in) == -1)
-		return (FAILURE);
-	if (dup2(1, run->fd_real_out) == -1)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
-pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)
-{
-	if (head->next != NULL)
-	{
-		if (pipe(run->right_pipe))
-			return (-1);
-	}
-	else
-		run->right_pipe[1] = -1;
-	if (head->next == NULL && rank == 0 && \
-		!builtin_get_default_fork((char *) \
-		((t_cmd *)head->content)->args->content))
-		return (-2);
-	g_children_running = 1;
-	return (fork());
 }

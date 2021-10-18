@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 17:59:43 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:31:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exec(t_exec_info info)
 {
 	t_list		*head;
 	t_run_info	run;
-	pid_t		pid;
+	pid_t		last_pid;
 	int			i;
 
 	if (!init_exec(&run))
@@ -25,15 +25,15 @@ int	exec(t_exec_info info)
 	i = 0;
 	while (head)
 	{
-		pid = launch_cmd(i, head, &run, info);
-		if (pid == -1)
+		last_pid = launch_cmd(i, head, &run, info);
+		if (last_pid == -1)
 			return (SUCCESS);
-		if (pid == -2)
+		if (last_pid == -2)
 			return (FAILURE);
 		head = head->next;
 		i++;
 	}
-	wait_children(pid, &i);
+	wait_children(last_pid, &i);
 	if (WIFEXITED(i))
 		return (change_env_dollar_question(WEXITSTATUS(i), &info.env));
 	if (WIFSIGNALED(i))
@@ -41,21 +41,33 @@ int	exec(t_exec_info info)
 	return (FAILURE);
 }
 
-int	child(t_cmd *cmd, t_run_info *run, t_exec_info info)
+pid_t	launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info)
 {
-	if (!prepare_redir(cmd, run))
+	int		res;
+	pid_t	pid;
+
+	pid = prepare_fork_pipe(i, cmd, run);
+	if (pid == -2)
 	{
-		perror(ERR_REDIR);
-		return (FAILURE);
+		child((t_cmd *)cmd->content, run, info);
+		return (-1);
 	}
-	if (!launch_prog(cmd, info))
-		return (FAILURE);
-	if (!restore_io(run))
+	else if (pid == 0)
 	{
-		perror(ERR_REDIR);
-		return (FAILURE);
+		child((t_cmd *)cmd->content, run, info);
+		res = ft_atoi(ft_getenv_value("?", info.env));
+		exit(res);
 	}
-	return (SUCCESS);
+	else if (pid > 0)
+		parent(i, run);
+	else
+	{
+		perror(ERR_EXEC);
+		clear(info, NULL, 0);
+		return (-2);
+	}
+	i++;
+	return (pid);
 }
 
 int	parent(int rank, t_run_info *run)
@@ -70,47 +82,19 @@ int	parent(int rank, t_run_info *run)
 	return (SUCCESS);
 }
 
-int	launch_prog(t_cmd *cmd, t_exec_info info)
+pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)
 {
-	char		**argv;
-	int			res;
-	t_built_fun	fun;
-
-	if ((char *)cmd->args->content == NULL)
-		return (change_env_dollar_question(0, &info.env));
-	argv = t_list_to_char(cmd->args);
-	if (!argv)
+	if (head->next != NULL)
 	{
-		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
-		return (FAILURE);
+		if (pipe(run->right_pipe))
+			return (-1);
 	}
-	fun = builtin_get_fun_ptr((char *)cmd->args->content);
-	if (fun)
-	{
-		res = (fun)(ft_lstsize(cmd->args), argv, &info.env);
-		ft_free_token_list(argv);
-		return (change_env_dollar_question(res, &info.env));
-	}
-	return (!call_execve(argv, cmd, info));
-}
-
-int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
-{
-	char	*path;
-	char	**env;
-
-	if (prepare_execve(&path, &env, (char *)cmd->args->content, info))
-	{
-		ft_free_token_list(argv);
-		return (FAILURE);
-	}
-	clear(info, NULL, 0);
-	if (execve(path, argv, env))
-	{
-		free(path);
-		ft_free_token_list(argv);
-		ft_free_token_list(env);
-	}
-	perror(MINISHELL);
-	return (FAILURE);
+	else
+		run->right_pipe[1] = -1;
+	if (head->next == NULL && rank == 0 && \
+		!builtin_get_default_fork((char *) \
+		((t_cmd *)head->content)->args->content))
+		return (-2);
+	g_children_running = 1;
+	return (fork());
 }

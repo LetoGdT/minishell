@@ -23,6 +23,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/states/state_quotes.c \
 				init/init.c \
 				init/init_content.c \
+				builtins/builtin.c\
 				builtins/echo.c\
 				builtins/cd.c\
 				builtins/export.c\
@@ -30,10 +31,9 @@ SRCS_FILES	:=	minishell.c \
 				exec/exec.c\
 				exec/heredocs.c\
 				exec/redir_pipe.c\
-				exec/prepare.c\
-				exec/builtin.c\
 				exec/misc.c\
 				exec/get_path.c\
+				exec/child_process.c\
 
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 18:04:05 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:05:38 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int			prepare_redir(t_cmd *cmd, t_run_info *run);
 int			prepare_execve(char **path, char ***env, char *cmd_name, \
 			t_exec_info info);
 pid_t		launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info);
-int			dup_pipes(int pipe_dir, t_run_info *run);
 int			heredoc(t_file_redir *redir);
 int			restore_io(t_run_info *run);
 int			builtin_get_default_fork(char *cmd_name);
