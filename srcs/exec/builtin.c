@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:13:25 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/06 20:16:49 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:51:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	builtin_get_default_fork(char *cmd_name)
 	t_builtin	*fun_list;
 	int			i;
 
+	if (!cmd_name)
+		return (1);
 	fun_list = get_fun_list();
 	i = 0;
 	while (i < NB_BUILTIN)
@@ -49,6 +51,8 @@ t_built_fun	builtin_get_fun_ptr(char *cmd_name)
 	t_builtin	*fun_list;
 	int			i;
 
+	if (!cmd_name)
+		return (NULL);
 	fun_list = get_fun_list();
 	i = 0;
 	while (i < NB_BUILTIN)
