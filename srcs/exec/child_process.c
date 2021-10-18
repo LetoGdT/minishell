@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/18 17:40:33 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:56:09 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	char	*path;
 	char	**env;
 
-	if (prepare_execve(&path, &env, (char *)cmd->args->content, info))
+	if (!prepare_execve(&path, &env, (char *)cmd->args->content, info))
 	{
 		ft_free_token_list(argv);
 		return (FAILURE);
