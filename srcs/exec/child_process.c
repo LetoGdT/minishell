@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/18 17:05:50 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:40:33 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	launch_prog(t_cmd *cmd, t_exec_info info)
 	int			res;
 	t_built_fun	fun;
 
-	if ((char *)cmd->args->content == NULL)
+	if ((char *)cmd->args == NULL)
 		return (change_env_dollar_question(0, &info.env));
 	argv = t_list_to_char(cmd->args);
 	if (!argv)
