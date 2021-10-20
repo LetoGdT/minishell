@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 16:35:05 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 17:16:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static int	find_size(char *str)
 		}
 		while (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
 			i++;
-		str[j] = str[i];
 		i++;
 		j++;
 	}
