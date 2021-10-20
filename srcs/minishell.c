@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 16:51:44 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 18:34:51 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv, char *env[])
 				write(1, "\b\bexit\n", 7);
 				break ;
 			}
+			// rl_on_new_line();
 		}
 	}
 	return (EXIT_SUCCESS);
@@ -54,3 +55,6 @@ int	main(int argc, char **argv, char *env[])
 
 // suppprime fichier _trace dans libft
 // >> retirer les fichiers print_cmds (printf)
+
+
+// >> parfois y a des bug ou j'ai ma chaine line qui a pas de \0 j'ai l'impression

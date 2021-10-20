@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 17:01:12 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 18:39:37 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,14 @@ short int	tokenizing(t_exec_info *global, char *line)
 	t_states	st;
 	int			i;
 	int			ret;
+	int			size;
 
 	tmp = NULL;
 	st = _START;
 	ret = SUCCESS;
+	size = ft_strlen(line);
 	i = 0;
-	while (line[i])
+	while (i < size)
 	{
 		if (st == _START)
 		{
