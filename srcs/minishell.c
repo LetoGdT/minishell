@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 18:10:22 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 18:20:03 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv, char *env[])
 			}
 			else
 			{
-				write(1, "\b\bexit\n", 7);
+				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT_COLOR, EXIT_MSG);
 				break ;
 			}
 		}
