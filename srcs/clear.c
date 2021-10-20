@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 16:46:25 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 16:17:43 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ short int	clear(t_exec_info global, char *line, int ret)
 	{
 		ft_lstclear(&(global.env), free);
 	}
+	if (global.env_)
+		free(global.env_);
 	if (line)
 		free(line);
 	return (ret);
