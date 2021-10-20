@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/06 11:03:23 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 16:42:22 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,19 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc)
 	key = get_key(*line, loc + 1);
 	if (!key)
 		return (FAILURE);
+// >> la fonction ft_getenv_value me dit que quand la cle que j'envois c'est "LA", il trouve la key LANG et dis que c'est ok
 	value = ft_getenv_value(key, global->env);
 	if (!value)
-		return (FAILURE);
-	if (!get_new_line(line, key, value, loc - 1))
-		return (FAILURE);
-	free(value);
+	{
+		if (!get_new_line(line, key, "\0", loc - 1))
+			return (FAILURE);
+	}
+	else
+	{
+		if (!get_new_line(line, key, value, loc - 1))
+			return (FAILURE);
+		free(value);
+	}
 	free(key);
 	return (SUCCESS);
 }
