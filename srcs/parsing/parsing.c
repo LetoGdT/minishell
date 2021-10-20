@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 17:50:34 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 18:46:24 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,12 @@ static short int	fill_env_(char *line, t_exec_info *global)
 	global->env_ = malloc(sizeof(char) * ft_strlen(line) - size + 1);
 	if (!global->env_)
 		return (FAILURE);
-	i = 0;
-	while (line[size])
+	i = -1;
+	while (size < (int)ft_strlen(line))
 	{
-		global->env_[i] = line[size];
-		size++;
-		i++;
+		global->env_[++i] = line[++size];
 	}
 	global->env_[i] = 0;
-	printf(">>>>>>>>>>>>>%s\n", global->env_);
 	return (SUCCESS);
 }
 
@@ -64,3 +61,5 @@ short int	parsing(char **line, t_exec_info *global)
 	// printf("line after :\033[35m%s\033[0m\n", *line);
 	return (ret);
 }
+
+// >> when only one word, my fuction to get $_ does not work
