@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/15 14:34:24 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 16:51:44 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv, char *env[])
 {
 	char		*line;
 	t_exec_info	global;
+	int			ret;
 
 	line = NULL;
 	if (argc > 1 || argv[1])
@@ -31,12 +32,13 @@ int	main(int argc, char **argv, char *env[])
 			if (line)
 			{
 				add_history(line);
-				if (!parsing(&line, &global))
+				ret = parsing(&line, &global);
+				if (!ret)
 					return (clear(global, line, EXIT_FAILURE));
+				print_cmds(global);
 				free(line);
-				if (!exec(global))
+				if (ret != ERR_PARSING && !exec(global))
 					return (clear(global, NULL, EXIT_FAILURE));
-				// print_cmds(global);
 				clear_cmds(global);
 				global.cmds = NULL;
 			}

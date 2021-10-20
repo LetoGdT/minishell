@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:30:07 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 16:46:35 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 17:00:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int short	infile(t_file_redir *redir, t_cmd *content, \
 		(*i)++;
 	size = find_size(line, *i, ' ');
 	if (!size)
-		return (SUCCESS);
+		return (ERR_PARSING);
 	redir->name = malloc(sizeof(char) * (size + 1));
 	if (!redir->name)
 		return (FAILURE);
@@ -77,7 +77,7 @@ static int short	outfile(t_file_redir *redir, t_cmd *content, \
 		(*i)++;
 	size = find_size(line, *i, ' ');
 	if (!size)
-		return (SUCCESS);
+		return (ERR_PARSING);
 	redir->name = malloc(sizeof(char) * (size + 1));
 	if (!redir->name)
 		return (FAILURE);
@@ -99,20 +99,30 @@ static int short	outfile(t_file_redir *redir, t_cmd *content, \
 int short	state_redir(t_cmd *content, char *line, int *i, t_states *st)
 {
 	t_file_redir	*redir;
+	int				ret;
 
+	ret = SUCCESS;
 	redir = malloc(sizeof(t_file_redir));
 	if (!redir)
 		return (FAILURE);
 	simple_or_double(&redir, st, i);
 	if (line[*i] == '<')
 	{
-		if (!infile(redir, content, line, i))
+		ret = infile(redir, content, line, i);
+		if (!ret)
 			return (FAILURE);
 	}
 	else if (line[*i] == '>')
 	{
-		if (!outfile(redir, content, line, i))
+		ret = outfile(redir, content, line, i);
+		if (!ret)
 			return (FAILURE);
 	}
-	return (SUCCESS);
+	if (ret == ERR_PARSING)
+	{
+		ft_fprintf(1, "syntax error near unexpected token `newline'\n");
+		// write(1, "syntax error near unexpected token `newline'\n", 45);
+		free(redir);
+	}
+	return (ret);
 }

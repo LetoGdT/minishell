@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 16:15:05 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 17:01:12 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ static t_states	which_state(char *str, int i, char c)
 static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 		t_states *st)
 {
+	int	ret;
+
+	ret = SUCCESS;
 	if (*st == _DEFAULT)
 	{
 		if (!state_default(content, line, i))
@@ -60,7 +63,8 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 	}
 	else if (*st == _RED_SINGLE || *st == _RED_DOUBLE)
 	{
-		if (!state_redir(content, line, i, st))
+		ret = state_redir(content, line, i, st);
+		if (!ret)
 			return (FAILURE);
 	}
 	else if (*st == _QUOTES)
@@ -68,7 +72,7 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 		if (!state_quotes(content, line, i, line[*i]))
 			return (FAILURE);
 	}
-	return (SUCCESS);
+	return (ret);
 }
 
 short int	tokenizing(t_exec_info *global, char *line)
@@ -76,9 +80,11 @@ short int	tokenizing(t_exec_info *global, char *line)
 	t_list		*tmp;
 	t_states	st;
 	int			i;
+	int			ret;
 
 	tmp = NULL;
 	st = _START;
+	ret = SUCCESS;
 	i = 0;
 	while (line[i])
 	{
@@ -91,10 +97,11 @@ short int	tokenizing(t_exec_info *global, char *line)
 			if (!restarting(line, &tmp, &i))
 				return (FAILURE);
 		st = which_state(line, i, line[i]);
-		if (!fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st))
+		ret = fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st);
+		if (!ret)
 			return (FAILURE);
 		i++;
 	}
 	global->cmds = tmp;
-	return (SUCCESS);
+	return (ret);
 }
