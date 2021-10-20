@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 16:51:44 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/20 18:10:22 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char *env[])
 			return (clear(global, line, EXIT_FAILURE));
 		while (1)
 		{
-			line = readline(PROMPT);
+			line = readline(PROMPT_COLOR);
 			if (line)
 			{
 				add_history(line);

@@ -6,15 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2021/10/20 17:31:20 by mballet          ###   ########.fr       */
-=======
-/*   Updated: 2021/10/20 16:26:52 by mballet          ###   ########.fr       */
->>>>>>> la variable env _ correspond au dernier mot que me renvoit readline
-=======
-/*   Updated: 2021/10/20 16:26:52 by mballet          ###   ########.fr       */
->>>>>>> c090a332073ba2b78a4e9f73f177166377f12ba7
+/*   Updated: 2021/10/20 17:50:34 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +56,6 @@ short int	parsing(char **line, t_exec_info *global)
 	// printf("line btw :\033[35m%s\033[0m\n", *line);
 	if (!var_env(line, global))
 		return (FAILURE);
-	// printf("line after :\033[35m%s\033[0m\n", *line);
 	if (!fill_env_(*line, global))
 		return (FAILURE);
 	ret = tokenizing(global, *line);
