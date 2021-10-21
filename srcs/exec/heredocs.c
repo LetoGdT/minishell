@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/15 15:24:12 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:05:23 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int	heredoc(t_file_redir *redir)
 	}
 	close(fd[0]);
 	close(fd[1]);
+	waitpid(pid, NULL, 0);
 	return (SUCCESS);
 }
