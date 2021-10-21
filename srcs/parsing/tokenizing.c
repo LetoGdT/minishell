@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 10:22:32 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 11:48:23 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 	ret = SUCCESS;
 	if (*st == _DEFAULT)
 	{
-		if (!state_default(content, line, i))
+		if (!state_default(content, line, i, 0))
 			return (FAILURE);
 	}
 	else if (*st == _RED_SINGLE || *st == _RED_DOUBLE)

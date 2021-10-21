@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trim_space.c                                       :+:      :+:    :+:   */
+/*   trim_space_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 14:19:31 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 14:28:06 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,9 @@ static short int	is_space(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] != '\'')
-			{
-				i++;
-			}
-		}
-		if (str[i] == '\"')
-		{
-			i++;
-			while (str[i] != '\"')
-			{
-				i++;
-			}
-		}
 		if (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
 			return (SUCCESS);
 	}
-	return (FAILURE);
-}
-
-static short int	only_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] == ' ')
-	{
-		i++;
-	}
-	if (!str[i])
-		return (SUCCESS);
 	return (FAILURE);
 }
 
@@ -71,7 +41,9 @@ static int	find_size(char *str)
 			while (str[i] == ' ')
 				i++;
 		}
-		while (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
+		while (is_space_and_next(str, i, ' '))
+			i++;
+		if (i + 1 == (int)ft_strlen(str) - 1 && str[i] == ' ')
 			i++;
 		i++;
 		j++;
@@ -79,7 +51,7 @@ static int	find_size(char *str)
 	return (j);
 }
 
-static char	*new_str(char *new, char **str, short int s, short int d)
+static char	*new_str(char *new, char **str)
 {
 	int		i;
 	int		j;
@@ -93,11 +65,9 @@ static char	*new_str(char *new, char **str, short int s, short int d)
 		if (i == 0)
 			while (new[i] == ' ')
 				i++;
-		if (new[i] == '\'')
-			s++;
-		if (new[i] == '\"')
-			d++;
-		while (!(s % 2) && !(d % 2) && is_space_and_next(new, i, ' '))
+		while (is_space_and_next(new, i, ' '))
+			i++;
+		if (i + 1 == (int)ft_strlen(new) - 1 && new[i] == ' ')
 			i++;
 		(*str)[j] = new[i];
 		i++;
@@ -107,19 +77,13 @@ static char	*new_str(char *new, char **str, short int s, short int d)
 	return (new);
 }
 
-short int	trim_space(char **str)
+short int	trim_space_export(char **str)
 {
 	char		*new;
 	int			size;
-	short int	s_quote;
-	short int	d_quote;
 
-	s_quote = 0;
-	d_quote = 0;
 	if (is_space(*str))
 	{
-		if (only_space(*str))
-			return (ERROR_SPACE);
 		new = ft_strdup(*str);
 		if (!new)
 			return (FAILURE);
@@ -127,7 +91,7 @@ short int	trim_space(char **str)
 		*str = ft_realloc(*str, size + 1);
 		if (!(*str))
 			return (FAILURE);
-		if (!new_str(new, str, s_quote, d_quote))
+		if (!new_str(new, str))
 			return (FAILURE);
 		free(new);
 	}
