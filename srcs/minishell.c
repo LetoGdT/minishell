@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 10:22:21 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 15:07:36 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char *env[])
 			return (clear(global, line, EXIT_FAILURE));
 		while (1)
 		{
-			line = readline(PROMPT_COLOR);
+			line = readline(PROMPT);
 			if (line)
 			{
 				add_history(line);
@@ -44,7 +44,7 @@ int	main(int argc, char **argv, char *env[])
 			}
 			else
 			{
-				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT_COLOR, EXIT_MSG);
+				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
 				break ;
 			}
 			// rl_on_new_line();
