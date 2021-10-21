@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 15:18:55 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:12:47 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	prepare_execve(char **path, char ***env, char *cmd_name, t_exec_info info)
 	*path = get_path(cmd_name, info.env);
 	if (!*path)
 	{
-		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_COMM_NOT_FOUND);
+		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, cmd_name, \
+		ERR_COMM_NOT_FOUND);
 		return (FAILURE);
 	}
 	*env = t_list_to_char(info.env);
