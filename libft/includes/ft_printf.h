@@ -6,14 +6,14 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:47:10 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 19:50:09 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 21:07:39 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <libft.h>
-#include <wchar.h>
+# include <wchar.h>
 
 typedef struct s_flags
 {

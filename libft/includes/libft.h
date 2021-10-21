@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 12:20:11 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:52:56 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 20:50:28 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <unistd.h>
+# include <sys/errno.h>
 
 int					ft_atoi(const char *str);
+long long			ft_atoll(const char *str);
 void				*ft_bzero(void *pointer, size_t count);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);

@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 18:55:26 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 21:05:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int	ft_exit(int argc, char **argv, t_list **env)
 {
+	long long int	status;
+
 	(void)env;
 	if (argc > 2)
 	{
@@ -25,5 +27,12 @@ int	ft_exit(int argc, char **argv, t_list **env)
 	printf("%s\n", EXIT_MSG);
 	if (argc == 1)
 		exit(PROG_SUCCESS);
-	exit(ft_atoi(argv[1]));
+	status = ft_atoll(argv[1]);
+	if (status == 0 && errno != 0)
+	{
+		ft_fprintf(STDERR_FILENO, "%s: %s: %s: %s\n", MINISHELL, argv[0], \
+		argv[1], ERR_NUM);
+		exit(255);
+	}
+	exit((int)status);
 }

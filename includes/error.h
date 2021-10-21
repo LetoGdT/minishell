@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:20:27 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/20 17:27:08 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 20:19:36 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERR_IDENT "not a valid identitifier"
 # define ERR_REDIR "minishell: failed to perform redirection"
 # define ERR_SYNTAX "syntax error near unexpected token"
+# define ERR_NUM "numeric argument required"
 # define ERR_PARSING 2
 
 #endif
