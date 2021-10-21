@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 14:49:05 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 17:02:31 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ static int	find_size(char *line, char quote, int i)
 	size++;
 	while (line[size] && line[size] != quote)
 		size++;
+	size++;
+	while (line[size] && !is_separator(line[size]))
+		size++;
 	size -= i;
 	return (size);
 }
@@ -80,6 +83,15 @@ static void	fill_in_str(char *line, char *str, int *i, int size, char quote)
 	(size)++;
 	(*i)++;
 	while (line[*i] && line[*i] != quote)
+	{
+		str[size] = line[*i];
+		(size)++;
+		(*i)++;
+	}
+	str[size] = line[*i];
+	(size)++;
+	(*i)++;
+	while (line[*i] && !is_separator(line[*i]))
 	{
 		str[size] = line[*i];
 		(size)++;

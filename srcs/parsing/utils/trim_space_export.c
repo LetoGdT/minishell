@@ -6,13 +6,19 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 14:28:06 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 17:16:36 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 #define ERROR_SPACE 2
+
+typedef struct s_quote
+{
+	char		chara;
+	short int	nbr;
+}	t_quote;
 
 static short int	is_space(char *str)
 {
@@ -27,23 +33,39 @@ static short int	is_space(char *str)
 	return (FAILURE);
 }
 
+static int	space_begenning_end_quote(char *new, int i, t_quote *quote)
+{
+	int	nbr_diff;
+
+	nbr_diff = i;
+	if ((new[i] == '\'' || new[i] == '\"') && !(*quote).nbr)
+	{
+		(*quote).chara = new[i];
+		(*quote).nbr++;
+		while (new[i + 1] && new[i + 1] == ' ')
+			i++;
+	}
+	if ((*quote).nbr && new[i + 1] && new[i + 1] == (*quote).chara)
+	{
+		i++;
+		(*quote).nbr++;
+	}
+	return (i - nbr_diff);
+}
+
 static int	find_size(char *str)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	t_quote	quote;
 
+	quote.nbr = 0;
 	i = 0;
 	j = 0;
-	while (str[i])
+	while (quote.nbr < 2 && str[i])
 	{
-		if (i == 0)
-		{
-			while (str[i] == ' ')
-				i++;
-		}
+		i += space_begenning_end_quote(str, i, &quote);
 		while (is_space_and_next(str, i, ' '))
-			i++;
-		if (i + 1 == (int)ft_strlen(str) - 1 && str[i] == ' ')
 			i++;
 		i++;
 		j++;
@@ -56,18 +78,16 @@ static char	*new_str(char *new, char **str)
 	int		i;
 	int		j;
 	int		size;
+	t_quote	quote;
 
+	quote.nbr = 0;
 	size = find_size(new);
 	i = 0;
 	j = 0;
-	while (new[i] && j < size)
+	while (quote.nbr < 2 && new[i] && j < size)
 	{
-		if (i == 0)
-			while (new[i] == ' ')
-				i++;
+		i += space_begenning_end_quote(new, i, &quote);
 		while (is_space_and_next(new, i, ' '))
-			i++;
-		if (i + 1 == (int)ft_strlen(new) - 1 && new[i] == ' ')
 			i++;
 		(*str)[j] = new[i];
 		i++;
