@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/18 18:56:09 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:42:54 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,22 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	char	*path;
 	char	**env;
 
+// >>	c'etait dans la branch check_behavior_with_bash
+
+// if (prepare_execve(&path, &env, (char *)cmd->args->content, info))
+// 	{
+// 		ft_fprintf(STDERR_FILENO, "%s: '%s': %s\n", MINISHELL, path, ERR_COMM_NOT_FOUND);
+// 		ft_free_token_list(argv);
+// 		return (FAILURE);
+// 	}
+// 	env = t_list_to_char(info.env);
+// 	if (!env)
+// 	{
+// 		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
+// 		free(path);
+// 		ft_free_token_list(argv);
+// 		return (FAILURE);
+// 	}
 	if (!prepare_execve(&path, &env, (char *)cmd->args->content, info))
 	{
 		ft_free_token_list(argv);
