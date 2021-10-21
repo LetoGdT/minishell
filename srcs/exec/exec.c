@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/20 17:03:05 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 18:10:09 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exec(t_exec_info info)
 	pid_t		last_pid;
 	int			i;
 
-	if (!init_exec(&run))
+	if (!init_exec(&run, info))
 		return (FAILURE);
 	head = info.cmds;
 	i = 0;
@@ -91,8 +91,8 @@ pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)
 	}
 	else
 		run->right_pipe[1] = -1;
-	if (((t_cmd*)head->content)->args != NULL && head->next == NULL && rank == 0 && \
-		!builtin_get_default_fork((char *) \
+	if (((t_cmd *)head->content)->args != NULL && head->next == NULL && \
+		rank == 0 && !builtin_get_default_fork((char *) \
 		((t_cmd *)head->content)->args->content))
 		return (-2);
 	g_children_running = 1;

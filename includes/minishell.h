@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/20 16:17:17 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/21 17:37:25 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int			change_env_dollar_question(int n, t_list **env);
 char		**t_list_to_char(t_list *lst);
 
 // Fonctions liées à l’éxecution
-int			init_exec(t_run_info *run);
+int			init_exec(t_run_info *run, t_exec_info info);
 int			exec(t_exec_info info);
 pid_t		prepare_fork_pipe(int rank, t_list *head, t_run_info *run);
 int			launch_prog(t_cmd *cmd, t_exec_info info);

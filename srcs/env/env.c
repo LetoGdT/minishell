@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/09/27 15:22:59 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:09:02 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ char	**ft_getenv_entry(char *key, t_list *env)
 	while (head)
 	{
 		str = (char **)(&head->content);
-		if (!ft_strncmp(key, *str, ft_strlen(key)))
+		if (!ft_strncmp(key, *str, ft_strlen(key)) && \
+			(*str)[ft_strlen(key)] == '=')
 			return (str);
 		head = head->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/14 20:32:37 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/21 19:04:37 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ void	wait_children(pid_t last_child, int *stat_loc)
 		;
 }
 
-int	init_exec(t_run_info *run)
+int	init_exec(t_run_info *run, t_exec_info info)
 {
+	char	*tmp;
+	int		res;
+
 	run->fd_real_in = dup(0);
 	run->fd_real_out = dup(1);
 	run->left_pipe[0] = -1;
@@ -55,5 +58,13 @@ int	init_exec(t_run_info *run)
 		perror(ERR_EXEC);
 		return (FAILURE);
 	}
-	return (SUCCESS);
+	if (((t_cmd *)info.cmds->content)->args == NULL)
+		return (SUCCESS);
+	tmp = ft_strjoin("_=", \
+		ft_lstlast(((t_cmd *)ft_lstlast(info.cmds)->content)->args)->content);
+	if (!tmp)
+		return (FAILURE);
+	res = try_add(tmp, &info.env);
+	free(tmp);
+	return (res);
 }
