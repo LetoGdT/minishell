@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 17:05:23 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/22 18:49:50 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,27 @@ static void	heredoc_parsing(int fd, char *str)
 int	heredoc(t_file_redir *redir)
 {
 	int		fd[2];
+	int		old_val;
 	pid_t	pid;
 
 	if (pipe(fd))
 		return (FAILURE);
+	old_val = g_children_running;
 	g_children_running = 1;
 	pid = fork();
 	if (pid == 0)
 	{
+		g_children_running = 2;
 		heredoc_parsing(fd[1], redir->name);
 		exit(0);
 	}
 	else if (pid > 0)
 		dup2(fd[0], 0);
-	else
-	{
-		close(fd[0]);
-		close(fd[1]);
-		return (FAILURE);
-	}
 	close(fd[0]);
 	close(fd[1]);
+	if (pid < 0)
+		return (FAILURE);
 	waitpid(pid, NULL, 0);
+	g_children_running = old_val;
 	return (SUCCESS);
 }
