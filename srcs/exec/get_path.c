@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 01:10:38 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 17:54:45 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:11:41 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,26 @@ static char	**add_cmd(char **path, int i, char *cmd)
 	return (path);
 }
 
+static char	**prepare_absolute_path(char *cmd)
+{
+	char	**path;
+
+	path = malloc(sizeof(char *) * 2);
+	if (!path)
+		return (NULL);
+	path[0] = ft_strdup(cmd);
+	path[1] = NULL;
+	return (path);
+}
+
 static char	**prepare_path(char *cmd, t_list *env)
 {
 	int		i;
 	char	**path;
 
-	if (!ft_strncmp(cmd, "./", 2))
+	if (!ft_strncmp(cmd, "/", 1))
+		return (prepare_absolute_path(cmd));
+	else if (!ft_strncmp(cmd, "./", 2))
 	{
 		path = malloc(sizeof(char *) * 2);
 		if (!path)
