@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 14:21:06 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/22 18:10:33 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ short int	trim_space_export(char **str);
 short int	trim_space(char **str);
 short int	export_quote(t_cmd *content, char *line, int *i);
 
+
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);
 short int	is_separator(char c);
@@ -137,6 +138,7 @@ void		print_content_outfile(t_cmd *content);
 short int	is_state_symbol(char c);
 short int	is_space_and_next(char *str, int i, char c);
 int short	is_export_quote(char *line);
+short int	is_space(char *str);
 
 
 // #Fonctions pour init

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/22 17:45:07 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/22 18:13:49 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,15 @@ typedef struct s_quote
 	char	chara;
 }	t_quote;
 
-static short int	is_space(char *str)
+static void	norm_before_equal(char *str, int *i, int *size)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
+	while (str[*i] && str[*i] != '=')
 	{
-		if (str[i] == ' ')
-			return (SUCCESS);
+		(*i)++;
+		(*size)++;
 	}
-	return (FAILURE);
+	(*i)++;
+	(*size)++;
 }
 
 static int	find_size(char *str)
@@ -42,94 +40,66 @@ static int	find_size(char *str)
 
 	size = 0;
 	i = 0;
-	while (str[i] && str[i] != '=')
-	{
-		i++;
-		size++;
-	}
-	i++;
-	size++;
+	norm_before_equal(str, &i, &size);
 	quote = str[i];
 	i++;
 	size++;
 	while (str[i] && str[i] == ' ')
-	{
 		i++;
-	}
-	i++;
-	while (str[i] && str[i] != quote)
-	{
-		i++;
+	while (str[++i] && str[i] != quote)
 		size++;
-	}
 	tmp = i;
-	i--;
-	while (str[i] && str[i] == ' ')
-	{
-		i--;
+	while (str[--i] && str[i] == ' ')
 		size--;
-	}
 	i = tmp;
-	while (str[i] && !is_separator(str[i]))
-	{
-		i++;
+	while (str[++i] && !is_separator(str[i]))
 		size++;
-	}
 	return (size);
+}
+
+static void	fill_str_btw_quote(char *new, char **str, int *i, int *j)
+{
+	int		tmp;
+	char	quote;
+
+	quote = new[(*i)++];
+	(*j)++;
+	while (new[*i] && new[*i] == ' ')
+		(*i)++;
+	while (new[*i])
+	{
+		tmp = *i;
+		while (new[*i] && new[*i] == ' ')
+		{
+			(*i)++;
+			if (new[*i] == quote)
+			{
+				tmp = *i;
+				break ;
+			}
+		}
+		*i = tmp;
+		if (new[*i] == quote)
+			break ;
+		(*str)[(*j)++] = new[(*i)++];
+	}
 }
 
 static void	new_str(char *new, char **str)
 {
 	int		i;
 	int		j;
-	int		tmp;
-	char	quote;
 
 	j = 0;
 	i = 0;
 	while (new[i] && new[i] != '=')
-	{
-		(*str)[j] = new[i];
-		i++;
-		j++;
-	}
+		(*str)[j++] = new[i++];
 	i++;
 	j++;
-	quote = new[i];
-	i++;
-	j++;
-	while (new[i] && new[i] == ' ')
-	{
-		i++;
-	}
-	while (new[i])
-	{
-		tmp = i;
-		while (new[i] && new[i] == ' ')
-		{
-			i++;
-			if (new[i] == quote)
-			{
-				tmp = i;
-				break ;
-			}
-		}
-		i = tmp;
-		if (new[i] == quote)
-			break ;
-		(*str)[j] = new[i];
-		i++;
-		j++;
-	}
-	(*str)[j] = new[i];
-	i++;
-	j++;
+	fill_str_btw_quote(new, str, &i, &j);
+	(*str)[j++] = new[i++];
 	while (str[i] && !is_separator((*str)[i]))
-	{
-		(*str)[j] = new[i];
-		i++;
-		j++;
-	}
+		(*str)[j++] = new[i++];
 	(*str)[j] = 0;
 }
 
@@ -144,7 +114,6 @@ short int	trim_space_export(char **str)
 		if (!tmp)
 			return (FAILURE);
 		size = find_size(tmp);
-		printf("size :%d\n", size);
 		*str = ft_realloc(*str, size + 1);
 		if (!(*str))
 			return (FAILURE);

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 14:19:31 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/22 18:14:46 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define ERROR_SPACE 2
 
-static short int	is_space(char *str)
+static short int	is_space_(char *str)
 {
 	int	i;
 
@@ -116,7 +116,7 @@ short int	trim_space(char **str)
 
 	s_quote = 0;
 	d_quote = 0;
-	if (is_space(*str))
+	if (is_space_(*str))
 	{
 		if (only_space(*str))
 			return (ERROR_SPACE);
