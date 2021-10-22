@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/08 20:01:14 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/22 20:33:22 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 
 short int	init(t_exec_info *global, char **env)
 {
+	struct termios	term;
+
+	if (tcgetattr(STDOUT_FILENO, &term))
+	{
+		ft_fprintf(STDERR_FILENO, "%s: tcgetattr() err", MINISHELL);
+		return (FAILURE);
+	}
+	term.c_lflag = term.c_lflag & ~ECHOCTL;
+	if (tcsetattr(STDOUT_FILENO, TCSANOW, &term))
+	{
+		ft_fprintf(STDERR_FILENO, "%s: tcsetattr() err", MINISHELL);
+		return (FAILURE);
+	}
 	if (signal(SIGINT, sig_int) == SIG_ERR)
 		ft_fprintf(STDERR_FILENO, "%s\n", ERR_SIGINT);
 	if (signal(SIGQUIT, sig_quit) == SIG_ERR)

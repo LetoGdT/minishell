@@ -1,1 +1,5 @@
 echo " manger '$PWD' frites"
+echo "'$USER'" -->normalement 'lgaudet-'
+echo '"$USER'" -->c’est bon
+
+il faut aussi penser à tester les guillemets
