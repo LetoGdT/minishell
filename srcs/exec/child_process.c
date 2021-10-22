@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 17:12:47 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/22 19:21:28 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	child(t_cmd *cmd, t_run_info *run, t_exec_info info)
 {
 	if (!prepare_redir(cmd, run))
 	{
-		perror(ERR_REDIR);
+		change_env_dollar_question(1, &info.env);
 		return (FAILURE);
 	}
 	if (!launch_prog(cmd, info))
@@ -41,6 +41,7 @@ int	launch_prog(t_cmd *cmd, t_exec_info info)
 	if (!argv)
 	{
 		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
+		change_env_dollar_question(127, &info.env);
 		return (FAILURE);
 	}
 	fun = builtin_get_fun_ptr((char *)cmd->args->content);
@@ -60,12 +61,14 @@ int	prepare_execve(char **path, char ***env, char *cmd_name, t_exec_info info)
 	{
 		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, cmd_name, \
 		ERR_COMM_NOT_FOUND);
+		change_env_dollar_question(127, &info.env);
 		return (FAILURE);
 	}
 	*env = t_list_to_char(info.env);
 	if (!*env)
 	{
 		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
+		change_env_dollar_question(127, &info.env);
 		free(*path);
 		return (FAILURE);
 	}
@@ -89,6 +92,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 		ft_free_token_list(argv);
 		ft_free_token_list(env);
 	}
+	change_env_dollar_question(errno, &info.env);
 	perror(MINISHELL);
 	return (FAILURE);
 }

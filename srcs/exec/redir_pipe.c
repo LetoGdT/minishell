@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/18 19:49:26 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/22 19:20:48 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static int	dup_pipes(int pipe_dir, t_run_info *run)
 	return (SUCCESS);
 }
 
+static int file_err(char *name)
+{
+	ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, name, strerror(ENOENT));
+	return (FAILURE);
+}
+
 static int	right_redir(t_cmd *cmd, t_run_info *run)
 {
 	t_list	*redir_head;
@@ -48,7 +54,7 @@ static int	right_redir(t_cmd *cmd, t_run_info *run)
 			flags = O_CREAT | O_APPEND | O_WRONLY;
 		fd = open(((t_file_redir *)redir_head->content)->name, flags, 0644);
 		if (fd < 0)
-			return (FAILURE);
+			return (file_err(((t_file_redir *)redir_head->content)->name));
 		if (dup2(fd, 1) == -1)
 			return (FAILURE);
 		if (close(fd))
@@ -77,7 +83,7 @@ static int	left_redir(t_cmd *cmd, t_run_info *run)
 		}
 		fd = open(((t_file_redir *)redir_head->content)->name, O_RDONLY);
 		if (fd < 0)
-			return (FAILURE);
+			return (file_err(((t_file_redir *)redir_head->content)->name));
 		if (dup2(fd, 0) == -1)
 			return (FAILURE);
 		if (close(fd) == -1)
