@@ -1,10 +1,3 @@
 heredocs à revoir, enelenver les fork()
 probleme de C^ : affichage de la ligne precedente casseee
 echo " manger '$PWD' frites"
-
-Parsing attention les fessssssessss
-multiline segfault des familles : 
-	minishell$ c'est moche
-	minishell$ make |
-
-

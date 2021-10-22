@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 18:10:09 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/22 17:53:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	exec(t_exec_info info)
 	pid_t		last_pid;
 	int			i;
 
+	if (info.cmds == NULL)
+		return (SUCCESS);
 	if (!init_exec(&run, info))
 		return (FAILURE);
 	head = info.cmds;

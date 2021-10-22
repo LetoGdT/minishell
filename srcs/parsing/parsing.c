@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 10:20:13 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/22 17:37:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ short int	parsing(char **line, t_exec_info *global)
 	if (*line && (*line)[0] == 0)
 		return (SUCCESS);
 	if (!error_multi_line(*line))
-		return (SUCCESS);
+		return (ERROR_SPACE);
 	// printf("line before :\033[35m%s\033[0m\n", *line);
 	ret = trim_space(line);
 	if (ret == ERROR_SPACE)
