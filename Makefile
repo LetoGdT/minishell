@@ -38,7 +38,9 @@ SRCS_FILES	:=	minishell.c \
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 
 HDRS_DIR	:=	includes
-HDRS_FILES	:=	minishell.h
+HDRS_FILES	:=	minishell.h\
+				error.h\
+				const.h
 HDRS		:=	$(addprefix $(HDRS_DIR)/,$(HDRS_FILES))
 
 OBJS		:=	$(SRCS:srcs/%.c=objs/%.o)
@@ -71,7 +73,7 @@ $(NAME):		libs $(OBJS)
 objs/%.o:		$(SRCS_DIR)/%.c $(HDRS)
 				@mkdir -p $(dir $@)
 				@echo "Compiling $<"
-				@$(CC) -include $(HDRS) $(CFLAGS) $(READLINE_INC_DIR_FLAG) -c $< -o $@
+				@$(CC) $(CFLAGS) $(READLINE_INC_DIR_FLAG) -c $< -o $@
 
 libs:
 				@echo "Making libft"
