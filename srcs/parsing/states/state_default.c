@@ -6,20 +6,20 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:38:16 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 12:07:47 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:39:08 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static short int	pipe_at_begenning(t_cmd *content, char *line, int *i, int export)
+static short int	pipe_at_begenning(t_cmd *content, char *line, int *i, int export, char **esc_quote)
 {
 	t_list	*new;
 	char	*str;
 	int		size;
 
 	if (!export && is_export_quote(line + *i))
-		return (export_quote(content, line, i));
+		return (export_quote(content, line, i, esc_quote));
 	size = *i;
 	while (line[size] && line[size] != ' ')
 		size++;
@@ -41,16 +41,16 @@ static short int	pipe_at_begenning(t_cmd *content, char *line, int *i, int expor
 	return (SUCCESS);
 }
 
-static short int	regular_behavior(t_cmd *content, char *line, int *i, int export)
+static short int	regular_behavior(t_cmd *content, char *line, int *i, int export, char **esc_quote)
 {
 	t_list	*new;
 	char	*str;
 	int		size;
 
 	if (!export && is_export_quote(line + *i))
-		return (export_quote(content, line, i));
+		return (export_quote(content, line, i, esc_quote));
 	size = *i;
-	while (line[size] && !is_separator(line[size]))
+	while (line[size] && !is_separator(line[size], esc_quote, size))
 		size++;
 	if (!(size - *i))
 		return (SUCCESS);
@@ -58,7 +58,7 @@ static short int	regular_behavior(t_cmd *content, char *line, int *i, int export
 	if (!str)
 		return (FAILURE);
 	size = 0;
-	while (line[*i] && !is_separator(line[*i]))
+	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
 	{
 		str[size] = line[*i];
 		size++;
@@ -70,16 +70,16 @@ static short int	regular_behavior(t_cmd *content, char *line, int *i, int export
 	return (SUCCESS);
 }
 
-int short	state_default(t_cmd *content, char *line, int *i, int export)
+int short	state_default(t_cmd *content, char *line, int *i, int export, char **esc_quote)
 {
 	if (*i == 0)
 	{
-		if (!pipe_at_begenning(content, line, i, export))
+		if (!pipe_at_begenning(content, line, i, export, esc_quote))
 			return (FAILURE);
 	}
 	else
 	{
-		if (!regular_behavior(content, line, i, export))
+		if (!regular_behavior(content, line, i, export, esc_quote))
 			return (FAILURE);
 	}
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 16:13:25 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:54:37 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,14 @@ static t_states	which_state(char *str, int i, char c, char **esc_quote)
 	{
 		loc = ft_itoa(i);
 		j = 0;
-		while (esc_quote[j])
+		if (esc_quote)
 		{
-			if (!ft_strncmp(loc, esc_quote[j], ft_strlen(loc)))
-				return (_DEFAULT);
-			j++;
+			while (esc_quote[j])
+			{
+				if (!ft_strncmp(loc, esc_quote[j], ft_strlen(loc)))
+					return (_DEFAULT);
+				j++;
+			}
 		}
 		return (_QUOTES);
 	}
@@ -67,14 +70,14 @@ static t_states	which_state(char *str, int i, char c, char **esc_quote)
 }
 
 static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
-		t_states *st)
+		t_states *st, char **esc_quote)
 {
 	int	ret;
 
 	ret = SUCCESS;
 	if (*st == _DEFAULT)
 	{
-		if (!state_default(content, line, i, 0))
+		if (!state_default(content, line, i, 0, esc_quote))
 			return (FAILURE);
 	}
 	else if (*st == _RED_SINGLE || *st == _RED_DOUBLE)
@@ -115,7 +118,7 @@ short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 			if (!restarting(line, &tmp, &i))
 				return (FAILURE);
 		st = which_state(line, i, line[i], esc_quote);
-		ret = fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st);
+		ret = fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st, esc_quote);
 		if (!ret)
 			return (FAILURE);
 		i++;
