@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 18:49:50 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 16:52:58 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ static void	heredoc_parsing(int fd, char *str)
 	}
 }
 
-int	heredoc(t_file_redir *redir)
+int	heredoc(t_file_redir *redir, int real_in)
 {
 	int		fd[2];
 	int		old_val;
 	pid_t	pid;
 
-	if (pipe(fd))
+	if (pipe(fd) || dup2(real_in, 0) == -1)
 		return (FAILURE);
 	old_val = g_children_running;
 	g_children_running = 1;

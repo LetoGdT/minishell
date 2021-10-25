@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 19:20:48 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 16:51:38 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	left_redir(t_cmd *cmd, t_run_info *run)
 	{
 		if (((t_file_redir *)redir_head->content)->count == _REDIR_DOUBLE)
 		{
-			if (!heredoc((t_file_redir *)redir_head->content))
+			if (!heredoc((t_file_redir *)redir_head->content, run->fd_real_in))
 				return (FAILURE);
 			redir_head = redir_head->next;
 			continue ;
