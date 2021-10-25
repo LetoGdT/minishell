@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/22 17:36:35 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 16:31:06 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 short int	parsing(char **line, t_exec_info *global)
 {
 	short int	ret;
+	char		**esc_quote;
+	int			i;
 
 	if (*line && (*line)[0] == 0)
 		return (SUCCESS);
@@ -28,14 +30,35 @@ short int	parsing(char **line, t_exec_info *global)
 		return (SUCCESS);
 	if (!ret)
 		return (FAILURE);
-	// printf("line btw :\033[35m%s\033[0m\n", *line);
-	if (!var_env(line, global))
+	esc_quote = NULL;
+	if (!var_env(line, global, &esc_quote))
 		return (FAILURE);
-	ret = tokenizing(global, *line);
+	// if (esc_quote)
+	// {
+	// 	int a = 0;
+	// 	while (esc_quote[a])
+	// 	{
+	// 		printf("string %d :%s\n", a, esc_quote[a]);
+	// 		a++;
+	// 	}
+	// }
+	// printf("line btw :\033[35m%s\033[0m\n", *line);
+	ret = tokenizing(global, *line, esc_quote);
 	if (!ret)
 		return (FAILURE);
+	i = 0;
+	if (esc_quote)
+	{
+		while (esc_quote[i])
+		{
+			if (esc_quote[i])
+				free(esc_quote[i]);
+			i++;
+		}
+		free(esc_quote);
+	}
 	// printf("line after :\033[35m%s\033[0m\n", *line);
 	return (ret);
 }
 
-// >> env_ c'est juste le dernier args de la liste en fait
+// >> je dois envoyer les esc_qupte dans is_separator

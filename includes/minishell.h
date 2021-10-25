@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 18:10:33 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 16:24:50 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,15 @@ void		sig_quit(int signo);
 
 // #Fonctions pour le parsing
 short int	parsing(char **line, t_exec_info *global);
-short int	var_env(char **line, t_exec_info *global);
+short int	var_env(char **line, t_exec_info *global, char ***esc_quote);
 short int	error_multi_line(char *line);
-short int	tokenizing(t_exec_info *global, char *line);
+short int	tokenizing(t_exec_info *global, char *line, char **esc_quote);
 int short	state_default(t_cmd *cmds, char *line, int *i, int export);
 int short	state_redir(t_cmd *cmds, char *line, int *i, t_states *st);
 int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space_export(char **str);
 short int	trim_space(char **str);
 short int	export_quote(t_cmd *content, char *line, int *i);
-
 
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);
@@ -139,6 +138,7 @@ short int	is_state_symbol(char c);
 short int	is_space_and_next(char *str, int i, char c);
 int short	is_export_quote(char *line);
 short int	is_space(char *str);
+short int	fill_esc_quote(char ***esc_quote, int loc);
 
 
 // #Fonctions pour init

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 17:02:31 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 13:53:55 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	find_size(char *line, char quote, int i)
 	size++;
 	while (line[size] && !is_separator(line[size]))
 		size++;
-	size -= i;
+	size -= i - 2;
 	return (size);
 }
 
@@ -79,8 +79,6 @@ static void	fill_in_str(char *line, char *str, int *i, int size, char quote)
 		(size)++;
 		(*i)++;
 	}
-	str[size] = line[*i];
-	(size)++;
 	(*i)++;
 	while (line[*i] && line[*i] != quote)
 	{
@@ -88,8 +86,6 @@ static void	fill_in_str(char *line, char *str, int *i, int size, char quote)
 		(size)++;
 		(*i)++;
 	}
-	str[size] = line[*i];
-	(size)++;
 	(*i)++;
 	while (line[*i] && !is_separator(line[*i]))
 	{
@@ -98,8 +94,6 @@ static void	fill_in_str(char *line, char *str, int *i, int size, char quote)
 		(*i)++;
 	}
 	str[size] = line[*i];
-	(size)++;
-	(*i)++;
 	str[size] = 0;
 }
 
@@ -121,8 +115,8 @@ short int	export_quote(t_cmd *content, char *line, int *i)
 	if (!str)
 		return (FAILURE);
 	fill_in_str(line, str, i, size, quote);
-	if (!trim_space_export(&str))
-		return (FAILURE);
+	// if (!trim_space_export(&str))
+	// 	return (FAILURE);
 	new = ft_lstnew(str);
 	if (!new)
 		return (FAILURE);
