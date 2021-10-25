@@ -6,16 +6,16 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 19:02:05 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:29:41 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 #include <unistd.h>
 
-static int is_num(const char *str)
+static int	is_num(const char *str)
 {
-	char *s;
+	char	*s;
 
 	s = (char *)str;
 	while (*s++)

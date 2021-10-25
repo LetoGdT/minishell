@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 19:24:56 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:30:02 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*set_target_dir(int argc, char **argv, t_list **env)
 	{
 		target_dir = ft_getenv_value(HOME, *env);
 		if (!target_dir)
-			ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], 
+			ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], \
 					ERR_HOME);
 	}
 	else
