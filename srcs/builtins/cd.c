@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 19:14:57 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:24:56 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	change_pwd(t_list **env)
 	free(dir);
 	if (!env_entry)
 		return (FAILURE);
-	dir = ft_getenv_value(PWD, *env);
+	dir = ft_getenv_value(PWD2, *env);
 	res = try_add(env_entry, env);
 	free(env_entry);
 	if (!res)

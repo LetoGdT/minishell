@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:19:35 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 15:23:15 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 19:24:50 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define PROG_SUCCESS 0
 # define HOME "HOME"
 # define PWD "PWD="
+# define PWD2 "PWD"
 # define OLDPWD "OLDPWD="
 # define EXIT_MSG "exit"
 # define MINISHELL "minishell"
