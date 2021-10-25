@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 22:18:37 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/14 20:31:16 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 19:14:57 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,16 @@ static char	*set_target_dir(int argc, char **argv, t_list **env)
 	{
 		target_dir = ft_getenv_value(HOME, *env);
 		if (!target_dir)
-			return (NULL);
+			ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], 
+					ERR_HOME);
 	}
 	else
+	{
 		target_dir = ft_strdup(argv[1]);
+		if (!target_dir)
+			ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], \
+					ERR_MEM);
+	}
 	return (target_dir);
 }
 
@@ -67,11 +73,7 @@ int	ft_cd(int argc, char **argv, t_list **env)
 
 	target_dir = set_target_dir(argc, argv, env);
 	if (!target_dir)
-	{
-		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], \
-		ERR_MEM);
 		return (PROG_FAILURE);
-	}
 	if (chdir(target_dir))
 	{
 		perror(ERR_MSG_CD);
