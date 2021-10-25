@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 17:16:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/22 18:14:46 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define ERROR_SPACE 2
 
-static short int	is_space(char *str)
+static short int	is_space_(char *str)
 {
 	int	i;
 
@@ -79,57 +79,57 @@ static int	find_size(char *str)
 	return (j);
 }
 
-static char	*new_line(char *str, char **line, short int s, short int d)
+static char	*new_str(char *new, char **str, short int s, short int d)
 {
 	int		i;
 	int		j;
 	int		size;
 
-	size = find_size(str);
+	size = find_size(new);
 	i = 0;
 	j = 0;
-	while (str[i] && j < size)
+	while (new[i] && j < size)
 	{
 		if (i == 0)
-			while (str[i] == ' ')
+			while (new[i] == ' ')
 				i++;
-		if (str[i] == '\'')
+		if (new[i] == '\'')
 			s++;
-		if (str[i] == '\"')
+		if (new[i] == '\"')
 			d++;
-		while (!(s % 2) && !(d % 2) && is_space_and_next(str, i, ' '))
+		while (!(s % 2) && !(d % 2) && is_space_and_next(new, i, ' '))
 			i++;
-		(*line)[j] = str[i];
+		(*str)[j] = new[i];
 		i++;
 		j++;
 	}
-	(*line)[j] = 0;
-	return (str);
+	(*str)[j] = 0;
+	return (new);
 }
 
-short int	trim_space(char **line)
+short int	trim_space(char **str)
 {
-	char		*str;
+	char		*new;
 	int			size;
 	short int	s_quote;
 	short int	d_quote;
 
 	s_quote = 0;
 	d_quote = 0;
-	if (is_space(*line))
+	if (is_space_(*str))
 	{
-		if (only_space(*line))
+		if (only_space(*str))
 			return (ERROR_SPACE);
-		str = ft_strdup(*line);
-		if (!str)
+		new = ft_strdup(*str);
+		if (!new)
 			return (FAILURE);
-		size = find_size(str);
-		*line = ft_realloc(*line, size + 1);
-		if (!(*line))
+		size = find_size(new);
+		*str = ft_realloc(*str, size + 1);
+		if (!(*str))
 			return (FAILURE);
-		if (!new_line(str, line, s_quote, d_quote))
+		if (!new_str(new, str, s_quote, d_quote))
 			return (FAILURE);
-		free(str);
+		free(new);
 	}
 	return (SUCCESS);
 }

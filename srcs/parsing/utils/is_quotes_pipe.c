@@ -6,13 +6,31 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:14:17 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/12 11:30:09 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/25 18:06:50 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	is_quotes_pipe(char c)
+short int	is_quotes_pipe(char c, char **esc_quote, int loc)
 {
-	return ((c == '\'' || c == '\"' || c == '|'));
+	int	i;
+
+	if (c == '\'' || c == '\"')
+	{
+		i = 0;
+		if (esc_quote)
+		{
+			while (esc_quote[i])
+			{
+				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], ft_strlen(esc_quote[i])))
+					return (FAILURE);
+				i++;
+			}
+		}
+		return (SUCCESS);
+	}
+	else if (c == '|')
+		return (SUCCESS);
+	return (FAILURE);
 }

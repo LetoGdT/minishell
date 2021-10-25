@@ -9,6 +9,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/tokenizing.c \
 				parsing/trim_space.c \
 				parsing/signal.c\
+				parsing/export_quote.c\
 				parsing/utils/is_quotes_pipe.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \
@@ -17,6 +18,8 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/print_content_cmd.c \
 				parsing/utils/is_state_symbol.c \
 				parsing/utils/is_space_and_next.c \
+				parsing/utils/is_space.c \
+				parsing/utils/fill_esc_quote.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				parsing/states/state_redir.c \

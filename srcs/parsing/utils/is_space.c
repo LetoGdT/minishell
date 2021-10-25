@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_separator.c                                     :+:      :+:    :+:   */
+/*   is_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 15:42:29 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 17:37:44 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/22 18:10:42 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/22 18:11:11 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int short	is_separator(char c, char **esc_quote, int loc)
+short int	is_space(char *str)
 {
-	if (is_quotes_pipe(c, esc_quote, loc) || c == '<' || c == '>' || c == ' ')
-		return (SUCCESS);
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == ' ')
+			return (SUCCESS);
+	}
 	return (FAILURE);
 }
