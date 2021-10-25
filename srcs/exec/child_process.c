@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 19:21:28 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:57:40 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,6 @@ int	launch_prog(t_cmd *cmd, t_exec_info info)
 	return (!call_execve(argv, cmd, info));
 }
 
-int	prepare_execve(char **path, char ***env, char *cmd_name, t_exec_info info)
-{
-	*path = get_path(cmd_name, info.env);
-	if (!*path)
-	{
-		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, cmd_name, \
-		ERR_COMM_NOT_FOUND);
-		change_env_dollar_question(127, &info.env);
-		return (FAILURE);
-	}
-	*env = t_list_to_char(info.env);
-	if (!*env)
-	{
-		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
-		change_env_dollar_question(127, &info.env);
-		free(*path);
-		return (FAILURE);
-	}
-	return (SUCCESS);
-}
-
 int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 {
 	char	*path;
@@ -95,6 +74,27 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 	change_env_dollar_question(errno, &info.env);
 	perror(MINISHELL);
 	return (FAILURE);
+}
+
+int	prepare_execve(char **path, char ***env, char *cmd_name, t_exec_info info)
+{
+	*path = get_path(cmd_name, info.env);
+	if (!*path)
+	{
+		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, cmd_name, \
+		ERR_COMM_NOT_FOUND);
+		change_env_dollar_question(127, &info.env);
+		return (FAILURE);
+	}
+	*env = t_list_to_char(info.env);
+	if (!*env)
+	{
+		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
+		change_env_dollar_question(127, &info.env);
+		free(*path);
+		return (FAILURE);
+	}
+	return (SUCCESS);
 }
 
 int	restore_io(t_run_info *run)

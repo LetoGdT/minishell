@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 21:27:11 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:43:52 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,19 @@ char	**t_list_to_char(t_list *lst)
 	return (res);
 }
 
-void	wait_children(pid_t last_child, int *stat_loc)
+int	wait_children_and_set_exit_code(pid_t last_child, t_list **env)
 {
-	waitpid(last_child, stat_loc, 0);
+	int	stat_loc;
+
+	waitpid(last_child, &stat_loc, 0);
 	while (wait(NULL) != -1)
 		;
 	g_children_running = 0;
+	if (WIFEXITED(stat_loc))
+		return (change_env_dollar_question(WEXITSTATUS(stat_loc), env));
+	if (WIFSIGNALED(stat_loc))
+		return (change_env_dollar_question(WTERMSIG(stat_loc) + 128, env));
+	return (FAILURE);
 }
 
 int	init_exec(t_run_info *run, t_exec_info info)

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 16:51:34 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:43:09 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ pid_t		prepare_fork_pipe(int rank, t_list *head, t_run_info *run);
 int			launch_prog(t_cmd *cmd, t_exec_info info);
 int			call_execve(char **argv, t_cmd *cmd, t_exec_info info);
 int			child(t_cmd *cmd, t_run_info *run, t_exec_info info);
-void		wait_children(pid_t last_child, int *stat_loc);
+int			wait_children_and_set_exit_code(pid_t last_child, t_list **env);
 int			parent(int rank, t_run_info *run);
 int			prepare_redir(t_cmd *cmd, t_run_info *run);
 int			prepare_execve(char **path, char ***env, char *cmd_name, \

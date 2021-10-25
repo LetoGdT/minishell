@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 23:17:26 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 16:51:38 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:36:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	dup_pipes(int pipe_dir, t_run_info *run)
 	return (SUCCESS);
 }
 
-static int file_err(char *name)
+static int	file_err(char *name)
 {
 	ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, name, strerror(ENOENT));
 	return (FAILURE);

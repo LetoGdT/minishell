@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 17:53:49 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:47:15 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,25 @@ int	exec(t_exec_info info)
 	t_list		*head;
 	t_run_info	run;
 	pid_t		last_pid;
-	int			i;
+	int			rank;
 
 	if (info.cmds == NULL)
 		return (SUCCESS);
 	if (!init_exec(&run, info))
 		return (FAILURE);
 	head = info.cmds;
-	i = 0;
+	rank = 0;
 	while (head)
 	{
-		last_pid = launch_cmd(i, head, &run, info);
+		last_pid = launch_cmd(rank, head, &run, info);
 		if (last_pid == -1)
 			return (SUCCESS);
 		if (last_pid == -2)
 			return (FAILURE);
 		head = head->next;
-		i++;
+		rank++;
 	}
-	wait_children(last_pid, &i);
-	if (WIFEXITED(i))
-		return (change_env_dollar_question(WEXITSTATUS(i), &info.env));
-	if (WIFSIGNALED(i))
-		return (change_env_dollar_question(WTERMSIG(i) + 128, &info.env));
-	return (FAILURE);
+	return (wait_children_and_set_exit_code(last_pid, &info.env));
 }
 
 pid_t	launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info)
