@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:06:58 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 17:19:00 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,8 @@ short int	fill_value(char *value, char **line, int *loc, char ***esc_quote);
 void		fill_leftover(char **line, char *str, int loc, int j);
 char		**ft_strdup_double(char **str);
 void		free_double(char **str);
-short int	init_tokenizing(t_norm *norm, char **esc_quote, t_list **tmp, int *ret);
+short int	init_tokenizing(t_norm *norm, char **esc_quote, t_list **tmp, \
+				int *ret);
 short int	norm_free(char **esc_quote, t_norm norm, int ret);
 short int	token_start(t_norm *norm, t_list **tmp, char *line, int *i);
 short int	norm_fill_content_args(t_cmd *content, t_list *new, char *str);
