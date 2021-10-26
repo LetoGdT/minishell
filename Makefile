@@ -26,9 +26,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/var_env/export_quote.c\
 				parsing/var_env/fill_esc_quote.c \
 				parsing/var_env/var_env.c \
-				parsing/var_env/utils/malloc_new_line.c \
-				parsing/var_env/utils/fill_value.c \
-				parsing/var_env/utils/fill_leftover.c \
+				parsing/var_env/utils.c\
 				exec/exec.c\
 				exec/heredocs.c\
 				exec/redir_pipe.c\
