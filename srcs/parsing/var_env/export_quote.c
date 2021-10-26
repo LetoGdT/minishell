@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 12:04:13 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 13:54:37 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,32 +70,28 @@ static int	find_size(char *line, char quote, int i, char **esc_quote)
 	return (size);
 }
 
-static void	fill_in_str(char *line, char *str, int *i, int size, char quote, \
-				char **esc_quote)
+static void	fill_in_str(char *line, char *str, int *i, int *size)
 {
-	size = 0;
+	char	quote;
+
+	(*i)--;
+	quote = find_quote(line, *i);
+	(*i)++;
+	*size = 0;
 	while (line[*i] && line[*i] != quote)
 	{
-		str[size] = line[*i];
-		(size)++;
+		str[*size] = line[*i];
+		(*size)++;
 		(*i)++;
 	}
 	(*i)++;
 	while (line[*i] && line[*i] != quote)
 	{
-		str[size] = line[*i];
-		(size)++;
+		str[*size] = line[*i];
+		(*size)++;
 		(*i)++;
 	}
 	(*i)++;
-	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
-	{
-		str[size] = line[*i];
-		(size)++;
-		(*i)++;
-	}
-	str[size] = line[*i];
-	str[size] = 0;
 }
 
 short int	export_quote(t_cmd *content, char *line, int *i, char **esc_quote)
@@ -115,7 +111,11 @@ short int	export_quote(t_cmd *content, char *line, int *i, char **esc_quote)
 	str = malloc(sizeof(char) * size + 1);
 	if (!str)
 		return (FAILURE);
-	fill_in_str(line, str, i, size, quote, esc_quote);
+	fill_in_str(line, str, i, &size);
+	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
+		str[size++] = line[(*i)++];
+	str[size] = line[*i];
+	str[size] = 0;
 	new = ft_lstnew(str);
 	if (!new)
 		return (FAILURE);

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 17:54:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 14:10:16 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,12 @@ static t_states	which_state(char *str, int i, char c, char **esc_quote)
 	if (c == '\'' || c == '\"')
 	{
 		loc = ft_itoa(i);
-		j = 0;
 		if (esc_quote)
 		{
-			while (esc_quote[j])
-			{
+			j = -1;
+			while (esc_quote[++j])
 				if (!ft_strncmp(loc, esc_quote[j], ft_strlen(loc)))
 					return (_DEFAULT);
-				j++;
-			}
 		}
 		return (_QUOTES);
 	}
