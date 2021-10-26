@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:19:00 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:24:21 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ typedef struct s_cmd
 typedef struct s_exec_info
 {
 	t_list	*cmds;
-	pid_t	*pids;
 	t_list	*env;
-	char	*env_;
 }	t_exec_info;
 
 typedef int	(*t_built_fun)(int, char **, t_list **);

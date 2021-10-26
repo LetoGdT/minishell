@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 17:57:40 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/26 18:31:06 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	call_execve(char **argv, t_cmd *cmd, t_exec_info info)
 		ft_free_token_list(argv);
 		return (FAILURE);
 	}
-	clear(info, NULL, 0);
+	clear_cmds(info);
 	if (execve(path, argv, env))
 	{
 		free(path);

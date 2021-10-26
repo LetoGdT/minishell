@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/22 20:33:22 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/26 18:28:32 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ short int	init(t_exec_info *global, char **env)
 	if (signal(SIGQUIT, sig_quit) == SIG_ERR)
 		ft_fprintf(STDERR_FILENO, "%s\n", ERR_SIGQUIT);
 	global->cmds = NULL;
-	global->pids = NULL;
 	global->env = NULL;
 	global->env = ft_new_env(env);
 	if (!global->env)

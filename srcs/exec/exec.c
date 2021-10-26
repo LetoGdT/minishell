@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 17:47:15 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/26 18:29:36 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,9 @@ pid_t	launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info)
 	else
 	{
 		perror(ERR_EXEC);
-		clear(info, NULL, 0);
+		clear_cmds(info);
 		return (-2);
 	}
-	i++;
 	return (pid);
 }
 
