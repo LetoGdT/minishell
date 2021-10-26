@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 17:17:55 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 17:23:24 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ int	main(int argc, char **argv, char *env[])
 		{
 			line = readline(PROMPT);
 			if (line)
+			{
 				if (!minishell(&line, &global))
 					return (FAILURE);
-			else
-			{
-				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
-				break ;
 			}
+			else
+				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
+			if (!line)
+				break ;
 		}
 	}
 	return (EXIT_SUCCESS);
