@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:06:19 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 16:20:40 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 12:03:27 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ char	**ft_double_realloc(char **str, size_t size)
 	char	**str2;
 	int		i;
 
-	// printf("HERE 1\n");
 	if (!str)
 		return (NULL);
-	str2 = malloc(sizeof(char*) * size);
+	str2 = malloc(sizeof(char *) * size);
 	if (!str2)
 	{
 		if (str)
@@ -36,7 +35,6 @@ char	**ft_double_realloc(char **str, size_t size)
 		}
 		return (NULL);
 	}
-	// printf("HERE 2\n");
 	i = 0;
 	while (size > 0 && str[i])
 	{
@@ -44,7 +42,6 @@ char	**ft_double_realloc(char **str, size_t size)
 		size--;
 		i++;
 	}
-	// printf("HERE 3\n");
 	str2[i] = 0;
 	if (str)
 	{
@@ -57,7 +54,6 @@ char	**ft_double_realloc(char **str, size_t size)
 		}
 		free(str);
 	}
-	// printf("HERE 4\n");
 	return (str2);
 }
 
@@ -71,7 +67,7 @@ short int	fill_esc_quote(char ***esc_quote, int loc)
 		return (FAILURE);
 	if (!*esc_quote)
 	{
-		*esc_quote = malloc(sizeof(char*) * 1 + 1);
+		*esc_quote = malloc(sizeof(char *) * 1 + 1);
 		if (!*esc_quote)
 			return (FAILURE);
 		(*esc_quote)[0] = content;

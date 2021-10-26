@@ -6,12 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 18:18:03 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 12:01:26 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int g_children_running;
+
+int	g_children_running;
 
 int	main(int argc, char **argv, char *env[])
 {
@@ -47,14 +48,9 @@ int	main(int argc, char **argv, char *env[])
 				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
 				break ;
 			}
-			// rl_on_new_line();
 		}
 	}
 	return (EXIT_SUCCESS);
 }
 
-// suppprime fichier _trace dans libft
 // >> retirer les fichiers print_cmds (printf)
-
-
-// >> parfois y a des bug ou j'ai ma chaine line qui a pas de \0 j'ai l'impression

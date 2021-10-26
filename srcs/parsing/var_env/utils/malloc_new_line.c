@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_quotes_pipe.c                                   :+:      :+:    :+:   */
+/*   malloc_new_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:14:17 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 12:02:46 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/26 12:28:33 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/26 12:37:43 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	is_quotes_pipe(char c, char **esc_quote, int loc)
+short int	malloc_new_line(char **line, char *key, char *value)
 {
-	int	i;
-
-	if (c == '\'' || c == '\"')
-	{
-		i = 0;
-		if (esc_quote)
-		{
-			while (esc_quote[i])
-			{
-				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], \
-						ft_strlen(esc_quote[i])))
-					return (FAILURE);
-				i++;
-			}
-		}
-		return (SUCCESS);
-	}
-	else if (c == '|')
-		return (SUCCESS);
-	return (FAILURE);
+	*line = ft_realloc(*line, (ft_strlen(*line) - ft_strlen(key) \
+		+ ft_strlen(value) + 1));
+	if (!(*line))
+		return (FAILURE);
+	return (SUCCESS);
 }

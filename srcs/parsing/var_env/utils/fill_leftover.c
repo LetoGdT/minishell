@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_quotes_pipe.c                                   :+:      :+:    :+:   */
+/*   fill_leftover.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:14:17 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 12:02:46 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/26 12:29:12 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/26 12:41:30 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	is_quotes_pipe(char c, char **esc_quote, int loc)
+void	fill_leftover(char **line, char *str, int loc, int j)
 {
-	int	i;
-
-	if (c == '\'' || c == '\"')
-	{
-		i = 0;
-		if (esc_quote)
-		{
-			while (esc_quote[i])
-			{
-				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], \
-						ft_strlen(esc_quote[i])))
-					return (FAILURE);
-				i++;
-			}
-		}
-		return (SUCCESS);
-	}
-	else if (c == '|')
-		return (SUCCESS);
-	return (FAILURE);
+	while (str[j])
+		(*line)[++loc] = str[++j];
+	(*line)[++loc] = 0;
 }

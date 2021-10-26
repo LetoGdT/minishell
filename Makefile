@@ -1,42 +1,45 @@
 NAME		:=	minishell
 SRCS_DIR	:=	srcs
 SRCS_FILES	:=	minishell.c \
+				clear.c \
+				signal.c\
+				init/init.c \
+				init/init_content.c \
 				env/env.c \
 				env/env_2.c\
-				clear.c \
 				parsing/parsing.c \
-				parsing/var_env.c \
 				parsing/tokenizing.c \
-				parsing/trim_space.c \
-				parsing/signal.c\
-				parsing/export_quote.c\
-				parsing/utils/is_quotes_pipe.c \
-				parsing/utils/is_separator.c \
-				parsing/utils/is_bracket_quote.c \
-				parsing/utils/is_pipe.c \
-				parsing/utils/print_cmds.c \
-				parsing/utils/print_content_cmd.c \
-				parsing/utils/is_state_symbol.c \
-				parsing/utils/is_space_and_next.c \
-				parsing/utils/is_space.c \
-				parsing/utils/fill_esc_quote.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				parsing/states/state_redir.c \
 				parsing/states/state_quotes.c \
-				init/init.c \
-				init/init_content.c \
-				builtins/builtin.c\
-				builtins/echo.c\
-				builtins/cd.c\
-				builtins/export.c\
-				builtins/exit.c\
+				parsing/utils/is_quotes_pipe.c \
+				parsing/utils/is_separator.c \
+				parsing/utils/is_bracket_quote.c \
+				parsing/utils/is_pipe.c \
+				parsing/utils/is_state_symbol.c \
+				parsing/utils/is_space_and_next.c \
+				parsing/utils/is_space.c \
+				parsing/utils/trim_space.c \
+				parsing/utils/print_cmds.c \
+				parsing/utils/print_content_cmd.c \
+				parsing/var_env/export_quote.c\
+				parsing/var_env/fill_esc_quote.c \
+				parsing/var_env/var_env.c \
+				parsing/var_env/utils/malloc_new_line.c \
+				parsing/var_env/utils/fill_value.c \
+				parsing/var_env/utils/fill_leftover.c \
 				exec/exec.c\
 				exec/heredocs.c\
 				exec/redir_pipe.c\
 				exec/misc.c\
 				exec/get_path.c\
 				exec/child_process.c\
+				builtins/builtin.c\
+				builtins/echo.c\
+				builtins/cd.c\
+				builtins/export.c\
+				builtins/exit.c\
 
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 

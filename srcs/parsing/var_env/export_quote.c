@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 17:46:54 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 12:04:13 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int short	is_export_quote(char *line)
 		}
 	}
 	return (FAILURE);
-} 
+}
 
 static int	find_size(char *line, char quote, int i, char **esc_quote)
 {
@@ -70,7 +70,8 @@ static int	find_size(char *line, char quote, int i, char **esc_quote)
 	return (size);
 }
 
-static void	fill_in_str(char *line, char *str, int *i, int size, char quote, char **esc_quote)
+static void	fill_in_str(char *line, char *str, int *i, int size, char quote, \
+				char **esc_quote)
 {
 	size = 0;
 	while (line[*i] && line[*i] != quote)

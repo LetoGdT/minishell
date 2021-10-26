@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_quotes_pipe.c                                   :+:      :+:    :+:   */
+/*   fill_value.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 11:14:17 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 12:02:46 by mballet          ###   ########.fr       */
+/*   Created: 2021/10/26 12:28:56 by mballet           #+#    #+#             */
+/*   Updated: 2021/10/26 12:45:53 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-short int	is_quotes_pipe(char c, char **esc_quote, int loc)
+short int	fill_value(char *value, char **line, int *loc, char ***esc_quote)
 {
 	int	i;
 
-	if (c == '\'' || c == '\"')
+	i = -1;
+	while (value[i + 1])
 	{
-		i = 0;
-		if (esc_quote)
-		{
-			while (esc_quote[i])
-			{
-				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], \
-						ft_strlen(esc_quote[i])))
-					return (FAILURE);
-				i++;
-			}
-		}
-		return (SUCCESS);
+		if (value[i + 1] == '\'' || value[i + 1] == '\"')
+			if (!fill_esc_quote(esc_quote, *loc + 1))
+				return (FAILURE);
+		(*line)[++(*loc)] = value[++i];
 	}
-	else if (c == '|')
-		return (SUCCESS);
-	return (FAILURE);
+	return (SUCCESS);
 }
