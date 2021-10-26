@@ -21,6 +21,8 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/is_space_and_next.c \
 				parsing/utils/is_space.c \
 				parsing/utils/trim_space.c \
+				parsing/utils/ft_strdup_double.c \
+				parsing/utils/free_double.c \
 				parsing/utils/print_cmds.c \
 				parsing/utils/print_content_cmd.c \
 				parsing/var_env/export_quote.c\

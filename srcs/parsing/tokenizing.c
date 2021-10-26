@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 14:10:16 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 16:26:08 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,28 @@ static t_states	which_state(char *str, int i, char c, char **esc_quote)
 }
 
 static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
-		t_states *st, char **esc_quote)
+		t_norm *norm)
 {
-	int	ret;
+	int			ret;
+	t_norm_b	norm_b;
 
 	ret = SUCCESS;
-	if (*st == _DEFAULT)
+	if (norm->st == _DEFAULT)
 	{
-		if (!state_default(content, line, i, 0, esc_quote))
+		norm_b.export = 0;
+		norm_b.esc_quote = ft_strdup_double(norm->esc_quote);
+		if (!norm_b.esc_quote)
+			return (FAILURE);
+		if (!state_default(content, line, i, norm_b))
 			return (FAILURE);
 	}
-	else if (*st == _RED_SINGLE || *st == _RED_DOUBLE)
+	else if (norm->st == _RED_SINGLE || norm->st == _RED_DOUBLE)
 	{
-		ret = state_redir(content, line, i, st);
+		ret = state_redir(content, line, i, &(norm->st));
 		if (!ret)
 			return (FAILURE);
 	}
-	else if (*st == _QUOTES)
+	else if (norm->st == _QUOTES)
 	{
 		if (!state_quotes(content, line, i, line[*i]))
 			return (FAILURE);
@@ -94,32 +99,38 @@ static short int	fill_in_cmds(t_cmd *content, char *line, int *i, \
 short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 {
 	t_list		*tmp;
-	t_states	st;
+	t_norm		norm;
 	int			i;
 	int			ret;
 	int			size;
 
 	tmp = NULL;
-	st = _START;
+	norm.st = _START;
+	if (esc_quote)
+		norm.esc_quote = ft_strdup_double(esc_quote);
+	if (!norm.esc_quote)
+		return (FAILURE);
 	ret = SUCCESS;
 	size = ft_strlen(line);
 	i = 0;
 	while (i < size)
 	{
-		if (st == _START)
+		if (norm.st == _START)
 		{
-			if (!starting(&tmp, &st))
+			if (!starting(&tmp, &(norm.st)))
 				return (FAILURE);
 		}
 		else if (line[i] == '|')
 			if (!restarting(line, &tmp, &i))
 				return (FAILURE);
-		st = which_state(line, i, line[i], esc_quote);
-		ret = fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &st, esc_quote);
+		norm.st = which_state(line, i, line[i], esc_quote);
+		ret = fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &norm);
 		if (!ret)
 			return (FAILURE);
 		i++;
 	}
 	global->cmds = tmp;
+	if (esc_quote)
+		free(norm.esc_quote);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/26 13:28:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 16:24:22 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ typedef struct s_run_info
 	int		right_pipe[2];
 }	t_run_info;
 
+typedef struct s_norm_
+{
+	t_states	st;
+	char		**esc_quote;
+}	t_norm;
+
+typedef struct s_norm_b
+{
+	int		export;
+	char	**esc_quote;
+}	t_norm_b;
+
 //Fonctions liées à l’environnement
 char		**ft_getenv(t_list *env);
 t_list		*ft_new_env(char *env[]);
@@ -119,11 +131,11 @@ short int	var_env(char **line, t_exec_info *global, char ***esc_quote);
 short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info *global, char *line, char **esc_quote);
 int short	state_default(t_cmd *cmds, char *line, int *i, \
-				int export, char **esc_quote);
+				t_norm_b norm_b);
 int short	state_redir(t_cmd *cmds, char *line, int *i, t_states *st);
 int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **str);
-short int	export_quote(t_cmd *content, char *line, int *i, char **esc_quote);
+short int	export_quote(t_cmd *content, char *line, int *i, t_norm_b norm_b);
 
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);
@@ -142,6 +154,8 @@ short int	fill_esc_quote(char ***esc_quote, int loc);
 short int	malloc_new_line(char **line, char *key, char *value);
 short int	fill_value(char *value, char **line, int *loc, char ***esc_quote);
 void		fill_leftover(char **line, char *str, int loc, int j);
+char		**ft_strdup_double(char **str);
+void		free_double(char **str);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);

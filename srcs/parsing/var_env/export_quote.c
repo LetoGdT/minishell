@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 13:54:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 16:24:56 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,26 @@ static void	fill_in_str(char *line, char *str, int *i, int *size)
 	(*i)++;
 }
 
-short int	export_quote(t_cmd *content, char *line, int *i, char **esc_quote)
+short int	export_quote(t_cmd *content, char *line, int *i, t_norm_b norm_b)
 {
 	t_list		*new;
 	char		*str;
 	int			size;
 	char		quote;
 
-	if (!state_default(content, line, i, 1, esc_quote))
+	norm_b.export = 1;
+	if (!state_default(content, line, i, norm_b))
 		return (FAILURE);
 	quote = find_quote(line, *i);
 	(*i)++;
-	size = find_size(line, quote, *i, esc_quote);
+	size = find_size(line, quote, *i, norm_b.esc_quote);
 	if (!size)
 		return (SUCCESS);
 	str = malloc(sizeof(char) * size + 1);
 	if (!str)
 		return (FAILURE);
 	fill_in_str(line, str, i, &size);
-	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
+	while (line[*i] && !is_separator(line[*i], norm_b.esc_quote, *i))
 		str[size++] = line[(*i)++];
 	str[size] = line[*i];
 	str[size] = 0;
