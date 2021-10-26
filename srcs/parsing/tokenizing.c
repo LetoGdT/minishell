@@ -6,37 +6,11 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 16:26:08 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 16:51:35 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	starting(t_list **tmp, t_states *st)
-{
-	t_list	*new;
-
-	new = init_content();
-	if (!new)
-		return (FAILURE);
-	ft_lstadd_back(tmp, new);
-	*st = _DEFAULT;
-	return (SUCCESS);
-}
-
-static int	restarting(char *line, t_list **tmp, int *i)
-{
-	t_list	*new;
-
-	new = init_content();
-	if (!new)
-		return (FAILURE);
-	ft_lstadd_back(tmp, new);
-	(*i)++;
-	if (line[(*i)] == ' ')
-		(*i)++;
-	return (SUCCESS);
-}
 
 static t_states	which_state(char *str, int i, char c, char **esc_quote)
 {
@@ -104,33 +78,19 @@ short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 	int			ret;
 	int			size;
 
-	tmp = NULL;
-	norm.st = _START;
-	if (esc_quote)
-		norm.esc_quote = ft_strdup_double(esc_quote);
-	if (!norm.esc_quote)
-		return (FAILURE);
-	ret = SUCCESS;
+	if (!init_tokenizing(&norm, esc_quote, &tmp, &ret))
+		return (norm_free(esc_quote, norm, FAILURE));
 	size = ft_strlen(line);
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < size)
 	{
-		if (norm.st == _START)
-		{
-			if (!starting(&tmp, &(norm.st)))
-				return (FAILURE);
-		}
-		else if (line[i] == '|')
-			if (!restarting(line, &tmp, &i))
-				return (FAILURE);
+		if (!token_start(&norm, &tmp, line, &i))
+			return (norm_free(esc_quote, norm, FAILURE));
 		norm.st = which_state(line, i, line[i], esc_quote);
 		ret = fill_in_cmds(ft_lstlast(tmp)->content, line, &i, &norm);
 		if (!ret)
-			return (FAILURE);
-		i++;
+			return (norm_free(esc_quote, norm, FAILURE));
 	}
 	global->cmds = tmp;
-	if (esc_quote)
-		free(norm.esc_quote);
-	return (ret);
+	return (norm_free(esc_quote, norm, ret));
 }

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:30:07 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/20 18:34:41 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 16:53:46 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,13 @@ int short	state_redir(t_cmd *content, char *line, int *i, t_states *st)
 	if (line[*i] == '<')
 	{
 		ret = infile(redir, content, line, i);
-		if (!ret)
-			return (FAILURE);
 	}
 	else if (line[*i] == '>')
 	{
 		ret = outfile(redir, content, line, i);
-		if (!ret)
-			return (FAILURE);
 	}
+	if (!ret)
+		return (FAILURE);
 	if (ret == ERR_PARSING)
 	{
 		ft_fprintf(1, "syntax error near unexpected token `newline'\n");

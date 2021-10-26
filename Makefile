@@ -23,6 +23,10 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/trim_space.c \
 				parsing/utils/ft_strdup_double.c \
 				parsing/utils/free_double.c \
+				parsing/utils/init_tokenizing.c \
+				parsing/utils/norm_free.c \
+				parsing/utils/token_start.c \
+				parsing/utils/norm_fill_content_args.c \
 				parsing/utils/print_cmds.c \
 				parsing/utils/print_content_cmd.c \
 				parsing/var_env/export_quote.c\

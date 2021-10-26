@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 16:24:56 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/26 17:09:49 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,8 @@ short int	export_quote(t_cmd *content, char *line, int *i, t_norm_b norm_b)
 		str[size++] = line[(*i)++];
 	str[size] = line[*i];
 	str[size] = 0;
-	new = ft_lstnew(str);
-	if (!new)
+	new = NULL;
+	if (!norm_fill_content_args(content, new, str))
 		return (FAILURE);
-	ft_lstadd_back(&(content->args), new);
 	return (SUCCESS);
 }
