@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:38:16 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 17:39:08 by mballet          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:19:16 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,20 @@ static short int	regular_behavior(t_cmd *content, char *line, int *i, int export
 		return (export_quote(content, line, i, esc_quote));
 	size = *i;
 	while (line[size] && !is_separator(line[size], esc_quote, size))
+	{
 		size++;
+	}
+
+//>
+	if (line[size] && (line[size] == '\'' || line[size] == '\"'))
+	{
+		char quote = line[size++];
+		while (line[size] && line[size] != quote)
+			size++;
+		size -= 1;
+	}
+//<
+
 	if (!(size - *i))
 		return (SUCCESS);
 	str = malloc(sizeof(char) * (size - *i + 1));
@@ -64,6 +77,20 @@ static short int	regular_behavior(t_cmd *content, char *line, int *i, int export
 		size++;
 		(*i)++;
 	}
+
+//>
+	if (line[*i] && (line[*i] == '\'' || line[*i] == '\"'))
+	{
+		char quote = line[(*i)++];
+		while (line[*i] && line[*i] != quote)
+		{
+			str[size] = line[*i];
+			size++;
+			(*i)++;
+		}
+	}
+//<
+
 	str[size] = 0;
 	new = ft_lstnew(str);
 	ft_lstadd_back(&(content->args), new);
