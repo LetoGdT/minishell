@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:51:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 18:28:32 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:10:13 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ short int	init(t_exec_info *global, char **env)
 	if (!global->env)
 		return (FAILURE);
 	g_children_running = 0;
-	return (SUCCESS);
+	return (change_env_dollar_question(0, &global->env));
 }
