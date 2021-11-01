@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 14:29:56 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:34:18 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ static short int	fill_token(t_token *token, char *line, int *i, char **esc_quote
 			return (FAILURE);
 		if (ret == ERR_PARSING)
 		{
+			ft_fprintf(1, "%s", PROMPT);
 			ft_fprintf(1, "syntax error near unexpected token `newline'\n");
 			free(token->redir);
 		}
