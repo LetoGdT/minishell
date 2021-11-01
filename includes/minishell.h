@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/01 14:53:26 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:04:48 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info *global, char *line, char **esc_quote);
 short int	trim_space(char **str);
 short int	export_quote(t_token *token, char *line, int *i, char **esc_quote);
+short int	find_token(t_token *token, char *line, int *i, \
+				char **esc_quote);
 
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);
@@ -160,11 +162,15 @@ short int	fill_esc_quote(char ***esc_quote, int loc);
 int short	is_redir_space(char c);
 short int	is_quote(char c);
 void		find_token_content(t_token *token, char *str, int *i);
-int short	find_size_token(char *str, int i);
+int short	size_token(char *str, int i, char **esc_quote);
 short int	is_quote_export(char c, char **esc_quote, int loc);
 int short	is_export(char *line);
 void		init_ret_token(t_token *ret_token);
-int			start(t_list **tmp, t_states *st, char c, int *i);
+int			start(t_list **tmp, char c, int *i);
+void		norm(int *i, int *j);
+void		norm_fill_redir_name(t_token *token, char *line, int *i, \
+				char **esc_quote);
+void		fill_redir(t_token *token, char *line, int *i);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);

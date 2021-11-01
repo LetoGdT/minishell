@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:04:35 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 14:44:36 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:04:38 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	start(t_list **tmp, t_states *st, char c, int *i)
+int	start(t_list **tmp, char c, int *i)
 {
 	t_list	*new;
 
@@ -20,7 +20,6 @@ int	start(t_list **tmp, t_states *st, char c, int *i)
 	if (!new)
 		return (FAILURE);
 	ft_lstadd_back(tmp, new);
-	*st = _DEFAULT;
 	if (c == '|')
 		(*i)++;
 	return (SUCCESS);
@@ -50,7 +49,7 @@ void	find_token_content(t_token *token, char *str, int *i)
 		}
 		(*i)++;
 	}
-	else if ( str[*i] && str[*i] == '>')
+	else if (str[*i] && str[*i] == '>')
 	{
 		token->content.out = _SINGLE;
 		if (str[*i + 1] && str[*i + 1] == '>')
@@ -62,11 +61,9 @@ void	find_token_content(t_token *token, char *str, int *i)
 	}
 	else
 		token->content.arg = 1;
-	if (str[*i] == ' ')
-		(*i)++;
 }
 
-int short	find_size_token(char *str, int i)
+int short	size_token(char *str, int i, char **esc_quote)
 {
 	int		size;
 	char	quote;
@@ -74,7 +71,7 @@ int short	find_size_token(char *str, int i)
 	size = 0;
 	while (str[i] && !is_redir_space(str[i]))
 	{
-		if (is_quote(str[i]))
+		if (is_quote_export(str[i], esc_quote, i))
 		{
 			quote = str[i++];
 			while (str[i] && str[i] != quote)
@@ -97,13 +94,13 @@ short int	is_quote_export(char c, char **esc_quote, int loc)
 
 	if (c == '\'' || c == '\"')
 	{
-		i = 0;
 		if (esc_quote)
 		{
+			i = 0;
 			while (esc_quote[i])
 			{
 				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], \
-						ft_strlen(esc_quote[i])))
+						ft_strlen(ft_itoa(loc))))
 					return (FAILURE);
 				i++;
 			}

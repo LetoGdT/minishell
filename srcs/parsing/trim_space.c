@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 14:51:06 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 15:07:46 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,13 @@ static int	find_size(char *str)
 		if (is_quote(str[i]))
 		{
 			quote = str[i];
-			i++;
-			j++;
+			norm(&i, &j);
 			while (str[i] && str[i] != quote)
 			{
-				i++;
-				j++;
+				norm(&i, &j);
 			}
 		}
-		i++;
-		j++;
+		norm(&i, &j);
 	}
 	return (j);
 }

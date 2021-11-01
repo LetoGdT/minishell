@@ -6,14 +6,20 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 14:52:00 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:23:25 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static short int	get_new_line(char **line, char *key, char *value, \
-						int loc, char ***esc_quote)
+typedef struct s_norm
+{
+	int	size;
+	int	loc;
+}	t_norm;
+
+static short int	get_new_line(char **line, char *val, char ***esc_quote, \
+						t_norm n)
 {
 	char	*str;
 	int		i;
@@ -22,25 +28,22 @@ static short int	get_new_line(char **line, char *key, char *value, \
 	str = ft_strdup(*line);
 	if (!str)
 		return (FAILURE);
-	*line = ft_realloc(*line, (ft_strlen(*line) - ft_strlen(key) \
-		+ ft_strlen(value) + 1));
+	*line = ft_realloc(*line, (ft_strlen(*line) - n.size + ft_strlen(val) + 1));
 	if (!(*line))
 		return (FAILURE);
-	j = loc + 1;
+	j = n.loc + 1;
 	i = -1;
-	while (value[i + 1])
+	while (val[i + 1])
 	{
-		if (value[i + 1] == '\'' || value[i + 1] == '\"')
-		{
-			if (!fill_esc_quote(esc_quote, loc + 1))
+		if (val[i + 1] == '\'' || val[i + 1] == '\"')
+			if (!fill_esc_quote(esc_quote, n.loc + 1))
 				return (FAILURE);
-		}
-		(*line)[++loc] = value[++i];
+		(*line)[++(n.loc)] = val[++i];
 	}
-	j += ft_strlen(key);
+	j += n.size;
 	while (str[j])
-		(*line)[++loc] = str[++j];
-	(*line)[++loc] = 0;
+		(*line)[++(n.loc)] = str[++j];
+	(*line)[++(n.loc)] = 0;
 	free(str);
 	return (SUCCESS);
 }
@@ -78,19 +81,22 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc, \
 {
 	char	*key;
 	char	*value;
+	t_norm	n;
 
 	key = get_key(*line, loc + 1, *esc_quote);
 	if (!key)
 		return (FAILURE);
+	n.size = ft_strlen(key);
+	n.loc = loc - 1;
 	value = ft_getenv_value(key, global->env);
 	if (!value)
 	{
-		if (!get_new_line(line, key, "\0", loc - 1, esc_quote))
+		if (!get_new_line(line, "\0", esc_quote, n))
 			return (FAILURE);
 	}
 	else
 	{
-		if (!get_new_line(line, key, value, loc - 1, esc_quote))
+		if (!get_new_line(line, value, esc_quote, n))
 			return (FAILURE);
 		free(value);
 	}
@@ -104,8 +110,8 @@ static short int	in_s_quote(char *str, int loc)
 	int	stock_loc_i;
 
 	stock_loc_i = 0;
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		if (str[i] == '\"')
 		{
@@ -123,7 +129,6 @@ static short int	in_s_quote(char *str, int loc)
 		{
 			return (SUCCESS);
 		}
-		i++;
 	}
 	return (FAILURE);
 }

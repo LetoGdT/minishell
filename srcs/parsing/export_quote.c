@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 14:50:19 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 15:21:21 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,46 +70,47 @@ static int	find_size(char *line, char quote, int i, char **esc_quote)
 	return (size);
 }
 
-static void	fill_in_str(char *line, char *str, int *i, int size, \
-				char quote, char **esc_quote)
+static void	fill_before_quote(char *line, int *i, char quote, char **str)
 {
+	int	size;
+
 	size = 0;
 	while (line[*i] && line[*i] != quote)
 	{
-		str[size] = line[*i];
+		(*str)[size] = line[*i];
 		(size)++;
 		(*i)++;
 	}
 	(*i)++;
 	while (line[*i] && line[*i] != quote)
 	{
-		str[size] = line[*i];
+		(*str)[size] = line[*i];
 		(size)++;
 		(*i)++;
 	}
-	(*i)++;
-	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
-	{
-		str[size] = line[*i];
-		(size)++;
-		(*i)++;
-	}
-	str[size] = line[*i];
-	str[size] = 0;
+	(*str)[size] = 0;
 }
 
 short int	export_quote(t_token *token, char *line, int *i, char **esc_quote)
 {
-	int			size;
-	char		quote;
+	char	quote;
+	int		size;
 
 	quote = find_equal(line, *i);
 	size = find_size(line, quote, *i, esc_quote);
-	if (!size)
-		return (SUCCESS);
 	token->str = malloc(sizeof(char) * size + 1);
 	if (!token->str)
 		return (FAILURE);
-	fill_in_str(line, token->str, i, size, quote, esc_quote);
+	fill_before_quote(line, i, quote, &token->str);
+	size = ft_strlen(token->str);
+	(*i)++;
+	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
+	{
+		token->str[size] = line[*i];
+		(size)++;
+		(*i)++;
+	}
+	token->str[size] = line[*i];
+	token->str[size] = 0;
 	return (SUCCESS);
 }

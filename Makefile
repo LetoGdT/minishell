@@ -9,6 +9,8 @@ SRCS_FILES	:=	minishell.c \
 				parsing/var_env.c \
 				parsing/trim_space.c \
 				parsing/tokenizing/tokenizing.c \
+				parsing/tokenizing/find_token.c \
+				parsing/tokenizing/norm.c \
 				parsing/tokenizing/utils.c \
 				parsing/export_quote.c\
 				parsing/utils/is_quotes_pipe.c \
@@ -23,10 +25,8 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/fill_esc_quote.c \
 				parsing/utils/is_redir_space.c \
 				parsing/utils/is_quote.c \
+				parsing/utils/norm.c \
 				parsing/errors/error_multi_line.c \
-				parsing/states/state_default.c \
-				parsing/states/state_redir.c \
-				parsing/states/state_quotes.c \
 				init/init.c \
 				init/init_content.c \
 				builtins/builtin.c\
