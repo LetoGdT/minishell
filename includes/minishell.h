@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/01 12:16:04 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 13:45:25 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,25 @@ typedef struct s_run_info
 	int		right_pipe[2];
 }	t_run_info;
 
-typedef enum s_type_content
+typedef enum s_redirection
 {
-	_ARG,
-	_IN,
-	_OUT
+	_NOTHING,
+	_SINGLE,
+	_DOUBLE,
+}	t_redirection;
+
+typedef struct s_type_content
+{
+	int				arg;
+	t_redirection	in;
+	t_redirection	out;
 }	t_type_content;
 
 typedef struct s_token
 {
 	short int		export;
 	char			*str;
+	t_file_redir	*redir;
 	t_type_content	content;
 }	t_token;
 
@@ -159,6 +167,7 @@ int short	find_size_token(char *str, int i);
 short int	is_quote_export(char c, char **esc_quote, int loc);
 int short	is_export(char *line);
 void		init_ret_token(t_token *ret_token);
+int			start(t_list **tmp, t_states *st, char c, int *i);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);

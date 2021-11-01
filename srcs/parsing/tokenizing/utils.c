@@ -6,35 +6,62 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:04:35 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 12:16:12 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:24:32 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	start(t_list **tmp, t_states *st, char c, int *i)
+{
+	t_list	*new;
+
+	new = init_content();
+	if (!new)
+		return (FAILURE);
+	ft_lstadd_back(tmp, new);
+	*st = _DEFAULT;
+	if (c == '|')
+		(*i)++;
+	return (SUCCESS);
+}
+
 void	init_ret_token(t_token *ret_token)
 {
 	ret_token->export = 0;
 	ret_token->str = NULL;
-	ret_token->content = _ARG;
+	ret_token->redir = NULL;
+	ret_token->content.arg = 0;
+	ret_token->content.in = _NOTHING;
+	ret_token->content.out = _NOTHING;
 }
 
 void	find_token_content(t_token *token, char *str, int *i)
 {
 	if (str[*i] == ' ')
 		(*i)++;
-	if (str[*i] == '<')
+	if (str[*i] && str[*i] == '<')
 	{
-		token->content = _IN;
+		token->content.in = _SINGLE;
+		if (str[*i + 1] && str[*i + 1] == '<')
+		{
+			token->content.in = _DOUBLE;
+			(*i)++;
+		}
 		(*i)++;
 	}
-	else if (str[*i] == '>')
+	else if ( str[*i] && str[*i] == '>')
 	{
-		token->content = _OUT;
+		token->content.out = _SINGLE;
+		if (str[*i + 1] && str[*i + 1] == '>')
+		{
+			token->content.out = _DOUBLE;
+			(*i)++;
+		}
 		(*i)++;
 	}
 	else
-		token->content = _ARG;
+		token->content.arg = 1;
 	if (str[*i] == ' ')
 		(*i)++;
 }
