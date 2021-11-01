@@ -1,22 +1,19 @@
 NAME		:=	minishell
 SRCS_DIR	:=	srcs
 SRCS_FILES	:=	minishell.c \
-				clear.c \
-				signal.c\
-				init/init.c \
-				init/init_content.c \
 				env/env.c \
 				env/env_2.c\
 				clear.c \
 				signal.c\
 				parsing/parsing.c \
-				parsing/var_env.c \
 				parsing/trim_space.c \
+				parsing/var_env/var_env.c \
+				parsing/var_env/export_quote.c\
+				parsing/var_env/fill_esc_quote.c \
 				parsing/tokenizing/tokenizing.c \
 				parsing/tokenizing/find_token.c \
 				parsing/tokenizing/norm.c \
 				parsing/tokenizing/utils.c \
-				parsing/export_quote.c\
 				parsing/utils/is_quotes_pipe.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \
@@ -24,7 +21,6 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/is_state_symbol.c \
 				parsing/utils/is_space_and_next.c \
 				parsing/utils/is_space.c \
-				parsing/utils/fill_esc_quote.c \
 				parsing/utils/is_redir_space.c \
 				parsing/utils/is_quote.c \
 				parsing/utils/norm.c \
@@ -44,11 +40,6 @@ SRCS_FILES	:=	minishell.c \
 				exec/misc.c\
 				exec/get_path.c\
 				exec/child_process.c\
-				builtins/builtin.c\
-				builtins/echo.c\
-				builtins/cd.c\
-				builtins/export.c\
-				builtins/exit.c\
 
 SRCS		:=	$(addprefix $(SRCS_DIR)/,$(SRCS_FILES))
 

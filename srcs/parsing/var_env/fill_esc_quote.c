@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:06:19 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 17:36:39 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:48:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,6 @@ char	**ft_double_realloc(char **str, size_t size)
 	if (str)
 		free_double(str);
 	return (str2);
-}
-
-static void	norm(char ***esc_quote, int last, char *content)
-{
-	(*esc_quote)[last] = content;
-	(*esc_quote)[last + 1] = 0;
 }
 
 short int	fill_esc_quote(char ***esc_quote, int loc)
