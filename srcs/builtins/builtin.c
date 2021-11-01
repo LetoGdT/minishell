@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:13:25 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/27 14:28:47 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/01 17:59:54 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	builtin_get_default_fork(char *cmd_name)
 	while (i < NB_BUILTIN)
 	{
 		if (!ft_strncmp(cmd_name, fun_list[i].name, \
-			ft_strlen(cmd_name)))
+			ft_strlen(fun_list[i].name) + 1))
 			return (fun_list[i].default_fork);
 		i++;
 	}
@@ -58,7 +58,7 @@ t_built_fun	builtin_get_fun_ptr(char *cmd_name)
 	while (i < NB_BUILTIN)
 	{
 		if (!ft_strncmp(cmd_name, fun_list[i].name, \
-			ft_strlen(cmd_name)))
+			ft_strlen(fun_list[i].name) + 1))
 			return (fun_list[i].fun);
 		i++;
 	}
