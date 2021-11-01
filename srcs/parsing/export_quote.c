@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 11:59:09 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 12:07:03 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	find_equal(char *line, int i)
 		return (line[i]);
 }
 
-int short	is_export_quote(char *line)
+int short	is_export(char *line)
 {
 	int		i;
 	char	str[7];

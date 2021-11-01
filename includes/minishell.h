@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/01 11:50:42 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 12:16:04 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,11 @@ short int	is_space(char *str);
 short int	fill_esc_quote(char ***esc_quote, int loc);
 int short	is_redir_space(char c);
 short int	is_quote(char c);
+void		find_token_content(t_token *token, char *str, int *i);
+int short	find_size_token(char *str, int i);
+short int	is_quote_export(char c, char **esc_quote, int loc);
+int short	is_export(char *line);
+void		init_ret_token(t_token *ret_token);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);
