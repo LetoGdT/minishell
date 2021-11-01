@@ -7,12 +7,16 @@ SRCS_FILES	:=	minishell.c \
 				init/init_content.c \
 				env/env.c \
 				env/env_2.c\
+				clear.c \
+				signal.c\
 				parsing/parsing.c \
-				parsing/tokenizing.c \
-				parsing/errors/error_multi_line.c \
-				parsing/states/state_default.c \
-				parsing/states/state_redir.c \
-				parsing/states/state_quotes.c \
+				parsing/var_env.c \
+				parsing/trim_space.c \
+				parsing/tokenizing/tokenizing.c \
+				parsing/tokenizing/find_token.c \
+				parsing/tokenizing/norm.c \
+				parsing/tokenizing/utils.c \
+				parsing/export_quote.c\
 				parsing/utils/is_quotes_pipe.c \
 				parsing/utils/is_separator.c \
 				parsing/utils/is_bracket_quote.c \
@@ -20,19 +24,20 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/is_state_symbol.c \
 				parsing/utils/is_space_and_next.c \
 				parsing/utils/is_space.c \
-				parsing/utils/trim_space.c \
-				parsing/utils/ft_strdup_double.c \
-				parsing/utils/free_double.c \
-				parsing/utils/init_tokenizing.c \
-				parsing/utils/norm_free.c \
-				parsing/utils/token_start.c \
-				parsing/utils/norm_fill_content_args.c \
+				parsing/utils/fill_esc_quote.c \
+				parsing/utils/is_redir_space.c \
+				parsing/utils/is_quote.c \
+				parsing/utils/norm.c \
 				parsing/utils/print_cmds.c \
 				parsing/utils/print_content_cmd.c \
-				parsing/var_env/export_quote.c\
-				parsing/var_env/fill_esc_quote.c \
-				parsing/var_env/var_env.c \
-				parsing/var_env/utils.c\
+				parsing/errors/error_multi_line.c \
+				init/init.c \
+				init/init_content.c \
+				builtins/builtin.c\
+				builtins/echo.c\
+				builtins/cd.c\
+				builtins/export.c\
+				builtins/exit.c\
 				exec/exec.c\
 				exec/heredocs.c\
 				exec/redir_pipe.c\

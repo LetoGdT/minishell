@@ -6,11 +6,28 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:06:19 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 16:10:01 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:36:39 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	free_double(char **str)
+{
+	int	i;
+
+	if (str)
+	{
+		i = 0;
+		while (str[i])
+		{
+			if (str[i])
+				free(str[i]);
+			i++;
+		}
+		free(str);
+	}
+}
 
 char	**ft_double_realloc(char **str, size_t size)
 {
@@ -52,23 +69,20 @@ short int	fill_esc_quote(char ***esc_quote, int loc)
 	content = ft_itoa(loc);
 	if (!content)
 		return (FAILURE);
+	last = 0;
 	if (!*esc_quote)
 	{
-		*esc_quote = malloc(sizeof(char *) * 1 + 1);
-		if (!*esc_quote)
-			return (FAILURE);
-		norm(esc_quote, 0, content);
+		*esc_quote = malloc(sizeof(char *) * 2);
 	}
 	else
 	{
-		last = 0;
 		while ((*esc_quote)[last])
 			last++;
-		*esc_quote = ft_double_realloc(*esc_quote, last + 1);
-		if (!*esc_quote)
-			return (FAILURE);
-		last--;
-		norm(esc_quote, last, content);
+		*esc_quote = ft_double_realloc(*esc_quote, last + 2);
 	}
+	if (!*esc_quote)
+		return (FAILURE);
+	(*esc_quote)[last] = content;
+	(*esc_quote)[last + 1] = 0;
 	return (SUCCESS);
 }

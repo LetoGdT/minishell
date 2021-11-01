@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 17:09:49 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:35:29 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	find_quote(char *line, int i)
+static char	find_equal(char *line, int i)
 {
 	while (line[i])
 	{
@@ -26,7 +26,7 @@ static char	find_quote(char *line, int i)
 		return (line[i]);
 }
 
-int short	is_export_quote(char *line)
+int short	is_export(char *line)
 {
 	int		i;
 	char	str[7];
@@ -70,55 +70,47 @@ static int	find_size(char *line, char quote, int i, char **esc_quote)
 	return (size);
 }
 
-static void	fill_in_str(char *line, char *str, int *i, int *size)
+static void	fill_before_quote(char *line, int *i, char quote, char **str)
 {
-	char	quote;
+	int	size;
 
-	(*i)--;
-	quote = find_quote(line, *i);
-	(*i)++;
-	*size = 0;
+	size = 0;
 	while (line[*i] && line[*i] != quote)
 	{
-		str[*size] = line[*i];
-		(*size)++;
+		(*str)[size] = line[*i];
+		(size)++;
 		(*i)++;
 	}
 	(*i)++;
 	while (line[*i] && line[*i] != quote)
 	{
-		str[*size] = line[*i];
-		(*size)++;
+		(*str)[size] = line[*i];
+		(size)++;
 		(*i)++;
 	}
-	(*i)++;
+	(*str)[size] = 0;
 }
 
-short int	export_quote(t_cmd *content, char *line, int *i, t_norm_b norm_b)
+short int	export_quote(t_token *token, char *line, int *i, char **esc_quote)
 {
-	t_list		*new;
-	char		*str;
-	int			size;
-	char		quote;
+	char	quote;
+	int		size;
 
-	norm_b.export = 1;
-	if (!state_default(content, line, i, norm_b))
+	quote = find_equal(line, *i);
+	size = find_size(line, quote, *i, esc_quote);
+	token->str = malloc(sizeof(char) * size + 1);
+	if (!token->str)
 		return (FAILURE);
-	quote = find_quote(line, *i);
+	fill_before_quote(line, i, quote, &token->str);
+	size = ft_strlen(token->str);
 	(*i)++;
-	size = find_size(line, quote, *i, norm_b.esc_quote);
-	if (!size)
-		return (SUCCESS);
-	str = malloc(sizeof(char) * size + 1);
-	if (!str)
-		return (FAILURE);
-	fill_in_str(line, str, i, &size);
-	while (line[*i] && !is_separator(line[*i], norm_b.esc_quote, *i))
-		str[size++] = line[(*i)++];
-	str[size] = line[*i];
-	str[size] = 0;
-	new = NULL;
-	if (!norm_fill_content_args(content, new, str))
-		return (FAILURE);
+	while (line[*i] && !is_separator(line[*i], esc_quote, *i))
+	{
+		token->str[size] = line[*i];
+		(size)++;
+		(*i)++;
+	}
+	token->str[size] = line[*i];
+	token->str[size] = 0;
 	return (SUCCESS);
 }

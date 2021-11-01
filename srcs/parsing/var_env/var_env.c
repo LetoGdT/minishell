@@ -6,19 +6,46 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/26 13:41:14 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 17:39:01 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static short int	norm(char *str, char *key, char *value, int ret)
+typedef struct s_norm
 {
-	if (value)
-		free(value);
+	int	size;
+	int	loc;
+}	t_norm;
+
+static short int	get_new_line(char **line, char *val, char ***esc_quote, \
+						t_norm n)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	str = ft_strdup(*line);
+	if (!str)
+		return (FAILURE);
+	*line = ft_realloc(*line, (ft_strlen(*line) - n.size + ft_strlen(val) + 1));
+	if (!(*line))
+		return (FAILURE);
+	j = n.loc + 1;
+	i = -1;
+	while (val[i + 1])
+	{
+		if (val[i + 1] == '\'' || val[i + 1] == '\"')
+			if (!fill_esc_quote(esc_quote, n.loc + 1))
+				return (FAILURE);
+		(*line)[++(n.loc)] = val[++i];
+	}
+	j += n.size;
+	while (str[j])
+		(*line)[++(n.loc)] = str[++j];
+	(*line)[++(n.loc)] = 0;
 	free(str);
-	free(key);
-	return (ret);
+	return (SUCCESS);
 }
 
 static char	*get_key(char *line, int loc, char **esc_quote)
@@ -54,29 +81,29 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc, \
 {
 	char	*key;
 	char	*value;
-	char	*str;
-	int		j;
+	t_norm	n;
 
 	key = NULL;
 	value = NULL;
-	str = NULL;
 	key = get_key(*line, loc + 1, *esc_quote);
 	if (!key)
-		return (norm(str, key, value, FAILURE));
+		return (FAILURE);
+	n.size = ft_strlen(key);
+	n.loc = loc - 1;
 	value = ft_getenv_value(key, global->env);
-	str = ft_strdup(*line);
-	if (!str)
-		return (norm(str, key, value, FAILURE));
-	loc--;
-	j = loc + 1;
 	if (!value)
-		value = ft_calloc(1, 1);
-	if (!malloc_new_line(line, key, value) \
-		|| !fill_value(value, line, &loc, esc_quote))
-		return (norm(str, key, value, FAILURE));
-	j += ft_strlen(key);
-	fill_leftover(line, str, loc, j);
-	return (norm(str, key, value, SUCCESS));
+	{
+		if (!get_new_line(line, "\0", esc_quote, n))
+			return (FAILURE);
+	}
+	else
+	{
+		if (!get_new_line(line, value, esc_quote, n))
+			return (FAILURE);
+		free(value);
+	}
+	free(key);
+	return (SUCCESS);
 }
 
 static short int	in_s_quote(char *str, int loc)
@@ -85,8 +112,8 @@ static short int	in_s_quote(char *str, int loc)
 	int	stock_loc_i;
 
 	stock_loc_i = 0;
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		if (str[i] == '\"')
 		{
@@ -101,8 +128,9 @@ static short int	in_s_quote(char *str, int loc)
 				i++;
 		}
 		if (stock_loc_i && loc < i && loc > stock_loc_i)
+		{
 			return (SUCCESS);
-		i++;
+		}
 	}
 	return (FAILURE);
 }

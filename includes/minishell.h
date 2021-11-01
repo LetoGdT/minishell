@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/26 18:24:21 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/01 17:33:10 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,27 @@ typedef struct s_run_info
 	int		right_pipe[2];
 }	t_run_info;
 
-typedef struct s_norm_
+typedef enum s_redirection
 {
-	t_states	st;
-	char		**esc_quote;
-}	t_norm;
+	_NOTHING,
+	_SINGLE,
+	_DOUBLE,
+}	t_redirection;
 
-typedef struct s_norm_b
+typedef struct s_type_content
 {
-	int		export;
-	char	**esc_quote;
-}	t_norm_b;
+	int				arg;
+	t_redirection	in;
+	t_redirection	out;
+}	t_type_content;
+
+typedef struct s_token
+{
+	short int		export;
+	char			*str;
+	t_file_redir	*redir;
+	t_type_content	content;
+}	t_token;
 
 //Fonctions liées à l’environnement
 char		**ft_getenv(t_list *env);
@@ -128,12 +138,10 @@ short int	parsing(char **line, t_exec_info *global);
 short int	var_env(char **line, t_exec_info *global, char ***esc_quote);
 short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info *global, char *line, char **esc_quote);
-int short	state_default(t_cmd *cmds, char *line, int *i, \
-				t_norm_b norm_b);
-int short	state_redir(t_cmd *cmds, char *line, int *i, t_states *st);
-int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **str);
-short int	export_quote(t_cmd *content, char *line, int *i, t_norm_b norm_b);
+short int	export_quote(t_token *token, char *line, int *i, char **esc_quote);
+short int	find_token(t_token *token, char *line, int *i, \
+				char **esc_quote);
 
 // Fontions utils du parsing
 short int	is_brackets_quote(char c);
@@ -149,16 +157,18 @@ short int	is_space_and_next(char *str, int i, char c);
 int short	is_export_quote(char *line);
 short int	is_space(char *str);
 short int	fill_esc_quote(char ***esc_quote, int loc);
-short int	malloc_new_line(char **line, char *key, char *value);
-short int	fill_value(char *value, char **line, int *loc, char ***esc_quote);
-void		fill_leftover(char **line, char *str, int loc, int j);
-char		**ft_strdup_double(char **str);
-void		free_double(char **str);
-short int	init_tokenizing(t_norm *norm, char **esc_quote, t_list **tmp, \
-				int *ret);
-short int	norm_free(char **esc_quote, t_norm norm, int ret);
-short int	token_start(t_norm *norm, t_list **tmp, char *line, int *i);
-short int	norm_fill_content_args(t_cmd *content, t_list *new, char *str);
+int short	is_redir_space(char c);
+short int	is_quote(char c);
+void		find_token_content(t_token *token, char *str, int *i);
+int short	size_token(char *str, int i, char **esc_quote);
+short int	is_quote_export(char c, char **esc_quote, int loc);
+int short	is_export(char *line);
+void		init_ret_token(t_token *ret_token);
+int			start(t_list **tmp, char c, int *i);
+void		norm(int *i, int *j);
+void		norm_fill_redir_name(t_token *token, char *line, int *i, \
+				char **esc_quote);
+void		fill_redir(t_token *token, char *line, int *i);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);
