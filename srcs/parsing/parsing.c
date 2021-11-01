@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:32:25 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 18:15:41 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 11:26:41 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ short int	parsing(char **line, t_exec_info *global)
 		return (SUCCESS);
 	if (!error_multi_line(*line))
 		return (ERROR_SPACE);
-	// printf("line before :\033[35m%s\033[0m\n", *line);
+	printf("line before :\033[35m%s\033[0m\n", *line);
 	ret = trim_space(line);
 	if (ret == ERROR_SPACE)
 		return (SUCCESS);
@@ -32,10 +32,10 @@ short int	parsing(char **line, t_exec_info *global)
 	esc_quote = NULL;
 	if (!var_env(line, global, &esc_quote))
 		return (FAILURE);
-	// printf("line btw :\033[35m%s\033[0m\n", *line);
+	printf("line btw :\033[35m%s\033[0m\n", *line);
 	ret = tokenizing(global, *line, esc_quote);
 	if (!ret)
 		return (FAILURE);
-	// printf("line after :\033[35m%s\033[0m\n", *line);
+	printf("line after :\033[35m%s\033[0m\n", *line);
 	return (ret);
 }

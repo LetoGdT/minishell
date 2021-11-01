@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/22 18:14:46 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 11:07:05 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ static short int	only_space(char *str)
 
 static int	find_size(char *str)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	quote;
 
 	i = 0;
 	j = 0;
@@ -68,11 +69,24 @@ static int	find_size(char *str)
 	{
 		if (i == 0)
 		{
-			while (str[i] == ' ')
+			while (str[i] && str[i] == ' ')
 				i++;
 		}
-		while (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
+		while (str[i] && str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
+		{
 			i++;
+		}
+		if (is_quote(str[i]))
+		{
+			quote = str[i];
+			i++;
+			j++;
+			while (str[i] && str[i] != quote)
+			{
+				i++;
+				j++;
+			}
+		}
 		i++;
 		j++;
 	}

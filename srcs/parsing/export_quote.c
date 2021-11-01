@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:07:20 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 17:46:54 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 11:59:09 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	find_quote(char *line, int i)
+static char	find_equal(char *line, int i)
 {
 	while (line[i])
 	{
@@ -97,27 +97,18 @@ static void	fill_in_str(char *line, char *str, int *i, int size, char quote, cha
 	str[size] = 0;
 }
 
-short int	export_quote(t_cmd *content, char *line, int *i, char **esc_quote)
+short int	export_quote(t_token *token, char *line, int *i, char **esc_quote)
 {
-	t_list		*new;
-	char		*str;
 	int			size;
 	char		quote;
 
-	if (!state_default(content, line, i, 1, esc_quote))
-		return (FAILURE);
-	quote = find_quote(line, *i);
-	(*i)++;
+	quote = find_equal(line, *i);
 	size = find_size(line, quote, *i, esc_quote);
 	if (!size)
 		return (SUCCESS);
-	str = malloc(sizeof(char) * size + 1);
-	if (!str)
+	token->str = malloc(sizeof(char) * size + 1);
+	if (!token->str)
 		return (FAILURE);
-	fill_in_str(line, str, i, size, quote, esc_quote);
-	new = ft_lstnew(str);
-	if (!new)
-		return (FAILURE);
-	ft_lstadd_back(&(content->args), new);
+	fill_in_str(line, token->str, i, size, quote, esc_quote);
 	return (SUCCESS);
 }

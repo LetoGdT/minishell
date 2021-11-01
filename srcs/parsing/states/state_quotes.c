@@ -1,75 +1,75 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   state_quotes.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 15:08:30 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/27 18:20:04 by mballet          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   state_quotes.c                                     :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2021/10/08 15:08:30 by mballet           #+#    #+#             */
+// /*   Updated: 2021/10/27 18:20:04 by mballet          ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
-#include "minishell.h"
+// #include "minishell.h"
 
-static int	find_size(char *str, int i, char c)
-{
-	int	size;
+// static int	find_size(char *str, int i, char c)
+// {
+// 	int	size;
 
-	size = 0;
-	while (str[i] && str[i] != c)
-	{
-		size++;
-		i++;
-	}
-
-
-//>
-	while (str[i] && str[i != '|'] && str[i != ' '] && str[i != '<'] && str[i != '>'])
-	{
-		i++;
-		size++;
-	}
-//<
+// 	size = 0;
+// 	while (str[i] && str[i] != c)
+// 	{
+// 		size++;
+// 		i++;
+// 	}
 
 
-	return (size);
-}
-
-int short	state_quotes(t_cmd *content, char *line, int *i, char c)
-{
-	int		size;
-	char	*str;
-	t_list	*new;
-
-	(*i)++;
-	size = find_size(line, *i, c);
-	str = malloc(sizeof(char) * size + 1);
-	if (!str)
-		return (FAILURE);
-	size = 0;
-	while (line[*i] && line[*i] != c)
-	{
-		str[size] = line[*i];
-		size++;
-		(*i)++;
-	}
+// //>
+// 	while (str[i] && str[i != '|'] && str[i != ' '] && str[i != '<'] && str[i != '>'])
+// 	{
+// 		i++;
+// 		size++;
+// 	}
+// //<
 
 
-//>
-	while (line[*i] && line[*i != '|'] && line[*i != ' '] && line[*i != '<'] && line[*i != '>'])
-	{
-		str[size] = line[*i];
-		size++;
-		(*i)++;
-	}
-//<
+// 	return (size);
+// }
+
+// int short	state_quotes(t_cmd *content, char *line, int *i, char c)
+// {
+// 	int		size;
+// 	char	*str;
+// 	t_list	*new;
+
+// 	(*i)++;
+// 	size = find_size(line, *i, c);
+// 	str = malloc(sizeof(char) * size + 1);
+// 	if (!str)
+// 		return (FAILURE);
+// 	size = 0;
+// 	while (line[*i] && line[*i] != c)
+// 	{
+// 		str[size] = line[*i];
+// 		size++;
+// 		(*i)++;
+// 	}
 
 
-	str[size] = 0;
-	new = ft_lstnew(str);
-	ft_lstadd_back(&(content->args), new);
-	if (line[*i + 1] == ' ')
-		(*i)++;
-	return (SUCCESS);
-}
+// //>
+// 	while (line[*i] && line[*i != '|'] && line[*i != ' '] && line[*i != '<'] && line[*i != '>'])
+// 	{
+// 		str[size] = line[*i];
+// 		size++;
+// 		(*i)++;
+// 	}
+// //<
+
+
+// 	str[size] = 0;
+// 	new = ft_lstnew(str);
+// 	ft_lstadd_back(&(content->args), new);
+// 	if (line[*i + 1] == ' ')
+// 		(*i)++;
+// 	return (SUCCESS);
+// }

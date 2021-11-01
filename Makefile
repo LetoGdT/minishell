@@ -20,6 +20,8 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/is_space_and_next.c \
 				parsing/utils/is_space.c \
 				parsing/utils/fill_esc_quote.c \
+				parsing/utils/is_redir_space.c \
+				parsing/utils/is_quote.c \
 				parsing/errors/error_multi_line.c \
 				parsing/states/state_default.c \
 				parsing/states/state_redir.c \

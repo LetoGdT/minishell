@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:06:19 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 16:20:40 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 11:29:58 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ short int	fill_esc_quote(char ***esc_quote, int loc)
 		return (FAILURE);
 	if (!*esc_quote)
 	{
-		*esc_quote = malloc(sizeof(char*) * 1 + 1);
+		*esc_quote = malloc(sizeof(char*) * 2);
 		if (!*esc_quote)
 			return (FAILURE);
 		(*esc_quote)[0] = content;
