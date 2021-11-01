@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/01 13:45:25 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:53:26 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,6 @@ short int	parsing(char **line, t_exec_info *global);
 short int	var_env(char **line, t_exec_info *global, char ***esc_quote);
 short int	error_multi_line(char *line);
 short int	tokenizing(t_exec_info *global, char *line, char **esc_quote);
-int short	state_default(t_cmd *cmds, char *line, int *i, int export, char **esc_quote);
-int short	state_redir(t_cmd *cmds, char *line, int *i, t_states *st);
-int short	state_quotes(t_cmd *content, char *line, int *i, char c);
 short int	trim_space(char **str);
 short int	export_quote(t_token *token, char *line, int *i, char **esc_quote);
 

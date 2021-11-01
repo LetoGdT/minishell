@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:04:35 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 14:24:32 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:44:36 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ short int	is_quote_export(char c, char **esc_quote, int loc)
 		{
 			while (esc_quote[i])
 			{
-				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], ft_strlen(esc_quote[i])))
+				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], \
+						ft_strlen(esc_quote[i])))
 					return (FAILURE);
 				i++;
 			}

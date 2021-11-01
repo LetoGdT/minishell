@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 14:06:19 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 11:29:58 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:48:42 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ char	**ft_double_realloc(char **str, size_t size)
 	char	**str2;
 	int		i;
 
-	// printf("HERE 1\n");
 	if (!str)
 		return (NULL);
-	str2 = malloc(sizeof(char*) * size);
+	str2 = malloc(sizeof(char *) * size);
 	if (!str2)
 	{
 		if (str)
@@ -36,7 +35,6 @@ char	**ft_double_realloc(char **str, size_t size)
 		}
 		return (NULL);
 	}
-	// printf("HERE 2\n");
 	i = 0;
 	while (size > 0 && str[i])
 	{
@@ -44,7 +42,6 @@ char	**ft_double_realloc(char **str, size_t size)
 		size--;
 		i++;
 	}
-	// printf("HERE 3\n");
 	str2[i] = 0;
 	if (str)
 	{
@@ -57,7 +54,6 @@ char	**ft_double_realloc(char **str, size_t size)
 		}
 		free(str);
 	}
-	// printf("HERE 4\n");
 	return (str2);
 }
 
@@ -69,25 +65,21 @@ short int	fill_esc_quote(char ***esc_quote, int loc)
 	content = ft_itoa(loc);
 	if (!content)
 		return (FAILURE);
+	last = 0;
 	if (!*esc_quote)
 	{
-		*esc_quote = malloc(sizeof(char*) * 2);
-		if (!*esc_quote)
-			return (FAILURE);
-		(*esc_quote)[0] = content;
-		(*esc_quote)[1] = 0;
+		*esc_quote = malloc(sizeof(char *) * 2);
 	}
 	else
 	{
-		last = 0;
 		while ((*esc_quote)[last])
 			last++;
-		*esc_quote = ft_double_realloc(*esc_quote, last + 1);
-		if (!*esc_quote)
-			return (FAILURE);
 		last--;
-		(*esc_quote)[last] = content;
-		(*esc_quote)[last + 1] = 0;
+		*esc_quote = ft_double_realloc(*esc_quote, last + 1);
 	}
+	if (!*esc_quote)
+		return (FAILURE);
+	(*esc_quote)[last + 1] = 0;
+	(*esc_quote)[last] = content;
 	return (SUCCESS);
 }

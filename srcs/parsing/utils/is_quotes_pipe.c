@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 11:14:17 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/25 18:06:50 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:48:56 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ short int	is_quotes_pipe(char c, char **esc_quote, int loc)
 		{
 			while (esc_quote[i])
 			{
-				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], ft_strlen(esc_quote[i])))
+				if (!ft_strncmp(ft_itoa(loc), esc_quote[i], \
+						ft_strlen(esc_quote[i])))
 					return (FAILURE);
 				i++;
 			}

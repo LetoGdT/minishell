@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/20 17:03:05 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:52:43 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)
 	}
 	else
 		run->right_pipe[1] = -1;
-	if (((t_cmd*)head->content)->args != NULL && head->next == NULL && rank == 0 && \
+	if (((t_cmd *)head->content)->args != NULL && head->next == NULL \
+			&& rank == 0 && \
 		!builtin_get_default_fork((char *) \
 		((t_cmd *)head->content)->args->content))
 		return (-2);

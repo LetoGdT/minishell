@@ -6,13 +6,14 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 11:24:42 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:52:00 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static short int	get_new_line(char **line, char *key, char *value, int loc, char ***esc_quote)
+static short int	get_new_line(char **line, char *key, char *value, \
+						int loc, char ***esc_quote)
 {
 	char	*str;
 	int		i;
@@ -50,7 +51,8 @@ static char	*get_key(char *line, int loc, char **esc_quote)
 	char	*str;
 
 	i = 0;
-	while (line[loc] && (line[loc] != ' ') && !is_quotes_pipe(line[loc], esc_quote, loc))
+	while (line[loc] && (line[loc] != ' ') && !is_quotes_pipe(line[loc], \
+			esc_quote, loc))
 	{
 		loc++;
 		i++;
@@ -60,7 +62,8 @@ static char	*get_key(char *line, int loc, char **esc_quote)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (line[loc] && (line[loc] != ' ') && !is_quotes_pipe(line[loc], esc_quote, loc))
+	while (line[loc] && (line[loc] != ' ') && !is_quotes_pipe(line[loc], \
+			esc_quote, loc))
 	{
 		str[i] = line[loc];
 		loc++;
@@ -70,7 +73,8 @@ static char	*get_key(char *line, int loc, char **esc_quote)
 	return (str);
 }
 
-static short int	trim_dollar(t_exec_info *global, char **line, int loc, char ***esc_quote)
+static short int	trim_dollar(t_exec_info *global, char **line, int loc, \
+						char ***esc_quote)
 {
 	char	*key;
 	char	*value;
@@ -79,7 +83,6 @@ static short int	trim_dollar(t_exec_info *global, char **line, int loc, char ***
 	if (!key)
 		return (FAILURE);
 	value = ft_getenv_value(key, global->env);
-	// printf("key :%s\n", key);
 	if (!value)
 	{
 		if (!get_new_line(line, key, "\0", loc - 1, esc_quote))

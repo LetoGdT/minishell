@@ -4,10 +4,10 @@ SRCS_FILES	:=	minishell.c \
 				env/env.c \
 				env/env_2.c\
 				clear.c \
+				signal.c\
 				parsing/parsing.c \
 				parsing/var_env.c \
 				parsing/trim_space.c \
-				parsing/signal.c\
 				parsing/tokenizing/tokenizing.c \
 				parsing/tokenizing/utils.c \
 				parsing/export_quote.c\

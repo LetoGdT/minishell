@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/10/21 10:20:27 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:41:56 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_lstclear_redir(t_list **lst, void (*del)(void*), short int nb)
 		next = curr->next;
 		if (nb == _REDIR_IN)
 		{
-				if (((t_file_redir *)curr->content)->name)
+			if (((t_file_redir *)curr->content)->name)
 				free(((t_file_redir *)curr->content)->name);
 		}
 		else if (nb == _REDIR_OUT)
@@ -69,8 +69,6 @@ short int	clear(t_exec_info global, char *line, int ret)
 	{
 		ft_lstclear(&(global.env), free);
 	}
-	// if (global.env_)
-	// 	free(global.env_);
 	if (line)
 		free(line);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 18:43:15 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 17:30:09 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/01 14:43:09 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ void	sig_int(int signo)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		// ft_fprintf(STDOUT_FILENO, "minishell$");
 	}
 }

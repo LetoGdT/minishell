@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgaudet- <lgaudet-@student.42lyon.f>       +#+  +:+       +#+        */
+/*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:47:10 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/11 19:50:09 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:53:06 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <libft.h>
-#include <wchar.h>
+# include <wchar.h>
 
 typedef struct s_flags
 {
