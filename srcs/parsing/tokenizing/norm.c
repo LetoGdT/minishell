@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:56:31 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 16:58:40 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 08:43:40 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	norm_fill_redir_name(t_token *token, char *line, int *i, \
 	char	quote;
 
 	j = 0;
-	while (line[*i] && line[*i] != ' ')
+	while (line[*i] && line[*i] != ' ' && line[*i] != '>' && line[*i] != '<')
 	{
 		if (is_quote_export(line[*i], esc_quote, *i))
 		{

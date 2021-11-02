@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 17:01:42 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 17:02:59 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 08:46:00 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ short int	find_token(t_token *token, char *line, int *i, \
 			free(token->redir);
 		}
 	}
-	return (SUCCESS);
+	return (ret);
 }
