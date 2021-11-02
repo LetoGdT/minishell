@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 18:09:03 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 10:21:09 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,3 @@ short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 	global->cmds = tmp;
 	return (ret);
 }
-
-// quand echo $USGE   | < srcs/parsing/parsing.c grep in > test > test1
-//bug car j'envois un arg vide

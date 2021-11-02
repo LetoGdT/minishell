@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/02 08:45:44 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 10:26:43 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static short int	minishell(char **line, t_exec_info *global)
 	ret = parsing(line, global);
 	if (!ret)
 		return (clear(*global, *line, EXIT_FAILURE));
-	// print_cmds(*global);
 	free(*line);
 	if (ret != ERR_PARSING && !exec(*global))
 		return (clear(*global, NULL, EXIT_FAILURE));
@@ -59,5 +58,3 @@ int	main(int argc, char **argv, char *env[])
 	}
 	return (EXIT_SUCCESS);
 }
-
-// suppprime fichier _trace dans libft
