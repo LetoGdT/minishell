@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 10:32:24 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 15:07:46 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 11:25:56 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,23 @@ static short int	is_space_(char *str)
 	int	i;
 
 	i = -1;
+	if (str[i + 1] && str[i + 1] == ' ')
+		return (SUCCESS);
 	while (str[++i])
 	{
-		if (str[i] == '\'')
+		if (str[i] && str[i] == '\'')
 		{
 			i++;
-			while (str[i] != '\'')
-			{
+			while (str[i] && str[i] != '\'')
 				i++;
-			}
 		}
-		if (str[i] == '\"')
+		if (str[i] && str[i] == '\"')
 		{
 			i++;
-			while (str[i] != '\"')
-			{
+			while (str[i] && str[i] != '\"')
 				i++;
-			}
 		}
-		if (str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
+		if (str[i] && str[i] == ' ' && str[i + 1] && str[i + 1] == ' ')
 			return (SUCCESS);
 	}
 	return (FAILURE);

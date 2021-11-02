@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 17:39:01 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 11:38:14 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ static short int	in_s_quote(char *str, int loc)
 	int	i;
 	int	stock_loc_i;
 
-	stock_loc_i = 0;
 	i = -1;
 	while (str[++i])
 	{
+		stock_loc_i = -1;
 		if (str[i] == '\"')
 		{
 			i++;
@@ -124,13 +124,12 @@ static short int	in_s_quote(char *str, int loc)
 		else if (str[i] == '\'')
 		{
 			stock_loc_i = i;
+			i++;
 			while (str[i] && str[i] != '\'')
 				i++;
 		}
-		if (stock_loc_i && loc < i && loc > stock_loc_i)
-		{
+		if (stock_loc_i >= 0 && loc < i && loc > stock_loc_i)
 			return (SUCCESS);
-		}
 	}
 	return (FAILURE);
 }

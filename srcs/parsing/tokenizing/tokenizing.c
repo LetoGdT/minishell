@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/01 17:11:12 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 12:56:11 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 	while (++i < (int)ft_strlen(line))
 	{
 		init_ret_token(&token);
+		if (line[i] == ' ')
+			i++;
 		if (i == 0 || line[i] == '|')
 			if (!start(&tmp, line[i], &i))
 				return (FAILURE);
-		if (line[i] == ' ')
-			i++;
 		ret = fill_token(&token, line, &i, esc_quote);
 		if (!ret || ret == ERR_PARSING)
 			return (ret);

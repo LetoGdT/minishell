@@ -10,6 +10,7 @@ SRCS		:=	printf/detecte_flags.c\
 LIBS		:=	libft/libft.a
 HDRS		:=	includes/libft.h\
 					includes/ft_printf.h
+
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -Iincludes
 OBJS		:=	$(SRCS:.c=.o)
