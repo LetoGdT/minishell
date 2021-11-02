@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/02 10:26:43 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 11:30:52 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,7 @@ int	main(int argc, char **argv, char *env[])
 	}
 	return (EXIT_SUCCESS);
 }
+
+// bug : check les prio '$val' "$val"
+
+// bug : ./minishell il dit que y a un argument '' vide

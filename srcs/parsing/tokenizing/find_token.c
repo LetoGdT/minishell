@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 17:01:42 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/02 09:58:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/02 11:09:20 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ static short int	find_token_str(t_token *token, char *line, int *i, \
 	int		j;
 	char	quote;
 
-	token->str = malloc(sizeof(char) * size_token(line, *i, esc_quote) + 1);
+	int ret = size_token(line, *i, esc_quote);
+	// token->str = malloc(sizeof(char) * size_token(line, *i, esc_quote) + 1);
+	token->str = malloc(sizeof(char) * ret + 1);
 	if (!token->str)
 		return (FAILURE);
 	j = 0;
+	// printf("size :%d\n", ret);
 	while (line[*i] && !is_redir_space(line[*i]))
 	{
 		if (is_quote_export(line[*i], esc_quote, *i))
