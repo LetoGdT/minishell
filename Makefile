@@ -24,6 +24,7 @@ SRCS_FILES	:=	minishell.c \
 				parsing/utils/is_redir_space.c \
 				parsing/utils/is_quote.c \
 				parsing/utils/norm.c \
+				parsing/utils/is_only_space.c \
 				parsing/utils/print_cmds.c \
 				parsing/utils/print_content_cmd.c \
 				parsing/errors/error_multi_line.c \

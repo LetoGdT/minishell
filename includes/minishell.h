@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/02 10:31:20 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/03 10:17:42 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ void		norm(int *i, int *j);
 void		norm_fill_redir_name(t_token *token, char *line, int *i, \
 				char **esc_quote);
 void		fill_redir(t_token *token, char *line, int *i);
+short int	is_only_space(char *str, int i);
 
 // #Fonctions pour init
 short int	init(t_exec_info *global, char **env);
