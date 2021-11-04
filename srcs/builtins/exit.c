@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/04 11:55:13 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/04 14:38:42 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_exit(int argc, char **argv, t_list **env)
 	}
 	printf("%s\n", EXIT_MSG);
 	if (argc == 1)
-		exit(PROG_SUCCESS);
+		exit(ft_atoi(ft_getenv_value("?", *env)));
 	status = ft_atoll(argv[1]);
 	if ((status == 0 && errno != 0) || !is_num(argv[1]))
 	{
