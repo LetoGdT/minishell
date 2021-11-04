@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 19:29:41 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/04 11:55:13 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ static int	is_num(const char *str)
 	char	*s;
 
 	s = (char *)str;
-	while (*s++)
-		if (!ft_isdigit(*s++))
+	while (*s)
+	{
+		if (!ft_isdigit(*s))
 			return (FAILURE);
+		s++;
+	}
 	return (SUCCESS);
 }
 
