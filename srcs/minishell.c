@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/05 22:54:41 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/05 22:56:28 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static short int	minishell(char **line, t_exec_info *global)
 
 static short int	ctrl_d(t_exec_info *global)
 {
-	return (ft_atoi(ft_getenv_value("?", global->env)));
+	int res;
+
+	res = ft_atoi(ft_getenv_value("?", global->env));
+	ft_lstclear(&global->env, free);
+	return (res);
 }
 
 int	main(int argc, char **argv, char *env[])
