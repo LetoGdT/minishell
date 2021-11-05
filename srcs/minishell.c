@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/05 22:20:01 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/05 22:54:41 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ int	main(int argc, char **argv, char *env[])
 		while (1)
 		{
 			line = readline(PROMPT);
+			if (g_children_running == 3)
+			{
+				change_env_dollar_question(1, &global.env);
+				g_children_running = 0;
+			}
 			if (line)
 			{
 				if (!minishell(&line, &global))
