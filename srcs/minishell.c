@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/03 15:13:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/05 17:46:35 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv, char *env[])
 			if (line)
 			{
 				if (!minishell(&line, &global))
-					return (FAILURE);
+					return (EXIT_FAILURE);
 			}
 			else
 				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
