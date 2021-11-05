@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/01 17:33:58 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/05 18:57:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	exec(t_exec_info info)
 		head = head->next;
 		rank++;
 	}
+	if (!clean_exec(run))
+		return (FAILURE);
 	return (wait_children_and_set_exit_code(last_pid, &info.env));
 }
 
@@ -75,6 +77,16 @@ int	parent(int rank, t_run_info *run)
 	}
 	run->left_pipe[0] = run->right_pipe[0];
 	run->left_pipe[1] = run->right_pipe[1];
+	return (SUCCESS);
+}
+
+int	clean_exec(t_run_info run)
+{
+	if (close(run.fd_real_in) || close(run.fd_real_out))
+	{
+		perror(MINISHELL);
+		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 
