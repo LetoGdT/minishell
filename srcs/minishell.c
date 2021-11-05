@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/03 15:13:37 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/05 18:07:05 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ static short int	minishell(char **line, t_exec_info *global)
 		return (clear(*global, NULL, EXIT_FAILURE));
 	clear_cmds(*global);
 	global->cmds = NULL;
+	return (SUCCESS);
+}
+
+static short int	ctrl_d(t_exec_info *global)
+{
+	char	*line;
+
+	line = ft_strdup("exit");
+	if (!line)
+		return (FAILURE);
+	if (!minishell(&line, global))
+		return (FAILURE);
 	return (SUCCESS);
 }
 
@@ -51,9 +63,8 @@ int	main(int argc, char **argv, char *env[])
 					return (FAILURE);
 			}
 			else
-				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
-			if (!line)
-				break ;
+				if (!ctrl_d(&global))
+					return (EXIT_FAILURE);
 		}
 	}
 	return (EXIT_SUCCESS);
