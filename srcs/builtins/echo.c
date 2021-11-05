@@ -6,36 +6,51 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:24:49 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 18:22:46 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/05 21:44:04 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	ft_echo(int argc, char **argv, t_list **env)
+static int	print(int rank, int is_newline, int argc, char **argv)
 {
-	int	i;
-	int	is_newline;
-
-	(void)env;
-	i = 1;
-	if (argc > 1 && !ft_strncmp(argv[i], "-n", 2))
+	while (rank < argc - 1)
 	{
-		is_newline = 0;
-		i++;
-		while (!ft_strncmp(argv[i], "-n", 2))
-			i++;
+		printf("%s ", argv[rank]);
+		rank++;
 	}
-	else
-		is_newline = 1;
-	while (i < argc - 1)
-	{
-		printf("%s ", argv[i]);
-		i++;
-	}
-	if (argc - i > 0)
+	if (argc - rank > 0)
 		printf("%s", argv[argc - 1]);
 	if (is_newline)
 		printf("\n");
 	return (PROG_SUCCESS);
+}
+
+int	ft_echo(int argc, char **argv, t_list **env)
+{
+	int	i;
+	int	j;
+	int	is_newline;
+	int	old_is_newline;
+
+	(void)env;
+	is_newline = 1;
+	i = 1;
+	if (argc > 1)
+	{
+		while (i < argc && !ft_strncmp(argv[i], "-n", 2))
+		{
+			old_is_newline = is_newline;
+			j = 1;
+			while (argv[i][++j])
+			{
+				if (argv[i][j] == 'n')
+					is_newline = 0;
+				else
+					return (print(i, old_is_newline, argc, argv));
+			}
+			i++;
+		}
+	}
+	return (print(i, is_newline, argc, argv));
 }
