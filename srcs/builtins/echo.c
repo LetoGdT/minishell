@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:24:49 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/12 18:19:11 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/05 18:22:46 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,22 @@ int	ft_echo(int argc, char **argv, t_list **env)
 	int	is_newline;
 
 	(void)env;
-	if (argc > 1 && !ft_strncmp(argv[1], "-n", 3))
+	i = 1;
+	if (argc > 1 && !ft_strncmp(argv[i], "-n", 2))
+	{
 		is_newline = 0;
+		i++;
+		while (!ft_strncmp(argv[i], "-n", 2))
+			i++;
+	}
 	else
 		is_newline = 1;
-	i = 1 - is_newline;
-	while (i < argc - 2)
+	while (i < argc - 1)
 	{
-		printf("%s ", argv[i + 1]);
+		printf("%s ", argv[i]);
 		i++;
 	}
-	if (argc - 1 - !is_newline > 0)
+	if (argc - i > 0)
 		printf("%s", argv[argc - 1]);
 	if (is_newline)
 		printf("\n");
