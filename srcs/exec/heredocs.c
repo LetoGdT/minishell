@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 17:59:58 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 21:48:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,41 +65,42 @@ static void	heredoc_parsing(int fd, char *str)
 	}
 }
 
-static int	prep_one_heredoc(t_run_info *run, t_file_redir *redir)
+static int	heredoc(t_run_info *run, t_file_redir *redir)
 {
-	t_list			*elem;
-	t_heredoc_info	*here;
 	int				fd[2];
+	int				stat_loc;
+	pid_t			pid;
 
-	here = malloc(sizeof(t_heredoc_info));
-	if (!here)
+	if (!prep_heredoc(fd, run, redir))
 		return (FAILURE);
-	if (pipe(fd))
+	g_children_running = 1;
+	pid = fork();
+	if (pid == 0)
 	{
-		free(here);
-		return (FAILURE);
-	}
-	elem = ft_lstnew(here);
-	if (!elem)
-	{
+		g_children_running = 2;
+		heredoc_parsing(fd[1], redir->name);
 		close(fd[0]);
 		close(fd[1]);
-		free(here);
-		return (FAILURE);
+		exit(0);
 	}
-	ft_lstadd_back(&run->heredocs, elem);
-	heredoc_parsing(fd[1], redir->name);
+	if (pid < 0)
+		return (FAILURE);
 	close(fd[1]);
-	here->fd = fd[0];
-	here->redir = redir;
+	waitpid(pid, &stat_loc, 0);
+	g_children_running = 0;
+	if (WIFEXITED(stat_loc))
+		if (WEXITSTATUS(stat_loc) == 2)
+			return (2);
 	return (SUCCESS);
 }
 
-int	prep_heredocs(t_run_info *run, t_exec_info info)
+int	exec_heredocs(t_run_info *run, t_exec_info info)
 {
 	t_list	*cmd_head;
 	t_list	*redir_head;
+	int		res;
 
+	(void)res;
 	cmd_head = info.cmds;
 	while (cmd_head)
 	{
@@ -107,39 +108,16 @@ int	prep_heredocs(t_run_info *run, t_exec_info info)
 		while (redir_head)
 		{
 			if (((t_file_redir *)redir_head->content)->count == _REDIR_DOUBLE)
-				if (!prep_one_heredoc(run, (t_file_redir *)redir_head->content))
+			{
+				res = heredoc(run, (t_file_redir *)redir_head->content);
+				if (res == 2)
+					return (2);
+				else if (!res)
 					return (FAILURE);
+			}
 			redir_head = redir_head->next;
 		}
 		cmd_head = cmd_head->next;
 	}
-	return (SUCCESS);
-}
-
-int	heredoc(t_file_redir *redir, int real_in)
-{
-	int		fd[2];
-	int		old_val;
-	pid_t	pid;
-
-	if (pipe(fd) || dup2(real_in, 0) == -1)
-		return (FAILURE);
-	old_val = g_children_running;
-	g_children_running = 1;
-	pid = fork();
-	if (pid == 0)
-	{
-		g_children_running = 2;
-		heredoc_parsing(fd[1], redir->name);
-		exit(0);
-	}
-	else if (pid > 0)
-		dup2(fd[0], 0);
-	close(fd[0]);
-	close(fd[1]);
-	if (pid < 0)
-		return (FAILURE);
-	waitpid(pid, NULL, 0);
-	g_children_running = old_val;
 	return (SUCCESS);
 }

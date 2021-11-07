@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/05 17:46:35 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/07 21:29:26 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static short int	minishell(char **line, t_exec_info *global)
 	add_history(*line);
 	ret = parsing(line, global);
 	if (!ret)
-		return (clear(*global, *line, EXIT_FAILURE));
+		return (clear(*global, *line, FAILURE));
 	free(*line);
 	if (ret != ERR_PARSING && !exec(*global))
-		return (clear(*global, NULL, EXIT_FAILURE));
+		return (clear(*global, NULL, FAILURE));
 	clear_cmds(*global);
 	global->cmds = NULL;
 	return (SUCCESS);

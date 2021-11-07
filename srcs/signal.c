@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 18:43:15 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/01 17:37:38 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/07 21:32:50 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	sig_int(int signo)
 		rl_redisplay();
 	}
 	else if (g_children_running == 2)
-		exit(1);
+		exit(2);
 }

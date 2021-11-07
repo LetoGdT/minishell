@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 18:00:46 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 21:47:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,16 @@ int	init_exec(t_run_info *run, t_exec_info info)
 		perror(ERR_EXEC);
 		return (FAILURE);
 	}
+	res = exec_and_clean_heredoc(run, info);
+	if (!res)
+		return (res);
 	if (((t_cmd *)info.cmds->content)->args == NULL)
 		return (SUCCESS);
 	tmp = ft_strjoin("_=", \
 		ft_lstlast(((t_cmd *)ft_lstlast(info.cmds)->content)->args)->content);
 	if (!tmp)
 		return (FAILURE);
-	if (!prep_heredocs(run, info))
-		return (FAILURE);
 	res = try_add(tmp, &info.env);
 	free(tmp);
 	return (res);
-}
-
-int	get_heredoc_fd(t_list *redir_head, t_run_info *run)
-{
-	t_list	*heredoc_head;
-
-	heredoc_head = run->heredocs;
-	while (heredoc_head)
-	{
-		if (((t_heredoc_info *)heredoc_head->content)->redir == \
-			((t_file_redir *)redir_head->content))
-			return (((t_heredoc_info *)heredoc_head->content)->fd);
-		heredoc_head = heredoc_head->next;
-	}
-	return (-1);
 }
