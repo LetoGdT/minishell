@@ -16,7 +16,9 @@ CFLAGS		:=	-Wall -Wextra -Werror -Iincludes
 OBJS		:=	$(SRCS:.c=.o)
 RM			:=	rm -f
 
-$(NAME):		$(OBJS) $(LIBS)
+all:			libs $(NAME)
+
+$(NAME):		$(OBJS)
 				cp $(LIBS) $(NAME)
 				ar rcs $(NAME) $(OBJS)
 
@@ -25,10 +27,9 @@ $(OBJS): 		$(SRCS) $(HDRS)
 %.o:			%.c
 				$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBS):	
+libs:
 				$(MAKE) --directory=$(shell dirname $(LIBS))
 
-all:			$(NAME)
 
 clean:
 				$(RM) $(OBJS)
@@ -40,5 +41,4 @@ fclean:			clean
 
 re: 			fclean all
 
-.PHONY:			all clean fclean re
-
+.PHONY:			all clean fclean re libs
