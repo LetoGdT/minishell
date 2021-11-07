@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/21 18:09:02 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 22:28:52 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ char	**ft_getenv(t_list *env)
 		i++;
 		head = head->next;
 	}
-	env_str = malloc(sizeof(char *) * (i + 1));
+	env_str = malloc(sizeof(char *) * i);
 	i = 0;
 	head = env;
 	while (head)
 	{
-		env_str[i] = ft_strdup((char *)head->content);
-		i++;
+		if (ft_strncmp("?", (char *)head->content, 1))
+			env_str[i++] = ft_strdup((char *)head->content);
 		head = head->next;
 	}
 	env_str[i] = NULL;

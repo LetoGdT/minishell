@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:56:23 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 22:46:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 22:24:25 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	prepare_execve(char **path, char ***env, char *cmd_name, t_exec_info info)
 		change_env_dollar_question(127, &info.env);
 		return (FAILURE);
 	}
-	*env = t_list_to_char(info.env);
+	*env = ft_getenv(info.env);
 	if (!*env)
 	{
 		ft_fprintf(STDERR_FILENO, "%s: %s\n", MINISHELL, ERR_MEM);
