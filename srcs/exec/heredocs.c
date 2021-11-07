@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 16:52:58 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:59:58 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,57 @@ static void	heredoc_parsing(int fd, char *str)
 		else
 			return ;
 	}
+}
+
+static int	prep_one_heredoc(t_run_info *run, t_file_redir *redir)
+{
+	t_list			*elem;
+	t_heredoc_info	*here;
+	int				fd[2];
+
+	here = malloc(sizeof(t_heredoc_info));
+	if (!here)
+		return (FAILURE);
+	if (pipe(fd))
+	{
+		free(here);
+		return (FAILURE);
+	}
+	elem = ft_lstnew(here);
+	if (!elem)
+	{
+		close(fd[0]);
+		close(fd[1]);
+		free(here);
+		return (FAILURE);
+	}
+	ft_lstadd_back(&run->heredocs, elem);
+	heredoc_parsing(fd[1], redir->name);
+	close(fd[1]);
+	here->fd = fd[0];
+	here->redir = redir;
+	return (SUCCESS);
+}
+
+int	prep_heredocs(t_run_info *run, t_exec_info info)
+{
+	t_list	*cmd_head;
+	t_list	*redir_head;
+
+	cmd_head = info.cmds;
+	while (cmd_head)
+	{
+		redir_head = ((t_cmd *)cmd_head->content)->infile;
+		while (redir_head)
+		{
+			if (((t_file_redir *)redir_head->content)->count == _REDIR_DOUBLE)
+				if (!prep_one_heredoc(run, (t_file_redir *)redir_head->content))
+					return (FAILURE);
+			redir_head = redir_head->next;
+		}
+		cmd_head = cmd_head->next;
+	}
+	return (SUCCESS);
 }
 
 int	heredoc(t_file_redir *redir, int real_in)

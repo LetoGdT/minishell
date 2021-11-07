@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 18:57:16 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 17:59:20 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,19 @@ typedef struct s_builtin
 	int		(*fun)(int argc, char **argv, t_list **env);
 }	t_builtin;
 
+typedef struct s_heredoc_info
+{
+	int				fd;
+	t_file_redir	*redir;
+}	t_heredoc_info;
+
 typedef struct s_run_info
 {
 	int		fd_real_in;
 	int		fd_real_out;
 	int		left_pipe[2];
 	int		right_pipe[2];
+	t_list	*heredocs;
 }	t_run_info;
 
 typedef enum s_redirection
@@ -111,7 +118,7 @@ char		**t_list_to_char(t_list *lst);
 
 // Fonctions liées à l’éxecution
 int			init_exec(t_run_info *run, t_exec_info info);
-int			clean_exec(t_run_info run);
+void		clean_exec(t_run_info run);
 int			exec(t_exec_info info);
 pid_t		prepare_fork_pipe(int rank, t_list *head, t_run_info *run);
 int			launch_prog(t_cmd *cmd, t_exec_info info);
@@ -124,6 +131,8 @@ int			prepare_execve(char **path, char ***env, char *cmd_name, \
 			t_exec_info info);
 pid_t		launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info);
 int			heredoc(t_file_redir *redir, int real_in);
+int			prep_heredocs(t_run_info *run, t_exec_info info);
+int			get_heredoc_fd(t_list *redir_head, t_run_info *run);
 int			restore_io(t_run_info *run);
 int			builtin_get_default_fork(char *cmd_name);
 t_built_fun	builtin_get_fun_ptr(char *cmd_name);
@@ -179,6 +188,7 @@ t_list		*init_content(void);
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info global, char *line, int ret);
 void		clear_cmds(t_exec_info global);
+void		free_and_close(void *fd);
 void		ft_lstclear_redir(t_list **lst, void (*del)(void*), \
 				short int nb);
 void		del(void *content);
