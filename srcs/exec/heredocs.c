@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 16:52:58 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 21:48:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,59 @@ static void	heredoc_parsing(int fd, char *str)
 	}
 }
 
-int	heredoc(t_file_redir *redir, int real_in)
+static int	heredoc(t_run_info *run, t_file_redir *redir)
 {
-	int		fd[2];
-	int		old_val;
-	pid_t	pid;
+	int				fd[2];
+	int				stat_loc;
+	pid_t			pid;
 
-	if (pipe(fd) || dup2(real_in, 0) == -1)
+	if (!prep_heredoc(fd, run, redir))
 		return (FAILURE);
-	old_val = g_children_running;
 	g_children_running = 1;
 	pid = fork();
 	if (pid == 0)
 	{
 		g_children_running = 2;
 		heredoc_parsing(fd[1], redir->name);
+		close(fd[0]);
+		close(fd[1]);
 		exit(0);
 	}
-	else if (pid > 0)
-		dup2(fd[0], 0);
-	close(fd[0]);
-	close(fd[1]);
 	if (pid < 0)
 		return (FAILURE);
-	waitpid(pid, NULL, 0);
-	g_children_running = old_val;
+	close(fd[1]);
+	waitpid(pid, &stat_loc, 0);
+	g_children_running = 0;
+	if (WIFEXITED(stat_loc))
+		if (WEXITSTATUS(stat_loc) == 2)
+			return (2);
+	return (SUCCESS);
+}
+
+int	exec_heredocs(t_run_info *run, t_exec_info info)
+{
+	t_list	*cmd_head;
+	t_list	*redir_head;
+	int		res;
+
+	(void)res;
+	cmd_head = info.cmds;
+	while (cmd_head)
+	{
+		redir_head = ((t_cmd *)cmd_head->content)->infile;
+		while (redir_head)
+		{
+			if (((t_file_redir *)redir_head->content)->count == _REDIR_DOUBLE)
+			{
+				res = heredoc(run, (t_file_redir *)redir_head->content);
+				if (res == 2)
+					return (2);
+				else if (!res)
+					return (FAILURE);
+			}
+			redir_head = redir_head->next;
+		}
+		cmd_head = cmd_head->next;
+	}
 	return (SUCCESS);
 }

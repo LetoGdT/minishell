@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 22:00:49 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 22:05:47 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,21 @@ int	exec(t_exec_info info)
 
 	if (info.cmds == NULL)
 		return (SUCCESS);
-	if (!init_exec(&run, info))
-		return (FAILURE);
+	rank = init_exec(&run, info);
+	if (!rank)
+		return (rank == 2);
 	head = info.cmds;
 	rank = 0;
 	while (head)
 	{
-		last_pid = launch_cmd(rank, head, &run, info);
+		last_pid = launch_cmd(rank++, head, &run, info);
 		if (last_pid == -1)
 			return (SUCCESS);
 		if (last_pid == -2)
-			return (FAILURE);
+			return (clean_exec(run));
 		head = head->next;
-		rank++;
 	}
-	if (!clean_exec(run))
-		return (FAILURE);
+	clean_exec(run);
 	return (wait_children_and_set_exit_code(last_pid, &info.env));
 }
 
@@ -83,12 +82,10 @@ int	parent(int rank, t_run_info *run)
 
 int	clean_exec(t_run_info run)
 {
-	if (close(run.fd_real_in) || close(run.fd_real_out))
-	{
-		perror(MINISHELL);
-		return (FAILURE);
-	}
-	return (SUCCESS);
+	close(run.fd_real_in);
+	close(run.fd_real_out);
+	ft_lstclear(&run.heredocs, free_and_close);
+	return (FAILURE);
 }
 
 pid_t	prepare_fork_pipe(int rank, t_list *head, t_run_info *run)

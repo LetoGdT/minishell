@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:33:47 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 17:43:52 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 21:47:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ int	wait_children_and_set_exit_code(pid_t last_child, t_list **env)
 	return (FAILURE);
 }
 
+void	free_and_close(void *fd)
+{
+	close(((int *)fd)[0]);
+	free(fd);
+}
+
 int	init_exec(t_run_info *run, t_exec_info info)
 {
 	char	*tmp;
@@ -65,6 +71,9 @@ int	init_exec(t_run_info *run, t_exec_info info)
 		perror(ERR_EXEC);
 		return (FAILURE);
 	}
+	res = exec_and_clean_heredoc(run, info);
+	if (!res)
+		return (res);
 	if (((t_cmd *)info.cmds->content)->args == NULL)
 		return (SUCCESS);
 	tmp = ft_strjoin("_=", \
