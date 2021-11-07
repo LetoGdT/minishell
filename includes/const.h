@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 21:19:35 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/25 19:24:50 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 22:36:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # define PROMPT "minishell$ "
 # define PROMPT_COLOR "\033[35mminishell\033[0m$ "
 # define HEREDOC_PROMPT ">>"
+# define EXPORT_MSG "declare -x"
 
 #endif

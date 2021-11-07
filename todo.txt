@@ -1,6 +1,5 @@
 exit | exit
 affichage quand ctrl_d
-export -> affichage dans ordre ascii
 export a -> crée une valeur dans l’env qui est affichée par export mais pas env
 export USER -> ne change pas la valeur déjà présente
 leaks quand on exit
