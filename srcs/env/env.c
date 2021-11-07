@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:00:19 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 22:28:52 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 00:02:45 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	**ft_getenv(t_list *env)
 	head = env;
 	while (head)
 	{
-		if (ft_strncmp("?", (char *)head->content, 1))
+		if (ft_strncmp("?", (char *)head->content, 1) && \
+			ft_strchr((char *)head->content, '='))
 			env_str[i++] = ft_strdup((char *)head->content);
 		head = head->next;
 	}
@@ -106,7 +107,7 @@ char	**ft_getenv_entry(char *key, t_list *env)
 	{
 		str = (char **)(&head->content);
 		if (!ft_strncmp(key, *str, ft_strlen(key)) && \
-			(*str)[ft_strlen(key)] == '=')
+			((*str)[ft_strlen(key)] == '=' || (*str)[ft_strlen(key)] == '\0'))
 			return (str);
 		head = head->next;
 	}
