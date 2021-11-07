@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/05 17:46:35 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/07 22:01:05 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ static short int	minishell(char **line, t_exec_info *global)
 	return (SUCCESS);
 }
 
+static short int	ctrl_d(t_exec_info *global)
+{
+	int res;
+
+	res = ft_atoi(ft_getenv_value("?", global->env));
+	ft_lstclear(&global->env, free);
+	return (res);
+}
+
 int	main(int argc, char **argv, char *env[])
 {
 	char		*line;
@@ -45,15 +54,18 @@ int	main(int argc, char **argv, char *env[])
 		while (1)
 		{
 			line = readline(PROMPT);
+			if (g_children_running == 3)
+			{
+				change_env_dollar_question(1, &global.env);
+				g_children_running = 0;
+			}
 			if (line)
 			{
 				if (!minishell(&line, &global))
 					return (EXIT_FAILURE);
 			}
 			else
-				ft_fprintf(STDOUT_FILENO, "%s%s\n", PROMPT, EXIT_MSG);
-			if (!line)
-				break ;
+				return (ctrl_d(&global));
 		}
 	}
 	return (EXIT_SUCCESS);

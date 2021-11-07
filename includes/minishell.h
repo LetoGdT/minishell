@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 18:57:16 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 22:00:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ t_list		*init_content(void);
 // #Fonctions pour free avant d'exit
 short int	clear(t_exec_info global, char *line, int ret);
 void		clear_cmds(t_exec_info global);
+void		clear_exec_info(t_exec_info info);
 void		ft_lstclear_redir(t_list **lst, void (*del)(void*), \
 				short int nb);
 void		del(void *content);

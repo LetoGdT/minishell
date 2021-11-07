@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 18:57:30 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 22:00:49 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ pid_t	launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info)
 	{
 		child((t_cmd *)cmd->content, run, info);
 		res = ft_atoi(ft_getenv_value("?", info.env));
+		clear_exec_info(info);
 		exit(res);
 	}
 	else if (pid > 0)
@@ -62,7 +63,7 @@ pid_t	launch_cmd(int i, t_list *cmd, t_run_info *run, t_exec_info info)
 	else
 	{
 		perror(ERR_EXEC);
-		clear_cmds(info);
+		clear_exec_info(info);
 		return (-2);
 	}
 	return (pid);
