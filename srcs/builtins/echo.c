@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 21:24:49 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 21:44:04 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/07 15:35:19 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_echo(int argc, char **argv, t_list **env)
 		while (i < argc && !ft_strncmp(argv[i], "-n", 2))
 		{
 			old_is_newline = is_newline;
-			j = 1;
+			j = 0;
 			while (argv[i][++j])
 			{
 				if (argv[i][j] == 'n')
