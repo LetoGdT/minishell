@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/08 13:44:34 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 15:33:27 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,43 +32,52 @@ static short int	minishell(char **line, t_exec_info *global)
 
 static short int	ctrl_d(t_exec_info *global)
 {
-	int 	res;
+	int	res;
 
 	res = get_exit_code(global->env);
 	ft_lstclear(&global->env, free);
 	return (res);
 }
 
-int	main(int argc, char **argv, char *env[])
+static int	main_loop(t_exec_info global)
 {
-	char		*line;
-	t_exec_info	global;
+	char	*line;
 
 	line = NULL;
+	while (1)
+	{
+		line = readline(PROMPT);
+		if (g_children_running == 3)
+		{
+			change_env_dollar_question(1, &global.env);
+			g_children_running = 0;
+		}
+		if (line)
+		{
+			if (!minishell(&line, &global))
+				return (EXIT_FAILURE);
+		}
+		else
+			return (ctrl_d(&global));
+	}
+}
+
+int	main(int argc, char **argv, char *env[])
+{
+	t_exec_info	global;
+
 	if (argc > 1 || argv[1])
 		write(1, "Wrong numbers of arguments\n", 27);
 	else
 	{
 		if (!init(&global, env))
-			return (clear(global, line, EXIT_FAILURE));
-		while (1)
 		{
-			line = readline(PROMPT);
-			if (g_children_running == 3)
-			{
-				change_env_dollar_question(1, &global.env);
-				g_children_running = 0;
-			}
-			if (line)
-			{
-				if (!minishell(&line, &global))
-					return (EXIT_FAILURE);
-			}
-			else
-				return (ctrl_d(&global));
+			clear_exec_info(global);
+			return (EXIT_FAILURE);
 		}
+		return (main_loop(global));
 	}
-	return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
 
 // bug : ./minishell il dit que y a un argument '' vide

@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 01:10:38 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/08 13:55:50 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 15:21:09 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**prepare_absolute_path(char *cmd)
 	return (path);
 }
 
-static char **get_env_path(t_list *env)
+static char	**get_env_path(t_list *env)
 {
 	char	**path;
 	char	*tmp;
