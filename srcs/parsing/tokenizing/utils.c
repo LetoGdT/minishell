@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:04:35 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/08 16:17:22 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 18:05:12 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	start(t_list **tmp, char c, int *i)
 {
 	t_list	*new;
 
-	*tmp = NULL;
 	new = init_content();
 	if (!new)
 		return (FAILURE);

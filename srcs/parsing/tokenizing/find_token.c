@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 17:01:42 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/03 09:45:45 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 17:09:00 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static short int	find_token_str(t_token *token, char *line, int *i, \
 	if (!token->str)
 		return (FAILURE);
 	j = 0;
-	while (line[*i] && !is_redir_space(line[*i]))
+	while (line[*i] && !is_redir_space(line[*i]) && line[*i] != '|')
 	{
 		if (is_quote_export(line[*i], esc_quote, *i))
 		{
