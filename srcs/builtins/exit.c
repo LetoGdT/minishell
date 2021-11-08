@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/08 13:45:30 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 20:05:11 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	ft_exit(int argc, char **argv, t_list **env)
 	long long int	status;
 
 	(void)env;
-	ft_fprintf(STDERR_FILENO, "%s\n", EXIT_MSG);
+	if (!g_children_running)
+		ft_fprintf(STDERR_FILENO, "%s\n", EXIT_MSG);
 	status = get_exit_code(*env);
 	if (argc == 1)
 		exit(status);
