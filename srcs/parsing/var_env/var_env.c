@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 09:46:12 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/08 18:50:07 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 19:53:39 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static char	*get_key(char *line, int loc, char **esc_quote)
 	int		i;
 	char	*str;
 
+	if (line[loc] && line[loc] == '?')
+		return (ft_strdup("?"));
 	i = 0;
-	while (line[loc] && (line[loc] != ' ') && !is_quotes_pipe(line[loc], \
+	loc--;
+	while (line[++loc] && (line[loc] != ' ') && !is_quotes_pipe(line[loc], \
 			esc_quote, loc) && !dollar(line, loc) && !forb_char(line[loc]))
-	{
-		loc++;
 		i++;
-	}
 	loc -= i;
 	str = malloc(sizeof(char) * i + 1);
 	if (!str)

@@ -1,5 +1,0 @@
-exit | exit
-affichage quand ctrl_d
-	export LS="   ls "
-	export a="objs"
-	$LS$a -> ne fait rien
