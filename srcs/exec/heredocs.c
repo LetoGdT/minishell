@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 21:48:24 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 16:19:24 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	exec_heredocs(t_run_info *run, t_exec_info info)
 
 	(void)res;
 	cmd_head = info.cmds;
+	run->heredocs = NULL;
 	while (cmd_head)
 	{
 		redir_head = ((t_cmd *)cmd_head->content)->infile;
