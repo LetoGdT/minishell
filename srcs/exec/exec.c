@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 18:00:51 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/08 13:45:54 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 15:59:42 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ int	clean_exec(t_run_info run)
 {
 	close(run.fd_real_in);
 	close(run.fd_real_out);
-	ft_lstclear(&run.heredocs, free_and_close);
+	if (run.heredocs)
+		ft_lstclear(&run.heredocs, free_and_close);
 	return (FAILURE);
 }
 

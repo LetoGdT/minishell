@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:38:44 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/05 17:46:53 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 16:22:45 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 	int			ret;
 	t_token		token;
 
-	tmp = NULL;
 	ret = SUCCESS;
-	i = 0;
-	while (line[i] && i < (int)ft_strlen(line) && !is_only_space(line, i))
+	i = -1;
+	while (line[++i] && i < (int)ft_strlen(line) && !is_only_space(line, i))
 	{
 		init_ret_token(&token);
 		j = i;
@@ -87,7 +86,6 @@ short int	tokenizing(t_exec_info *global, char *line, char **esc_quote)
 			return (ret);
 		if (!fill_cmds(ft_lstlast(tmp)->content, token))
 			return (FAILURE);
-		i++;
 	}
 	global->cmds = tmp;
 	return (ret);
