@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:59:40 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/08 16:19:24 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 18:08:14 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ static void	heredoc_parsing(int fd, char *str)
 				return ;
 		}
 		else
+		{
+			free(line);
+			ft_putstr_fd_list(list, fd);
 			return ;
+		}
 	}
 }
 
