@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 11:09:47 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/05 22:44:51 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 20:01:16 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	del(void *content)
 			ft_lstclear(&(((t_cmd *)content)->args), free);
 		if (((t_cmd *)content)->infile)
 			ft_lstclear_redir(&(((t_cmd *)content)->infile), free, _REDIR_IN);
-		if (((t_cmd *)content)->infile)
+		if (((t_cmd *)content)->outfile)
 			ft_lstclear_redir(&(((t_cmd *)content)->outfile), free, _REDIR_OUT);
 		free(content);
 	}
