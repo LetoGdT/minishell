@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/08 17:19:41 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 18:53:11 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static short int	minishell(char **line, t_exec_info *global)
 	if (!ret)
 		return (clear(*global, *line, FAILURE));
 	free(*line);
-	print_cmds(*global);
 	if (ret != ERR_PARSING && !exec(*global))
 		return (clear(*global, NULL, FAILURE));
 	clear_cmds(*global);
@@ -80,12 +79,3 @@ int	main(int argc, char **argv, char *env[])
 	}
 	return (EXIT_FAILURE);
 }
-
-// seg fault $PWD- (tous les caracteres qui ne sont pas admissible dans les noms de var d'environnement \
-// donc tous ce qui n'est pas _ et nombre et lettre)
-
-// fnewnfew|fewjf un seul bloc donc pas bon
-
-// echo | grep a
-
-// $bdowef seg fault car j'envoie un truc mais c'est pas NULL

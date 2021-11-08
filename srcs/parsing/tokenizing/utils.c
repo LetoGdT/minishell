@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:04:35 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/08 18:05:12 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 18:54:54 by mballet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	start(t_list **tmp, char c, int *i)
 	return (SUCCESS);
 }
 
-void	init_ret_token(t_token *ret_token)
+void	init_ret_token(t_token *ret_token, int *j, int i)
 {
+	*j = i;
 	ret_token->export = 0;
 	ret_token->str = NULL;
 	ret_token->redir = NULL;
