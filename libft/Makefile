@@ -18,13 +18,11 @@ RM			:=	rm -f
 
 all:			libs $(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME):		$(OBJS) $(LIBS)
 				cp $(LIBS) $(NAME)
 				ar rcs $(NAME) $(OBJS)
 
-$(OBJS): 		$(SRCS) $(HDRS)
-
-%.o:			%.c
+%.o:			%.c $(HDRS)
 				$(CC) $(CFLAGS) -c $< -o $@
 
 libs:
