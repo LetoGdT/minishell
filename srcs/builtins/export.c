@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/08 18:41:42 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 18:50:12 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_export(int argc, char **argv, t_list **env)
 	{
 		if (!is_valid_name(argv[i + 1]))
 		{
-			ft_fprintf(STDERR_FILENO, "%s: %s: %s: %s\n", MINISHELL, argv[0], \
+			ft_fprintf(STDERR_FILENO, "%s: %s: \"%s\": %s\n", MINISHELL, argv[0], \
 			argv[i + 1], ERR_IDENT);
 			return (PROG_FAILURE);
 		}
