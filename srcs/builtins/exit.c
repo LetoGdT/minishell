@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:07:06 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/05 17:30:19 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:45:30 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,20 @@ int	ft_exit(int argc, char **argv, t_list **env)
 
 	(void)env;
 	ft_fprintf(STDERR_FILENO, "%s\n", EXIT_MSG);
+	status = get_exit_code(*env);
 	if (argc == 1)
-		exit(ft_atoi(ft_getenv_value("?", *env)));
+		exit(status);
 	status = ft_atoll(argv[1]);
 	if ((status == 0 && errno != 0) || !is_num(argv[1]))
 	{
 		ft_fprintf(STDERR_FILENO, "%s: %s: %s: %s\n", MINISHELL, argv[0], \
-		argv[1], ERR_NUM);
+			argv[1], ERR_NUM);
 		exit(255);
 	}
 	if (argc > 2)
 	{
 		ft_fprintf(STDERR_FILENO, "%s: %s: %s\n", MINISHELL, argv[0], \
-		ERR_TOO_ARG);
+			ERR_TOO_ARG);
 		return (1);
 	}
 	exit((int)status);

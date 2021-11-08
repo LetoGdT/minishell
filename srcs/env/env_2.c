@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 20:08:46 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/08 00:11:18 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:51:15 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,15 @@ int	change_env_dollar_question(int n, t_list **env)
 	res = try_add(str, env);
 	free(str);
 	return (res);
+}
+
+int	get_exit_code(t_list *env)
+{
+	char	*tmp;
+	int		status;
+
+	tmp = ft_getenv_value("?", env);
+	status = ft_atoi(tmp);
+	free(tmp);
+	return (status);
 }

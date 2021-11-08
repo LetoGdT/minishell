@@ -6,7 +6,7 @@
 /*   By: lgaudet- <lgaudet-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 01:10:38 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/10/22 15:11:41 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:55:50 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ static char	**prepare_absolute_path(char *cmd)
 	return (path);
 }
 
+static char **get_env_path(t_list *env)
+{
+	char	**path;
+	char	*tmp;
+
+	tmp = ft_getenv_value("PATH", env);
+	path = ft_split(tmp, ":");
+	free(tmp);
+	return (path);
+}
+
 static char	**prepare_path(char *cmd, t_list *env)
 {
 	int		i;
@@ -66,7 +77,7 @@ static char	**prepare_path(char *cmd, t_list *env)
 	}
 	else
 	{
-		path = ft_split(ft_getenv_value("PATH", env), ":");
+		path = get_env_path(env);
 		if (!path)
 			return (NULL);
 	}

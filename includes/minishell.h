@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 18:32:41 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 22:43:48 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:43:19 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ char		**ft_getenv_entry(char *key, t_list *env);
 char		*ft_getenv_value(char *key, t_list *env);
 int			change_env_dollar_question(int n, t_list **env);
 char		**t_list_to_char(t_list *lst);
+int			get_exit_code(t_list *env);
 
 // Fonctions liées à l’éxecution
 int			init_exec(t_run_info *run, t_exec_info info);

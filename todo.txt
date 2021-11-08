@@ -1,6 +1,5 @@
 exit | exit
 affichage quand ctrl_d
-leaks quand on exit
 	export LS="   ls "
 	export a="objs"
 	$LS$a -> ne fait rien

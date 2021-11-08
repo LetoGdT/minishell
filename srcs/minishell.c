@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/07 22:05:34 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 13:44:34 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static short int	minishell(char **line, t_exec_info *global)
 
 static short int	ctrl_d(t_exec_info *global)
 {
-	int res;
+	int 	res;
 
-	res = ft_atoi(ft_getenv_value("?", global->env));
+	res = get_exit_code(global->env);
 	ft_lstclear(&global->env, free);
 	return (res);
 }
