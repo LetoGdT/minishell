@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:08:01 by mballet           #+#    #+#             */
-/*   Updated: 2021/11/08 16:22:42 by mballet          ###   ########.fr       */
+/*   Updated: 2021/11/08 16:30:10 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,3 @@ int	main(int argc, char **argv, char *env[])
 	}
 	return (EXIT_FAILURE);
 }
-
-// bug : ./minishell il dit que y a un argument '' vide
