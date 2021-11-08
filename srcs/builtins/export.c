@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:09:29 by lgaudet-          #+#    #+#             */
-/*   Updated: 2021/11/07 23:46:48 by lgaudet-         ###   ########.fr       */
+/*   Updated: 2021/11/08 17:12:39 by lgaudet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 static int	is_valid_name(char *str)
 {
+	int	i;
+
 	if (!str)
 		return (FAILURE);
-	return (ft_isalpha(str[0]) || str[0] == '_');
+	if (!ft_isalpha(str[0]) && str[0] != '_')
+		return (FAILURE);
+	i = 0;
+	while (str[++i])
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			return (FAILURE);
+	return (SUCCESS);
 }
 
 int	ft_export(int argc, char **argv, t_list **env)
